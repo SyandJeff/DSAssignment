@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSA Assignment AY 1415", "DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj", "{440DC9BC-13DE-48D9-9CDB-90AD132035DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{440DC9BC-13DE-48D9-9CDB-90AD132035DE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{440DC9BC-13DE-48D9-9CDB-90AD132035DE}.Debug|Win32.Build.0 = Debug|Win32
+		{440DC9BC-13DE-48D9-9CDB-90AD132035DE}.Release|Win32.ActiveCfg = Release|Win32
+		{440DC9BC-13DE-48D9-9CDB-90AD132035DE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
