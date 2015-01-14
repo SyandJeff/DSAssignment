@@ -76,6 +76,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SortedArrayList.h" />
+    <ClInclude Include="UnsortedArrayList.h" />
+    <ClInclude Include="UnsortedPointerList.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SortedArrayList.cpp" />
+    <ClCompile Include="UnsortedArrayList.cpp" />
+    <ClCompile Include="UnsortedPointerList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
