@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ReadingFile.cpp" />
     <ClCompile Include="SortedArrayList.cpp" />
     <ClCompile Include="UnsortedArrayList.cpp" />
     <ClCompile Include="UnsortedPointerList.cpp" />
