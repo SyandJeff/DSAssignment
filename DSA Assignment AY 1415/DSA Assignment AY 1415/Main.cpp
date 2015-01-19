@@ -2,6 +2,8 @@
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
 #include "UnsortedPointerList.h"
+#include "ReadingFile.h"
+
 
 using namespace std;
 
@@ -11,6 +13,7 @@ int choiceSelection(int option)
 	{
 	case '1':
 		//Import songs
+		int readSongs();
 		break;
 	case '2':
 		//Add songs
@@ -28,7 +31,7 @@ int choiceSelection(int option)
 		//exit program
 		break;
 	}
-
+	return 0;
 }
 
 int main()

@@ -5,14 +5,14 @@
 #include <iostream>
 using namespace std;
 
-const int MAX_SIZE = 10000;
+const int SA_MAX_SIZE = 10000;
 
 typedef string ItemType;
 
 class SortedArrayList
 {
 private:
-	string SAList[MAX_SIZE];
+	string SAList[SA_MAX_SIZE];
 	int size;
 
 public:
@@ -28,10 +28,10 @@ public:
 	//pre: music name must exist and look for the position of the music if it exist
 	//post: music deleted
 
-	bool SortedArrayList::display();
+	void SortedArrayList::display();
 	//Display all the songs
 
-	bool SortedArrayList::display(int index);
+	void SortedArrayList::display(int index);
 	//Search for the song title which returns index
 	//display specific song information using the index
 

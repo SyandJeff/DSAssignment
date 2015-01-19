@@ -9,26 +9,26 @@ SortedArrayList::SortedArrayList()
 }
 bool SortedArrayList::add(ItemType song)
 {
-
+	return 0;
 }
 
 bool SortedArrayList::remove(int index)
 {
-
+	return 0;
 }
-bool SortedArrayList::display()
+void SortedArrayList::display()
 {
 
 }
-bool SortedArrayList::display(int index)
+void SortedArrayList::display(int index)
 {
 
 }
 int SortedArrayList::sqSearch(ItemType searchItem)
 {
-
+	return 0;//temp for now
 }
 int SortedArrayList::binSearch(ItemType searchItem)
 {
-
+	return 0;//temp for now
 }

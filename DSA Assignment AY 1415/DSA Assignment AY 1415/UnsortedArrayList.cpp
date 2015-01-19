@@ -7,7 +7,7 @@ UnsortedArrayList::UnsortedArrayList()
 
 bool UnsortedArrayList::add(string song)
 {
-	bool success = size < MAX_SIZE;
+	bool success = size < USA_MAX_SIZE;
 	if (success)
 	{
 		USAList[size] = song;
@@ -16,11 +16,39 @@ bool UnsortedArrayList::add(string song)
 	return true;
 }
 
-bool UnsortedArrayList::remove()
+bool UnsortedArrayList::remove(int index)
+{
+	return 0;
+}
+
+void UnsortedArrayList::display()
 {}
 
-bool UnsortedArrayList::display()
-{}
+void UnsortedArrayList::display(int index)
+{
+
+}
+
+int UnsortedArrayList::sqSearch(ItemType searchItem)
+{
+	return 0;//temp for now
+}
+
+int UnsortedArrayList::binSearch(ItemType searchItem)
+{
+	return 0;//temp for now
+}
+
+int UnsortedArrayList::getLength()
+{
+	return size;
+}
+
+bool UnsortedArrayList::isEmpty()
+{
+	return 0;
+}
+
 
 
 
