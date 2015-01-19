@@ -4,20 +4,18 @@
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
 #include "UnsortedPointerList.h"
-//#include "ReadingFile.h"
-
 using namespace std;
 
 int readSongs()
 {
 	int noOfSongs, count = 0;
 	string song;
-	cout << "How many songs would you like to import?" << endl;
+	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
-	ofstream file("mxm_779k_matches.txt");
+	ifstream file("mxm_779k_matches.txt");
 	if (file.is_open())
 	{
-		cout << "Success";
+		cout << "Success" << endl;
 		file.close();
 	}
 	else
@@ -39,6 +37,7 @@ int readSongs()
 			false; //stop the reading
 		
 	}*/
+	cout << " " << endl;
 	return 0;
 }
 
@@ -47,16 +46,17 @@ int main()
 	int option = -1; //default
 	while (option != 0)
 	{
-		cout << "" << endl;
 		cout << "Welcome to DSA Assignment AY1415" << endl;
 		cout << "====================================" << endl;
 		cout << "What would you like to do?" << endl;
-		cout << "1) Import the songs into the program" << endl;
-		cout << "2) Add new song" << endl;
-		cout << "3) Remove a song" << endl;
-		cout << "4) Search a song using Sequential Search" << endl;
-		cout << "5) Search a song using Binary Search" << endl;
-		cout << "0) End the program" << endl;
+		cout << "" << endl;
+		cout << "[1] Import the songs into the program" << endl;
+		cout << "[2] Add new song" << endl;
+		cout << "[3] Remove a song" << endl;
+		cout << "[4] Search a song using Sequential Search" << endl;
+		cout << "[5] Search a song using Binary Search" << endl;
+		cout << "[0] End the program" << endl;
+		cout << "" << endl;
 		cout << "Enter your option : ";
 		cin >> option;
 		cout << "" << endl;
