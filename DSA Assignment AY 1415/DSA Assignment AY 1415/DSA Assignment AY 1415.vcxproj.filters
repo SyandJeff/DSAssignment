@@ -27,9 +27,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReadingFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Song.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,9 +54,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Word.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ReadingFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
