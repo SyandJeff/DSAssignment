@@ -14,8 +14,15 @@ int readSongs()
 	string song;
 	cout << "How many songs would you like to import?" << endl;
 	cin >> noOfSongs;
-	/*ifstream file("mxm_779k_matches");
-	while (std::getline(file, song))
+	ofstream file("mxm_779k_matches.txt");
+	if (file.is_open())
+	{
+		cout << "Success";
+		file.close();
+	}
+	else
+		cout << "Unable to open file" << endl;
+	/*while (std::getline(file, song))
 	{
 		//Process
 		//commands to read a specific number of lines
