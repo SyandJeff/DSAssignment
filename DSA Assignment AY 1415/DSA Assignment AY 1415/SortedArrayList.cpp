@@ -9,12 +9,12 @@ SortedArrayList::SortedArrayList()
 }
 bool SortedArrayList::add(ItemType song)
 {
-	return 0;
+	return false;
 }
 
 bool SortedArrayList::remove(int index)
 {
-	return 0;
+	return false;
 }
 void SortedArrayList::display()
 {
