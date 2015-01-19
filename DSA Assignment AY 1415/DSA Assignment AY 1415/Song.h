@@ -23,7 +23,6 @@ private:
 	string tid;
 	string aName;
 	string title;
-	string mxmTid;
 	string mxmName;
 	string mxmTitle;
 	int mxmTid;

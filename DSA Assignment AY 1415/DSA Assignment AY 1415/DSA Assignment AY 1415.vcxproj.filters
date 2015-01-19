@@ -33,6 +33,9 @@
     <ClCompile Include="Song.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lyrics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SortedArrayList.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Song.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lyrics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
