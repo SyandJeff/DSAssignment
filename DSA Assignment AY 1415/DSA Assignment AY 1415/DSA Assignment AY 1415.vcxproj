@@ -81,6 +81,7 @@
     <ClInclude Include="SortedArrayList.h" />
     <ClInclude Include="UnsortedArrayList.h" />
     <ClInclude Include="UnsortedPointerList.h" />
+    <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -90,6 +91,7 @@
     <ClCompile Include="Lyrics.cpp" />
     <ClCompile Include="UnsortedArrayList.cpp" />
     <ClCompile Include="UnsortedPointerList.cpp" />
+    <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
