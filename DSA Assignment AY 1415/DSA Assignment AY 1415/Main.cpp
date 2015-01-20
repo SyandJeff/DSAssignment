@@ -4,6 +4,7 @@
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
 #include "UnsortedPointerList.h"
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -15,16 +16,17 @@ int readSongs()
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream sfile("mxm_779k_matches.txt");
-	getline(sfile, song);
-	cout << song << endl;
 	if (sfile.is_open())
 	{
 		while (noOfSongs > count)
 		{
 			//testing
 			getline(sfile, song);
-			cout << song << endl;
-			count++;
+			if (song[0] != '#')
+			{
+				cout << song << endl;
+				count++;
+			}
 		}
 		sfile.close();
 	}
