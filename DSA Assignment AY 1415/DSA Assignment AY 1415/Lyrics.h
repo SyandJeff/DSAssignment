@@ -1,3 +1,6 @@
+#ifndef LYRICS_H
+#define LYRICS_H
+
 #include <string>
 #include <iostream>
 using namespace std;
@@ -23,3 +26,4 @@ private:
 	int wordC;
 
 };
+#endif

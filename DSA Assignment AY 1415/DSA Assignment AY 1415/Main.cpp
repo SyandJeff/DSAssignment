@@ -30,8 +30,8 @@ int readSongs()
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
-				/*cout << song << endl; //need to be stored into vectors
-				songStorage.push_back(song);*/
+				cout << song << endl; //need to be stored into vectors
+				/*songStorage.push_back(song);*/
 
 				//trying to seperate the string
 				/*while ((pos = song.find(delim)) != std::string::npos)

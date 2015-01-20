@@ -18,9 +18,15 @@ bool SortedArrayList::add(SongItem song)
 	return success;
 }
 
-bool SortedArrayList::remove(int index)
+void SortedArrayList::remove(int index)
 {
-	return false;
+	bool success = (index >= 1) && (index <= size);
+	if (success)
+	{
+		for (int pos = index + 1; pos <= size; pos++)
+			SAList[pos - 2] = SAList[pos - 1];
+		size--;
+	}
 }
 void SortedArrayList::display()
 {

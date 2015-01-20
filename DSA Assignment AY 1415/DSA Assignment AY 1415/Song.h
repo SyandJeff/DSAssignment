@@ -1,3 +1,6 @@
+#ifndef SONG_H
+#define SONG_H
+
 #include <string>
 #include <iostream>
 using namespace std;
@@ -28,3 +31,4 @@ private:
 	int mxmTid;
 
 };
+#endif

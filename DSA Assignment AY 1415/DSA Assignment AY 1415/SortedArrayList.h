@@ -1,5 +1,5 @@
 #ifndef SORTEDARRAYLIST_H
-#define SORTEDARRATLIST_H
+#define SORTEDARRAYLIST_H
 
 #include <string>
 #include <iostream>
@@ -28,7 +28,7 @@ public:
 	//pre:size<MAX_SIZE
 	//post: music added to the list
 
-	bool SortedArrayList::remove(int index);
+	void SortedArrayList::remove(int index);
 	//remove item by searching for the music name
 	//pre: music name must exist and look for the position of the music if it exist
 	//post: music deleted
@@ -53,8 +53,6 @@ public:
 	//check if empty
 
 	int SortedArrayList::getLength();
-	//returnt the size of list.
-
-
+	//return the size of list.
 };
 #endif

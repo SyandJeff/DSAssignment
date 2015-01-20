@@ -1,3 +1,6 @@
+#ifndef WORD_H
+#define WORD_H
+
 #include <string>
 #include <iostream>
 using namespace std;
@@ -16,3 +19,4 @@ private:
 	string wordStr; //not to be confused with words
 	int wordid;
 };
+#endif
