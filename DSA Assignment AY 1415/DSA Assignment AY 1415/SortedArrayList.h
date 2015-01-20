@@ -1,24 +1,29 @@
-#ifndef UNSORTEDARRAYLIST_H
-#define UNSORTEDARRATLIST_H
+#ifndef SORTEDARRAYLIST_H
+#define SORTEDARRATLIST_H
 
 #include <string>
 #include <iostream>
+#include "Song.h"
+#include "Lyrics.h"
+#include "Word.h"
+
 using namespace std;
 
 const int SA_MAX_SIZE = 10000;
 
-typedef string ItemType;
+typedef Song SongItem;
+//Fix Search first then continue with adding Word and Lyrics
 
 class SortedArrayList
 {
 private:
-	string SAList[SA_MAX_SIZE];
+	SongItem SAList[SA_MAX_SIZE];
 	int size;
 
 public:
 	SortedArrayList::SortedArrayList();
 
-	bool SortedArrayList::add(ItemType song);
+	bool SortedArrayList::add(SongItem song);
 	//add item to the back to the list
 	//pre:size<MAX_SIZE
 	//post: music added to the list
@@ -35,11 +40,21 @@ public:
 	//Search for the song title which returns index
 	//display specific song information using the index
 
-	int SortedArrayList::sqSearch(ItemType searchItem);
+	int SortedArrayList::sqSearch(Song SAList[], string target);
 	//Searching of song title using sequential search
 
-	int SortedArrayList::binSearch(ItemType searchItem);
+	int SortedArrayList::binSearch(Song SAList[], string target);
 	//Searching of song title using binary search
+
+	SongItem SortedArrayList::get(int index);
+	// get item at specific position in list
+
+	bool SortedArrayList::isEmpty();
+	//check if empty
+
+	int SortedArrayList::getLength();
+	//returnt the size of list.
+
 
 };
 #endif
