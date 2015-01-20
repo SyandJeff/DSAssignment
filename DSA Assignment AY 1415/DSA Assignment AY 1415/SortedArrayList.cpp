@@ -43,19 +43,19 @@ void SortedArrayList::display(int index)
 	item = get(index);
 	cout << "For Example: item.getAName" << endl;
 }
-/*int SortedArrayList::sqSearch(Song SAList[], string target)
+int SortedArrayList::sqSearch(Song SAList[], string target)
 {
 	int n = getLength();
 	for (int i = 0; i < n; i++)
 	{
-		if (SAList[i].getTID == target)//found
+		if (SAList[i].getTID() == target)//found
 			return i;
-		else if (SAList[i].getTID > target)//not found
+		else if (SAList[i].getTID() > target)//not found
 			return -1;
 	}
 	return -1;
 }
-int SortedArrayList::binSearch(Song SAList[], string target)
+/*int SortedArrayList::binSearch(Song SAList[], string target)
 {
 	int n = getLength();
 	int mid, first = 0, last = n - 1;
