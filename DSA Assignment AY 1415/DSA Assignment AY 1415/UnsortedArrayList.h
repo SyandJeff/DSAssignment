@@ -3,22 +3,26 @@
 
 #include <string>
 #include <iostream>
+#include "Song.h"
+#include "Lyrics.h"
+#include "Word.h"
+
 using namespace std;
 
 const int USA_MAX_SIZE = 10000;
 
-typedef string ItemType; //need help here
+typedef Song SongItem;
 
 class UnsortedArrayList
 {
 private:
-	string USAList[USA_MAX_SIZE];
+	SongItem USAList[USA_MAX_SIZE];
 	int size;
 
 public:
 	UnsortedArrayList::UnsortedArrayList();
 
-	bool UnsortedArrayList::add(string song);
+	bool UnsortedArrayList::add(Song song);
 	//add item to the back to the list
 	//pre:size<MAX_SIZE
 	//post: music added to the list
@@ -34,10 +38,10 @@ public:
 	void UnsortedArrayList::display(int index);
 	//display specific song
 
-	int UnsortedArrayList::sqSearch(ItemType searchItem);
+	int UnsortedArrayList::sqSearch(Song USAList[], string target);
 	//sequential search
 
-	int UnsortedArrayList::binSearch(ItemType searchItem);
+	int UnsortedArrayList::binSearch(Song USAList[], string target);
 	//binary search
 
 	int UnsortedArrayList::getLength();
@@ -45,6 +49,9 @@ public:
 
 	bool UnsortedArrayList::isEmpty();
 	//check if the array is empty
+
+	SongItem UnsortedArrayList::get(int index);
+	//get function to get the song
 
 };
 #endif
