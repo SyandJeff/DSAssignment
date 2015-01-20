@@ -4,27 +4,25 @@
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
 #include "UnsortedPointerList.h"
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 int readSongs()
 {
 	int noOfSongs = 0, count = 0;
 	string song;
-
 	cout << "How many songs would you like to import? " << endl;
 	cin >> noOfSongs;
-	ofstream file("mxm_779k_matches.txt");
+	ifstream file("mxm_779k_matches.txt");
 	if (file.is_open())
 	{
 		while (noOfSongs > count)
 		{
-			getline(file, song);
-			file << song << endl;
+			//testing
+			cout << "Loop " << count << endl;
 			count++;
 		}
-		file.close();
-	}
-
 		file.close();
 	}
 	else
