@@ -15,7 +15,7 @@ int readSongs()
 {
 	int noOfSongs = 0, count = 0;
 	string song;
-	vector<string> storage[10000];
+	vector<string> songStorage;
 
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
@@ -28,10 +28,11 @@ int readSongs()
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
-				storage[count] = song;
-				//cout << song << endl; //need to be stored into vectors
+				cout << song << endl; //need to be stored into vectors
+				songStorage.push_back(song);
 				count++;
 			}
+			
 		}
 		sfile.close();
 	}
