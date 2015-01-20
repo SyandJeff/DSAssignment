@@ -15,9 +15,6 @@ int readSongs()
 {
 	int noOfSongs = 0, count = 0;
 	string song;
-	std::string delim = "<SEP>";
-	size_t pos = 0;
-	std::string token;
 	vector<string> songStorage;
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
@@ -30,7 +27,9 @@ int readSongs()
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
-				cout << song << endl; //need to be stored into vectors
+				cout << song << endl; 
+				count++;
+				//need to be stored into vectors
 				/*songStorage.push_back(song);*/
 
 				//trying to seperate the string
@@ -46,7 +45,6 @@ int readSongs()
 				std::cout << song << std::endl;*/
 				//count++;
 			}
-			
 		}
 		sfile.close();
 	}

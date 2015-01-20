@@ -43,7 +43,7 @@ void SortedArrayList::display(int index)
 	item = get(index);
 	cout << "For Example: item.getAName" << endl;
 }
-int SortedArrayList::sqSearch(Song SAList[], string target)
+int SortedArrayList::sqSearch(Song SAList[], string target) //search using TrackID presumably. Can be changed
 {
 	int n = getLength();
 	for (int i = 0; i < n; i++)
@@ -55,22 +55,22 @@ int SortedArrayList::sqSearch(Song SAList[], string target)
 	}
 	return -1;
 }
-/*int SortedArrayList::binSearch(Song SAList[], string target)
+int SortedArrayList::binSearch(Song SAList[], string target)
 {
 	int n = getLength();
 	int mid, first = 0, last = n - 1;
 	while (first<=last)
 	{
 		mid = (first + last) / 2;
-		if (SAList[mid].getTID = target) //found
+		if (SAList[mid].getTID() == target) //found
 			return mid;
-		else if (target < SAList[mid].getTID) //searching through first half
+		else if (target < SAList[mid].getTID()) //searching through first half
 			last = mid - 1;
 		else
 			first = mid + 1;//searching through second half
 	}
 	return -1; //not found
-}*/
+}
 SongItem SortedArrayList::get(int index)
 {
 	SongItem item;

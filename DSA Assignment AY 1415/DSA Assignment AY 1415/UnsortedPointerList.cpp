@@ -73,10 +73,22 @@ void UnsortedPointerList::display(int index)
 	SongItem sItem = temp->item;
 	cout << "For Example: sItem.getAName" << endl;
 }
-/*int UnsortedPointerList::sqSearch(string target)
+int UnsortedPointerList::sqSearch(string target)
 {
-	return -1; //Temporary
-}*/
+	int n = getLength();
+	Node *temp = firstNode;
+	string tItem = "";
+	SongItem sItem;
+	for (int i = 0; i < n; i++)
+	{
+		sItem = temp->item;
+		if (sItem.getTID() == target)
+			return i; //found
+		else
+			temp = temp->next;
+	}
+	return -1;
+}
 void UnsortedPointerList::binSearch()
 {
 	cout << "Binary Search cannot be carried out on Linked-List." << endl;
