@@ -8,35 +8,27 @@ using namespace std;
 
 int readSongs()
 {
-	int noOfSongs, count = 0;
+	int noOfSongs = 0, count = 0;
 	string song;
-	cout << "How many songs would you like to import? ";
+
+	cout << "How many songs would you like to import? " << endl;
 	cin >> noOfSongs;
-	ifstream file("mxm_779k_matches.txt");
+	ofstream file("mxm_779k_matches.txt");
 	if (file.is_open())
 	{
-		cout << "Success" << endl;
+		while (noOfSongs > count)
+		{
+			getline(file, song);
+			file << song << endl;
+			count++;
+		}
+		file.close();
+	}
+
 		file.close();
 	}
 	else
 		cout << "Unable to open file" << endl;
-	/*while (std::getline(file, song))
-	{
-		//Process
-		//commands to read a specific number of lines
-		if (noOfSongs > count)
-		{
-			if (song.at(0) != '#')
-			{
-				//store it in an array
-				count++;
-				cout << count << " song" << endl; //testing only
-			}
-		}
-		else
-			false; //stop the reading
-		
-	}*/
 	cout << " " << endl;
 	return 0;
 }
@@ -51,10 +43,9 @@ int main()
 		cout << "What would you like to do?" << endl;
 		cout << "" << endl;
 		cout << "[1] Import the songs into the program" << endl;
-		cout << "[2] Add new song" << endl;
-		cout << "[3] Remove a song" << endl;
-		cout << "[4] Search a song using Sequential Search" << endl;
-		cout << "[5] Search a song using Binary Search" << endl;
+		cout << "[2] Remove a song" << endl;
+		cout << "[3] Search a song using Sequential Search" << endl;
+		cout << "[4] Search a song using Binary Search" << endl;
 		cout << "[0] End the program" << endl;
 		cout << "" << endl;
 		cout << "Enter your option : ";
