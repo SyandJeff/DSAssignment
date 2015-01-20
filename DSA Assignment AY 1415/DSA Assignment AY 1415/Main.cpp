@@ -12,18 +12,21 @@ int readSongs()
 {
 	int noOfSongs = 0, count = 0;
 	string song;
-	cout << "How many songs would you like to import? " << endl;
+	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
-	ifstream file("mxm_779k_matches.txt");
-	if (file.is_open())
+	ifstream sfile("mxm_779k_matches.txt");
+	getline(sfile, song);
+	cout << song << endl;
+	if (sfile.is_open())
 	{
 		while (noOfSongs > count)
 		{
 			//testing
-			cout << "Loop " << count << endl;
+			getline(sfile, song);
+			cout << song << endl;
 			count++;
 		}
-		file.close();
+		sfile.close();
 	}
 	else
 		cout << "Unable to open file" << endl;
