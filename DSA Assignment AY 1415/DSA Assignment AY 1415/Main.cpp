@@ -15,8 +15,10 @@ int readSongs()
 {
 	int noOfSongs = 0, count = 0;
 	string song;
+	std::string delim = "<SEP>";
+	size_t pos = 0;
+	std::string token;
 	vector<string> songStorage;
-
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream sfile("mxm_779k_matches.txt");
@@ -28,9 +30,21 @@ int readSongs()
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
-				cout << song << endl; //need to be stored into vectors
-				songStorage.push_back(song);
-				count++;
+				/*cout << song << endl; //need to be stored into vectors
+				songStorage.push_back(song);*/
+
+				//trying to seperate the string
+				/*while ((pos = song.find(delim)) != std::string::npos)
+				{
+					token = song.substr(0, pos);
+					std::cout << token << std::endl;
+					song.erase(0, pos + delim.length());
+					count++;
+					if (noOfSongs = count)
+						break;
+				}
+				std::cout << song << std::endl;*/
+				//count++;
 			}
 			
 		}
@@ -40,14 +54,24 @@ int readSongs()
 		cout << "Unable to open file" << endl;
 	cout << " " << endl;
 	return 0;
-
-	//testing if it is stored inside the vector
-	for (int i = 0; i < 10; i++)
-	{
-		cout << storage[i] << endl;
-	}
+	//left with finishing list in order to use it
 }
 
+int test()
+{
+	std::string s = "scott>=tiger>=mushroom";
+	std::string delimiter = ">=";
+
+	size_t pos = 0;
+	std::string token;
+	while ((pos = s.find(delimiter)) != std::string::npos) {
+		token = s.substr(0, pos);
+		std::cout << token << std::endl;
+		s.erase(0, pos + delimiter.length());
+	}
+	std::cout << s << std::endl;
+	return 0;
+}
 int main()
 {
 	int option = -1; //default
@@ -77,6 +101,7 @@ int main()
 			break;
 		case 2:
 			//Remove songs
+			test();
 			break;
 		case 3:
 			//Searching using sequential search
