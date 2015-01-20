@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
 #include "UnsortedPointerList.h"
@@ -8,11 +9,14 @@
 using std::cout;
 using std::cin;
 using std::endl;
+using std::vector;
 
 int readSongs()
 {
 	int noOfSongs = 0, count = 0;
 	string song;
+	vector<string> storage[10000];
+
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream sfile("mxm_779k_matches.txt");
@@ -20,11 +24,12 @@ int readSongs()
 	{
 		while (noOfSongs > count)
 		{
-			//testing
+			//getting songs line by line
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
-				cout << song << endl;
+				storage[count] = song;
+				//cout << song << endl; //need to be stored into vectors
 				count++;
 			}
 		}
@@ -34,6 +39,12 @@ int readSongs()
 		cout << "Unable to open file" << endl;
 	cout << " " << endl;
 	return 0;
+
+	//testing if it is stored inside the vector
+	for (int i = 0; i < 10; i++)
+	{
+		cout << storage[i] << endl;
+	}
 }
 
 int main()
@@ -64,16 +75,13 @@ int main()
 			readSongs();
 			break;
 		case 2:
-			//Add songs
-			break;
-		case 3:
 			//Remove songs
 			break;
-		case 4:
-			//Search using sequential search
+		case 3:
+			//Searching using sequential search
 			break;
-		case 5:
-			//search using binary search
+		case 4:
+			//Search using binary search
 			break;
 		default:
 			cout << "Invalid Option! Please choose again." << endl;
