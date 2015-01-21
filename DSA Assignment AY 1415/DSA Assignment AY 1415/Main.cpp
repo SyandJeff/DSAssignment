@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
@@ -13,18 +14,32 @@ using std::vector;
 
 int readSongs()
 {
-	int noOfSongs = 0, count = 0;
-	string song;
+	int noOfSongs = 0, count = 0, found = -1;
+	string song, token, word;
 	vector<string> songStorage;
 	vector<string> tok;
 	vector<Song> object;
+	vector<string> wordStorage;
+	vector<Lyrics> lyricStorage;
 
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream sfile("mxm_779k_matches.txt");
+	ifstream lyricFile("mxm_dataset_train.txt");
 
 	if (sfile.is_open())
 	{
+		//Storing Words int Vector Word.
+		while (found == -1)
+		{
+			getline(lyricFile, word);
+			if (word[0] == '%')
+				found = 1;
+			istringstream ss(word);
+			while (getline(ss, token, ','))
+				wordStorage.push_back(token);
+		}
+		//Storing Songs and Lyrics into Vector song
 		while (noOfSongs > count)
 		{
 			//getting songs line by line
@@ -82,9 +97,10 @@ int main()
 		cout << "What would you like to do?" << endl;
 		cout << "" << endl;
 		cout << "[1] Import the songs into the program" << endl;
-		cout << "[2] Remove a song" << endl;
-		cout << "[3] Search a song using Sequential Search" << endl;
-		cout << "[4] Search a song using Binary Search" << endl;
+		cout << "[2] Add songs into lists" << endl;
+		cout << "[3] Remove a song" << endl;
+		cout << "[4] Search a song using Sequential Search" << endl;
+		cout << "[5] Search a song using Binary Search" << endl;
 		cout << "[0] End the program" << endl;
 		cout << "" << endl;
 		cout << "Enter your option : ";
