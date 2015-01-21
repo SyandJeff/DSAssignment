@@ -9,21 +9,19 @@ class Lyrics
 {
 public:
 	Lyrics();
-	Lyrics(string, int, int, int);
+	Lyrics(string, string, string);
 	void setTID(string);
 	string getTID();
-	void setMxmTid(int);
-	int getMxmTid();
-	void setWordId(int);
-	int getWordId();
-	void setWordC(int);
-	int getWordC();
+	void setMxmTid(string);
+	string getMxmTid();
+	void setWordIdCountString(string);
+	string getWordIdCountString();
+	
 	
 private:
 	string tid;
-	int mxmTid;
-	int wordid;
-	int wordC;
+	string mxmTid;
+	string wStr;
 
 };
 #endif
