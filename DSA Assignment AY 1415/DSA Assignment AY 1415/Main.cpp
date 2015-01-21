@@ -15,16 +15,13 @@ using std::vector;
 vector<string> songStorage;
 vector<string> tok;
 vector<Song> object;
-vector<string> wordStorage;
+vector<Word> wordStorage;
 vector<Lyrics> lyricStorage;
 
 int importSongs()
 {
-	int noOfSongs = 0, count = 0, found = -1;
+	int noOfSongs = 0, count = 0, found = -1, j = 0;
 	string song, token, word, lyric, tid, mid;
-	
-	
-
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream sfile("mxm_779k_matches.txt");
@@ -40,7 +37,13 @@ int importSongs()
 				found = 1;
 			istringstream ss(word);
 			while (getline(ss, token, ','))
-				wordStorage.push_back(token);
+			{
+				j++;
+				Word w(j, token);
+				wordStorage.push_back(w);
+				
+			}
+				
 		}
 		//Storing Songs and Lyrics into Vector song
 		while (noOfSongs > count)
@@ -104,13 +107,12 @@ int importSongs()
 }
 int addSongs()
 {
-	string what;
-	if (wordStorage.size() != 0)
+	bool check = false;
+	if (object.size() != 0)
 	{
-		for (size_t i = 0; i < wordStorage.size(); i++)
+		for (size_t i = 0; i < object.size(); i++)
 		{
-			what = wordStorage[i];
-			cout << what << endl;
+			Song s = object[i];
 		}
 	}
 	else
@@ -119,6 +121,9 @@ int addSongs()
 }
 int main()
 {
+	//SortedArrayList sList; [PROBLEM HERE]
+	importSongs();
+	SortedArrayList sList;
 	int option = -1; //default
 	while (option != 0)
 	{
@@ -144,7 +149,7 @@ int main()
 			break;
 		case 1:
 			//Import songs
-			importSongs();
+			cout << "MEHHH" << endl;
 			break;
 		case 2:
 			addSongs();
