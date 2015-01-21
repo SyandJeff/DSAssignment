@@ -25,6 +25,7 @@ bool UnsortedPointerList::add(SongItem song)
 		temp->next = newNode;
 	}
 	size++;
+	cout << size << ": UPSUCCESS" << endl;
 	return true;
 }
 

@@ -17,7 +17,9 @@ vector<string> tok;
 vector<Song> object;
 vector<Word> wordStorage;
 vector<Lyrics> lyricStorage;
-SortedArrayList sList;
+SortedArrayList saSList, saWList, saLList;
+UnsortedArrayList usaSList, usaWList, usaLList;
+UnsortedPointerList upSList, upWList, upLList; //Name suppose to contain "LinkList" but accidentally set as "Pointer" instead.
 
 int importSongs()
 {
@@ -42,9 +44,7 @@ int importSongs()
 				j++;
 				Word w(j, token);
 				wordStorage.push_back(w);
-				
 			}
-				
 		}
 		//Storing Songs and Lyrics into Vector song
 		while (noOfSongs > count)
@@ -106,16 +106,32 @@ int importSongs()
 	return 0;
 	//left with finishing list in order to use it
 }
-int addSongs(SortedArrayList& sList)
-{
+int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
+{ 
 	bool check = false;
 	if (object.size() != 0)
 	{
+		//SAList: Add start clock here.
 		for (size_t i = 0; i < object.size(); i++)
 		{
 			Song s = object[i];
-			sList.add(s);
+			saSList.add(s);
 		}
+		//SAList: Add end clock here. Store in variable
+		//USAList: Add start clock here.
+		for (size_t i = 0; i < object.size(); i++)
+		{
+			Song s = object[i];
+			usaSList.add(s);
+		}
+		//SAList: Add end clock here. Store in variable
+		//UPList: Add start clock here.
+		for (size_t i = 0; i < object.size(); i++)
+		{
+			Song s = object[i];
+			upSList.add(s);
+		}
+		//UPList: Add end clock here. Store in variable
 	}
 	else
 		cout << "You have not imported the songs yet." << endl;
@@ -123,7 +139,6 @@ int addSongs(SortedArrayList& sList)
 }
 int main()
 {
-	//SortedArrayList sList; [PROBLEM HERE]
 	int option = -1; //default
 	while (option != 0)
 	{
@@ -141,7 +156,7 @@ int main()
 		cout << "" << endl;
 		cout << "Enter your option : ";
 		cin >> option;
-		cout << "" << endl;
+		cout << " " << endl;
 		switch (option)
 		{
 		case 0:
@@ -152,7 +167,7 @@ int main()
 			importSongs();
 			break;
 		case 2:
-			addSongs(sList);
+			addSongs(saSList, usaSList, upSList);
 			break;
 		case 3:
 			//Remove songs

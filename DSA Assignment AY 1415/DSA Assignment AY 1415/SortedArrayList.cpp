@@ -15,6 +15,7 @@ bool SortedArrayList::add(SongItem song)
 		SAList[size] = song;
 		size++;
 	}
+	cout << size << ": SA SUCCESS" << endl;
 	return success;
 }
 
