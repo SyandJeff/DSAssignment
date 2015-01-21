@@ -17,6 +17,7 @@ vector<string> tok;
 vector<Song> object;
 vector<Word> wordStorage;
 vector<Lyrics> lyricStorage;
+SortedArrayList sList;
 
 int importSongs()
 {
@@ -105,7 +106,7 @@ int importSongs()
 	return 0;
 	//left with finishing list in order to use it
 }
-int addSongs()
+int addSongs(SortedArrayList& sList)
 {
 	bool check = false;
 	if (object.size() != 0)
@@ -113,6 +114,7 @@ int addSongs()
 		for (size_t i = 0; i < object.size(); i++)
 		{
 			Song s = object[i];
+			sList.add(s);
 		}
 	}
 	else
@@ -122,8 +124,6 @@ int addSongs()
 int main()
 {
 	//SortedArrayList sList; [PROBLEM HERE]
-	importSongs();
-	SortedArrayList sList;
 	int option = -1; //default
 	while (option != 0)
 	{
@@ -149,10 +149,10 @@ int main()
 			break;
 		case 1:
 			//Import songs
-			cout << "MEHHH" << endl;
+			importSongs();
 			break;
 		case 2:
-			addSongs();
+			addSongs(sList);
 			break;
 		case 3:
 			//Remove songs
