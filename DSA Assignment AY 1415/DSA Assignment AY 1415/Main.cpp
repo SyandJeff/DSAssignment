@@ -16,9 +16,13 @@ int readSongs()
 	int noOfSongs = 0, count = 0;
 	string song;
 	vector<string> songStorage;
+	vector<string> tok;
+	vector<Song> object;
+
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream sfile("mxm_779k_matches.txt");
+
 	if (sfile.is_open())
 	{
 		while (noOfSongs > count)
@@ -27,26 +31,39 @@ int readSongs()
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
-				cout << song << endl; 
+				songStorage.push_back(song); //storing in the vector
 				count++;
 				//need to be stored into vectors
-				/*songStorage.push_back(song);*/
-
-				//trying to seperate the string
-				/*while ((pos = song.find(delim)) != std::string::npos)
-				{
-					token = song.substr(0, pos);
-					std::cout << token << std::endl;
-					song.erase(0, pos + delim.length());
-					count++;
-					if (noOfSongs = count)
-						break;
-				}
-				std::cout << song << std::endl;*/
-				//count++;
 			}
 		}
 		sfile.close();
+
+
+
+		//tokenization
+		for (int i = 0; i < count; i++)
+		{
+			string s = songStorage[i]; //store string song into s
+			//cout << songStorage[i] << endl; //test if the vector is still inside
+			string delimiter = "<SEP>"; //declare delimiter
+
+			size_t pos = 0; //declare variable pos that can be any size
+			string token;//declare token
+			while ((pos = s.find(delimiter)) != string::npos)
+			{
+				token = s.substr(0, pos);
+				//cout << token << endl;//display token by token
+				s.erase(0, pos + delimiter.length());
+				tok.push_back(token);
+			}
+			cout << s << endl;
+			tok.push_back(s);
+			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
+			object.push_back(su);
+		}
+
+		//int stringToken(vector<string> songStorage, int count);
+
 	}
 	else
 		cout << "Unable to open file" << endl;
@@ -55,21 +72,6 @@ int readSongs()
 	//left with finishing list in order to use it
 }
 
-int test()
-{
-	std::string s = "scott>=tiger>=mushroom";
-	std::string delimiter = ">=";
-
-	size_t pos = 0;
-	std::string token;
-	while ((pos = s.find(delimiter)) != std::string::npos) {
-		token = s.substr(0, pos);
-		std::cout << token << std::endl;
-		s.erase(0, pos + delimiter.length());
-	}
-	std::cout << s << std::endl;
-	return 0;
-}
 int main()
 {
 	int option = -1; //default
@@ -99,7 +101,6 @@ int main()
 			break;
 		case 2:
 			//Remove songs
-			test();
 			break;
 		case 3:
 			//Searching using sequential search

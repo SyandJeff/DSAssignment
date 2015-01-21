@@ -9,15 +9,15 @@ class Song
 {
 public:
 	Song();
-	Song(string, string, string, int, string, string);
+	Song(string, string, string, string, string, string);
 	void setTID(string);
 	string getTID();
 	void setAName(string);
 	string getAName();
 	void setTitle(string);
 	string getTitle();
-	void setMxmTid(int);
-	int getMxmTid();
+	void setMxmTid(string);
+	string getMxmTid();
 	void setMxmName(string);
 	string getMxmName();
 	void setMxmTitle(string);
@@ -28,7 +28,7 @@ private:
 	string title;
 	string mxmName;
 	string mxmTitle;
-	int mxmTid;
+	string mxmTid;
 
 };
 #endif

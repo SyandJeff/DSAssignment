@@ -4,7 +4,7 @@ using namespace std;
 #include "Song.h"
 
 
-Song::Song(string tid, string aName, string title, int mxmTid, string mxmName, string mxmTitle)
+Song::Song(string tid, string aName, string title, string mxmTid, string mxmName, string mxmTitle)
 :tid(tid), aName(aName), title(title), mxmTid(mxmTid), mxmName(mxmName), mxmTitle(mxmTitle)
 {
 	setTID(tid);
@@ -26,8 +26,8 @@ string Song::getAName(){ return aName; }
 void Song::setTitle(string title){ title = title; }
 string Song::getTitle(){ return title; }
 
-void Song::setMxmTid(int mxmTid) { mxmTid = mxmTid; }
-int Song::getMxmTid(){ return mxmTid; }
+void Song::setMxmTid(string mxmTid) { mxmTid = mxmTid; }
+string Song::getMxmTid(){ return mxmTid; }
 
 void Song::setMxmName(string mxmName){ mxmName = mxmName; }
 string Song::getMxmName(){ return mxmName; }
