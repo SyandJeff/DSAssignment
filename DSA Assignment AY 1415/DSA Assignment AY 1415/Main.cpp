@@ -12,15 +12,18 @@ using std::cin;
 using std::endl;
 using std::vector;
 
+vector<string> songStorage;
+vector<string> tok;
+vector<Song> object;
+vector<string> wordStorage;
+vector<Lyrics> lyricStorage;
+
 int importSongs()
 {
 	int noOfSongs = 0, count = 0, found = -1;
 	string song, token, word, lyric, tid, mid;
-	vector<string> songStorage;
-	vector<string> tok;
-	vector<Song> object;
-	vector<string> wordStorage;
-	vector<Lyrics> lyricStorage;
+	
+	
 
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
@@ -99,6 +102,21 @@ int importSongs()
 	return 0;
 	//left with finishing list in order to use it
 }
+int addSongs()
+{
+	string what;
+	if (wordStorage.size() != 0)
+	{
+		for (size_t i = 0; i < wordStorage.size(); i++)
+		{
+			what = wordStorage[i];
+			cout << what << endl;
+		}
+	}
+	else
+		cout << "You have not imported the songs yet." << endl;
+	return 0;
+}
 int main()
 {
 	int option = -1; //default
@@ -111,8 +129,9 @@ int main()
 		cout << "[1] Import the songs into the program" << endl;
 		cout << "[2] Add songs into lists" << endl;
 		cout << "[3] Remove a song" << endl;
-		cout << "[4] Search a song using Sequential Search" << endl;
-		cout << "[5] Search a song using Binary Search" << endl;
+		cout << "[4] Display list of songs" << endl;
+		cout << "[5] Search a song using Sequential Search" << endl;
+		cout << "[6] Search a song using Binary Search" << endl;
 		cout << "[0] End the program" << endl;
 		cout << "" << endl;
 		cout << "Enter your option : ";
@@ -128,12 +147,17 @@ int main()
 			importSongs();
 			break;
 		case 2:
-			//Remove songs
+			addSongs();
 			break;
 		case 3:
-			//Searching using sequential search
+			//Remove songs
 			break;
 		case 4:
+			break;
+		case 5:
+			//Searching using sequential search
+			break;
+		case 6:
 			//Search using binary search
 			break;
 		default:
