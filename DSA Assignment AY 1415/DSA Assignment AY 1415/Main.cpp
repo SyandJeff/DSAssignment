@@ -12,10 +12,10 @@ using std::cin;
 using std::endl;
 using std::vector;
 
-int readSongs()
+int importSongs()
 {
 	int noOfSongs = 0, count = 0, found = -1;
-	string song, token, word;
+	string song, token, word, lyric, tid, mid;
 	vector<string> songStorage;
 	vector<string> tok;
 	vector<Song> object;
@@ -42,7 +42,7 @@ int readSongs()
 		//Storing Songs and Lyrics into Vector song
 		while (noOfSongs > count)
 		{
-			//getting songs line by line
+			//Get Songs
 			getline(sfile, song);
 			if (song[0] != '#')
 			{
@@ -50,11 +50,24 @@ int readSongs()
 				count++;
 				//need to be stored into vectors
 			}
+			//Get Lyrics
+			getline(lyricFile, lyric);
+			if (lyric[0] != '%' && lyric[0] != '#')
+			{
+				istringstream ls(lyric);
+				getline(ls, token, ',');
+				tid = token;
+				getline(ls, token, ',');
+				mid = token;
+				string total = tid + mid;
+				int start = total.size();
+				int end = lyric.size();
+				lyric = lyric.substr((start + 2), end);
+				Lyrics obj(tid, mid, lyric);
+				lyricStorage.push_back(obj);
+			}
 		}
 		sfile.close();
-
-
-
 		//tokenization
 		for (int i = 0; i < count; i++)
 		{
@@ -71,7 +84,7 @@ int readSongs()
 				s.erase(0, pos + delimiter.length());
 				tok.push_back(token);
 			}
-			cout << s << endl;
+			//cout << s << endl;
 			tok.push_back(s);
 			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
 			object.push_back(su);
@@ -86,7 +99,6 @@ int readSongs()
 	return 0;
 	//left with finishing list in order to use it
 }
-
 int main()
 {
 	int option = -1; //default
@@ -113,7 +125,7 @@ int main()
 			break;
 		case 1:
 			//Import songs
-			readSongs();
+			importSongs();
 			break;
 		case 2:
 			//Remove songs
