@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <algorithm>
 #include <vector>
 #include "Performance.h"
 #include "SortedArrayList.h"
@@ -136,11 +135,6 @@ int importSongs()
 		cout << "Unable to open file" << endl;
 	return 0;
 }
-bool cmd(Song &s1, Song &s2)
-{
-	if (s1.getTID() != s2.getTID()) 
-		return s1.getTID() < s2.getTID();
-}
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 { 
 	int input = -1;//default
@@ -152,48 +146,13 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 		cin >> input;
 		if (input > 0 && input <= unsortedObj.size())
 		{
+			//SAList: Add start clock here.
 			//File has already been sorted beforehand.
 			for (int i = 0; i < input; i++)
 			{
 				Song sa = sortedObj[i];
 				saSList.add(sa);
 			}
-			//SAList: Add start clock here.
-
-			//File has not been sorted. Used algorithm. not sure if allowed.
-			/*if (input == 1)
-			{
-				sa = sortedObj[0];
-				saSList.add(sa);
-			}
-			else
-			{
-				cout << "BEFORE SORT" << endl;
-				Song item1;
-				for (int i = 0; i < unsortedObj.size(); i++)
-				{
-					item1 = unsortedObj[i];
-					cout << "Song[" << i << "]" << endl;
-					cout << "TrackID: " << item1.getTID() << endl;
-					cout << "Artist Name: " << item1.getAName() << endl;
-					cout << "Song Title: " << item1.getMxmTitle() << endl;
-					cout << "MxmID: " << item1.getMxmTid() << endl;
-					cout << "" << endl;
-				}
-				sort(unsortedObj.begin(), unsortedObj.end(), cmd);
-				Song item;
-				cout << "AFTER SORT" << endl;
-				for (int i = 0; i < unsortedObj.size(); i++)
-				{
-					item = unsortedObj[i];
-					cout << "Song[" << i << "]" << endl;
-					cout << "TrackID: " << item.getTID() << endl;
-					cout << "Artist Name: " << item.getAName() << endl;
-					cout << "Song Title: " << item.getMxmTitle() << endl;
-					cout << "MxmID: " << item.getMxmTid() << endl;
-					cout << "" << endl;
-				}
-			}*/
 			//SAList: Add end clock here. Store in variable
 
 			//USAList: Add start clock here.
