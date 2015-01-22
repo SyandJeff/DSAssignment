@@ -140,22 +140,22 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 		//SAList: Add start clock here.
 		for (size_t i = 0; i < input; i++)
 		{
-			Song s = sortedObj[i];
-			saSList.add(s);
+			Song sa = sortedObj[i];
+			saSList.add(sa);
 		}
 		//SAList: Add end clock here. Store in variable
 		//USAList: Add start clock here.
 		for (size_t i = 0; i < input; i++)
 		{
-			Song s = unsortedObj[i];
-			usaSList.add(s);
+			Song usa = unsortedObj[i];
+			usaSList.add(usa);
 		}
 		//SAList: Add end clock here. Store in variable
 		//UPList: Add start clock here.
 		for (size_t i = 0; i < input; i++)
 		{
-			Song s = unsortedObj[i];
-			upSList.add(s);
+			Song up = unsortedObj[i];
+			upSList.add(up);
 		}
 		//UPList: Add end clock here. Store in variable
 	}
