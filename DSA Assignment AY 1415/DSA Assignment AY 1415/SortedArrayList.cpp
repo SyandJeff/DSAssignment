@@ -52,7 +52,7 @@ void SortedArrayList::display(int index)
 	cout << "MxmID: " << item.getMxmTid() << endl;
 	cout << "" << endl;
 }
-int SortedArrayList::sqSearch(Song SAList[], string target) //search using TrackID presumably. Can be changed
+int SortedArrayList::sqSearch(string target) //search using TrackID presumably. Can be changed
 {
 	int n = getLength();
 	for (int i = 0; i < n; i++)
@@ -64,7 +64,7 @@ int SortedArrayList::sqSearch(Song SAList[], string target) //search using Track
 	}
 	return -1;
 }
-int SortedArrayList::binSearch(Song SAList[], string target)
+int SortedArrayList::binSearch(string target)
 {
 	int n = getLength();
 	int mid, first = 0, last = n - 1;

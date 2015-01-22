@@ -38,10 +38,10 @@ public:
 	void UnsortedArrayList::display(int index);
 	//display specific song
 
-	int UnsortedArrayList::sqSearch(Song USAList[], string target);
+	int UnsortedArrayList::sqSearch(string target);
 	//sequential search
 
-	int UnsortedArrayList::binSearch(Song USAList[], string target);
+	void UnsortedArrayList::binSearch();
 	//binary search
 
 	int UnsortedArrayList::getLength();

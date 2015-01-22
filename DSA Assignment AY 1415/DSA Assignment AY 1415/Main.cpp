@@ -179,7 +179,7 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 int displaySongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
 	int input = -1;//default
-	if (unsortedObj.size() != 0)
+	if (saSList.getLength() != 0)
 	{
 		//SAList: Add start clock here.
 		cout << "Sorted Array List" << endl;
@@ -206,7 +206,7 @@ int displaySongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 int removeSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
 	int input = -1;//default
-	if (unsortedObj.size() != 0)
+	if (saSList.getLength() != 0)
 	{
 		cout << "There are " << saSList.getLength() << " songs in the lists." << endl;
 		cout <<"State the song index that you would like to remove: ";
@@ -232,6 +232,100 @@ int removeSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedP
 		cout << "You may have not imported or added the songs to the list yet." << endl;
 	return 0;
 }
+int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
+{
+	string input;
+	if (saSList.getLength() != 0)
+	{
+		cout << "Search for Track ID [Case-Sensitive]: ";
+		cin >> input;
+		int check = saSList.binSearch(input);
+		if (check != -1)
+		{
+			cout << "Track ID found!" << endl;
+			saSList.display(check);
+		}
+		else
+			cout << "Track ID cannot be Found in Sorted Array List!" << endl;
+		cout << "" << endl;
+		usaSList.binSearch();
+		cout << "" << endl;
+		upSList.binSearch();
+	}
+	else
+		cout << "You may have not imported or added the songs to the list yet." << endl;
+	return 0;
+}
+int SequentialSearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
+{
+	string input;
+	if (saSList.getLength() != 0)
+	{
+		cout << "[Sorted Array List] Search for Track ID [Case-Sensitive]: ";
+		cin >> input;
+		int check1 = saSList.sqSearch(input);
+		if (check1 != -1)
+		{
+			cout << "Track ID found in Sorted Array List!" << endl;
+			saSList.display(check1);
+		}
+		else
+			cout << "Track ID cannot be Found in Sorted Array List!" << endl;
+
+		cout << "[Unsorted Array List & Unsorted Linked List] Search for Track ID [Case-Sensitive]: ";
+		cin >> input;
+
+		int check2 = usaSList.sqSearch(input);
+		if (check2 != -1 )
+		{
+
+			cout << "Track ID found in Unsorted Array List" << endl;
+			usaSList.display(check2);
+		}
+		else
+			cout << "Track ID cannot be Found in Unsorted Array List!" << endl;
+		cout << "" << endl;
+		int check3 = upSList.sqSearch(input);
+		if (check3 != -1)
+		{
+
+			cout << "Track ID found in Unsorted Pointer List" << endl;
+			upSList.display(check3);
+		}
+		else
+			cout << "Track ID cannot be Found in Pointer Array List!" << endl;
+	}
+	else
+		cout << "You may have not imported or added the songs to the list yet." << endl;
+	return 0;
+}
+int ViewPerformance()
+{
+	int choice = -1; //default
+	while (choice != 0)
+	{
+		cout << "" << endl;
+		cout << "Which operation of its performance you would like to analyse?" << endl;
+		cout << "" << endl;
+		cout << "[1] Add Operation" << endl;
+		cout << "[2] Remove Operation" << endl;
+		cout << "[3] Display Operation" << endl;
+		cout << "[4] Sequential Search Operation" << endl;
+		cout << "[5] Binary Search Operation" << endl;
+		cout << "[0] Return to Main Menu" << endl;
+		cout << "" << endl;
+		cout << "Enter your option : ";
+		cin >> choice;
+		cout << " " << endl;
+		if (choice >= 1 && choice <= 5)
+			cout << "Create a Table method to display data. Table(choice)" << endl;
+		else if (choice == 0)
+			choice = 0;
+		else
+			cout << "Incorrecto" << endl;
+	}
+	return 0;
+}
 int main()
 {
 	int option = -1; //default
@@ -248,6 +342,7 @@ int main()
 		cout << "[4] Display list of songs" << endl;
 		cout << "[5] Search a song using Sequential Search" << endl;
 		cout << "[6] Search a song using Binary Search" << endl;
+		cout << "[7] View Performance of Lists" << endl;
 		cout << "[0] End the program" << endl;
 		cout << "" << endl;
 		cout << "Enter your option : ";
@@ -263,6 +358,7 @@ int main()
 			importSongs();
 			break;
 		case 2:
+			//Add songs
 			addSongs(saSList, usaSList, upSList);
 			break;
 		case 3:
@@ -275,10 +371,14 @@ int main()
 			break;
 		case 5:
 			//Searching using sequential search
+			SequentialSearch(saSList, usaSList, upSList);
 			break;
 		case 6:
 			//Search using binary search
+			BinarySearch(saSList, usaSList, upSList);
 			break;
+		case 7:
+			ViewPerformance();
 		default:
 			cout << "Invalid Option! Please choose again." << endl;
 			break;

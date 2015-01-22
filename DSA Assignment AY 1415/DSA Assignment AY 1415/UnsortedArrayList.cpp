@@ -49,6 +49,7 @@ void UnsortedArrayList::display(int index)
 {
 	Song item;
 	item = get(index);
+	cout << "Song[" << index << "]" << endl;
 	cout << "TrackID: " << item.getTID() << endl;
 	cout << "Artist Name: " << item.getAName() << endl;
 	cout << "Song Title: " << item.getMxmTitle() << endl;
@@ -56,7 +57,7 @@ void UnsortedArrayList::display(int index)
 	cout << "" << endl;
 }
 
-int UnsortedArrayList::sqSearch(Song USAList[], string target)
+int UnsortedArrayList::sqSearch(string target)
 {
 	int n = getLength();
 	for (int i = 0; i < n; i++)
@@ -67,9 +68,10 @@ int UnsortedArrayList::sqSearch(Song USAList[], string target)
 	return -1; // not found
 }
 
-int UnsortedArrayList::binSearch(Song USAList[], string target)
+void UnsortedArrayList::binSearch()
 {
-	return 0;//Unable to do because it is not sorted
+	
+	cout << "Binary Search cannot be carried out on Unsorted Array List." << endl;
 }
 
 int UnsortedArrayList::getLength()

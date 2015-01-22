@@ -40,10 +40,10 @@ public:
 	//Search for the song title which returns index
 	//display specific song information using the index
 
-	int SortedArrayList::sqSearch(Song SAList[], string target);
+	int SortedArrayList::sqSearch(string target);
 	//Searching of song title using sequential search
 
-	int SortedArrayList::binSearch(Song SAList[], string target);
+	int SortedArrayList::binSearch(string target);
 	//Searching of song title using binary search
 
 	SongItem SortedArrayList::get(int index);
