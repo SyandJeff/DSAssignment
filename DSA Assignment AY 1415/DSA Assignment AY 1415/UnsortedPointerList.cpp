@@ -71,7 +71,11 @@ void UnsortedPointerList::display(int index)
 	for (int i = 0; i < index - 2; i++)
 		temp = temp->next;
 	SongItem sItem = temp->item;
-	cout << "For Example: sItem.getAName" << endl;
+	cout << "TrackID: " << sItem.getTID() << endl;
+	cout << "Artist Name: " << sItem.getAName() << endl;
+	cout << "Song Title: " << sItem.getMxmTitle() << endl;
+	cout << "MxmID: " << sItem.getMxmTid() << endl;
+	cout << "" << endl;
 }
 int UnsortedPointerList::sqSearch(string target)
 {

@@ -45,7 +45,11 @@ void SortedArrayList::display(int index)
 {
 	SongItem item;
 	item = get(index);
-	cout << "For Example: item.getAName" << endl;
+	cout << "TrackID: " << item.getTID() << endl;
+	cout << "Artist Name: " << item.getAName() << endl;
+	cout << "Song Title: " << item.getMxmTitle() << endl;
+	cout << "MxmID: " << item.getMxmTid() << endl;
+	cout << "" << endl;
 }
 int SortedArrayList::sqSearch(Song SAList[], string target) //search using TrackID presumably. Can be changed
 {

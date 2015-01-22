@@ -44,7 +44,11 @@ void UnsortedArrayList::display(int index)
 {
 	Song item;
 	item = get(index);
-	cout << "for exmaple : item.getName" << endl;
+	cout << "TrackID: " << item.getTID() << endl;
+	cout << "Artist Name: " << item.getAName() << endl;
+	cout << "Song Title: " << item.getMxmTitle() << endl;
+	cout << "MxmID: " << item.getMxmTid() << endl;
+	cout << "" << endl;
 }
 
 /*int UnsortedArrayList::sqSearch(Song USAList[], string target)

@@ -127,16 +127,6 @@ int importSongs()
 			z += 6;
 			sortedObj.push_back(temp2);
 		}
-		//testing
-		for (int i = 0; i < sortedObj.size(); i++)
-		{
-			Song item = sortedObj[i];
-			cout << "TrackID: " << item.getTID() << endl;
-			cout << "Artist Name: " << item.getAName() << endl;
-			cout << "Song Title: " << item.getMxmTitle() << endl;
-			cout << "MxmID: " << item.getMxmTid() << endl;
-			cout << "" << endl;
-		}
 	}
 	else
 		cout << "Unable to open file" << endl;
@@ -145,11 +135,12 @@ int importSongs()
 }
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 { 
-	bool check = false; int input = -1;//default
+	int input = -1;//default
 	if (unsortedObj.size() != 0)
 	{
 		cout << "How many songs would you like to add to the lists? ";
 		cin >> input;
+
 		//SAList: Add start clock here.
 		for (int i = 0; i < input; i++)
 		{
@@ -157,6 +148,7 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 			saSList.add(sa);
 		}
 		//SAList: Add end clock here. Store in variable
+
 		//USAList: Add start clock here.
 		for (int i = 0; i < input; i++)
 		{
@@ -164,6 +156,7 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 			usaSList.add(usa);
 		}
 		//SAList: Add end clock here. Store in variable
+
 		//UPList: Add start clock here.
 		for (int i = 0; i < input; i++)
 		{
@@ -174,15 +167,30 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 	}
 	else
 		cout << "You have not imported the songs yet." << endl;
-	for (int i = 0; i < saSList.getLength(); i++)
+	return 0;
+}
+int displaySongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
+{
+	bool check = false; int input = -1;//default
+	if (unsortedObj.size() != 0)
 	{
-		Song item = saSList.get(i);
-		cout << "TrackID: " << item.getTID() << endl;
-		cout << "Artist Name: " << item.getAName() << endl;
-		cout << "Song Title: " << item.getMxmTitle() << endl;
-		cout << "MxmID: " << item.getMxmTid() << endl;
-		cout << "" << endl;
+		//SAList: Add start clock here.
+		cout << "Sorted Array List" << endl;
+		saSList.display();
+		//SAList: Add end clock here. Store in variable
+
+		//USAList: Add start clock here.
+		cout << "Unsorted Array List" << endl;
+		usaSList.display();
+		//SAList: Add end clock here. Store in variable
+
+		//UPList: Add start clock here.
+		cout << "Unsorted Pointer List" << endl;
+		upSList.display();
+		//UPList: Add end clock here. Store in variable
 	}
+	else
+		cout << "You may have not imported or added the songs to the list yet." << endl;
 	return 0;
 }
 int main()
@@ -222,6 +230,7 @@ int main()
 			break;
 		case 4:
 			//display songs
+			displaySongs(saSList, usaSList, upSList);
 			break;
 		case 5:
 			//Searching using sequential search
