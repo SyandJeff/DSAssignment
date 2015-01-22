@@ -55,13 +55,20 @@ void UnsortedPointerList::remove(int index)
 }
 void UnsortedPointerList::display()
 {
+	int i = 0;
 	Node *temp = firstNode;
 	SongItem sItem;
 	while (temp != NULL)
 	{
 		sItem = temp->item;
-		cout << "For Example: sItem.getAName" << endl;
+		cout << "Song[" << i << "]" << endl;
+		cout << "TrackID: " << sItem.getTID() << endl;
+		cout << "Artist Name: " << sItem.getAName() << endl;
+		cout << "Song Title: " << sItem.getMxmTitle() << endl;
+		cout << "MxmID: " << sItem.getMxmTid() << endl;
+		cout << "" << endl;
 		temp = temp->next;
+		i++;
 	}
 	cout << "" << endl;
 }

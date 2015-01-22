@@ -14,7 +14,8 @@ using std::vector;
 
 vector<string> unsortedsongStorage;
 vector<string> sortedsongStorage;
-vector<string> tok;
+vector<string> tok1;
+vector<string> tok2;
 vector<Song> unsortedObj;
 vector<Song> sortedObj;
 vector<Word> wordStorage;
@@ -99,10 +100,10 @@ int importSongs()
 				token = s.substr(0, pos);
 				//cout << token << endl;//display token by token
 				s.erase(0, pos + delimiter.length());
-				tok.push_back(token);
+				tok1.push_back(token);
 			}
-			tok.push_back(s);
-			Song temp1(tok[z], tok[z+1], tok[z+2], tok[z+3], tok[z+4], tok[z+5]);
+			tok1.push_back(s);
+			Song temp1(tok1[z], tok1[z+1], tok1[z+2], tok1[z+3], tok1[z+4], tok1[z+5]);
 			z += 6;
 			unsortedObj.push_back(temp1);
 		}
@@ -110,27 +111,26 @@ int importSongs()
 		//tokenization for sorted song
 		for (int i = 0; i < count; i++)
 		{
-			string s = sortedsongStorage[i]; //store string song into s
-			string delimiter = "<SEP>"; //declare delimiter
+			string t = sortedsongStorage[i]; //store string song into s
+			string delim = "<SEP>"; //declare delimiter
 
-			size_t pos = 0; //declare variable pos that can be any size
-			string token;//declare token
-			while ((pos = s.find(delimiter)) != string::npos)
+			size_t pos1 = 0; //declare variable pos that can be any size
+			string token1;//declare token
+			while ((pos1 = t.find(delim)) != string::npos)
 			{
-				token = s.substr(0, pos);
+				token1 = t.substr(0, pos1);
 				//cout << token << endl;//display token by token
-				s.erase(0, pos + delimiter.length());
-				tok.push_back(token);
+				t.erase(0, pos1 + delim.length());
+				tok2.push_back(token1);
 			}
-			tok.push_back(s);
-			Song temp2(tok[z], tok[z + 1], tok[z + 2], tok[z + 3], tok[z + 4], tok[z + 5]);
+			tok2.push_back(t);
+			Song temp2(tok2[z], tok2[z + 1], tok2[z + 2], tok2[z + 3], tok2[z + 4], tok2[z + 5]);
 			z += 6;
 			sortedObj.push_back(temp2);
 		}
 	}
 	else
 		cout << "Unable to open file" << endl;
-	cout << " " << endl;
 	return 0;
 }
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
@@ -138,32 +138,37 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 	int input = -1;//default
 	if (unsortedObj.size() != 0)
 	{
+		cout << "There are " << unsortedObj.size() << " songs that has been imported." << endl;
 		cout << "How many songs would you like to add to the lists? ";
 		cin >> input;
-
-		//SAList: Add start clock here.
-		for (int i = 0; i < input; i++)
+		if (input >= 0 && input <= unsortedObj.size())
 		{
-			Song sa = sortedObj[i];
-			saSList.add(sa);
-		}
-		//SAList: Add end clock here. Store in variable
+			//SAList: Add start clock here.
+			for (int i = 0; i < input; i++)
+			{
+				Song sa = sortedObj[i];
+				saSList.add(sa);
+			}
+			//SAList: Add end clock here. Store in variable
 
-		//USAList: Add start clock here.
-		for (int i = 0; i < input; i++)
-		{
-			Song usa = unsortedObj[i];
-			usaSList.add(usa);
-		}
-		//SAList: Add end clock here. Store in variable
+			//USAList: Add start clock here.
+			for (int i = 0; i < input; i++)
+			{
+				Song usa = unsortedObj[i];
+				usaSList.add(usa);
+			}
+			//SAList: Add end clock here. Store in variable
 
-		//UPList: Add start clock here.
-		for (int i = 0; i < input; i++)
-		{
-			Song up = unsortedObj[i];
-			upSList.add(up);
+			//UPList: Add start clock here.
+			for (int i = 0; i < input; i++)
+			{
+				Song up = unsortedObj[i];
+				upSList.add(up);
+			}
+			//UPList: Add end clock here. Store in variable
 		}
-		//UPList: Add end clock here. Store in variable
+		else
+			cout << "Your input has to be  0 < input <= " << sortedObj.size() << endl;
 	}
 	else
 		cout << "You have not imported the songs yet." << endl;
@@ -171,23 +176,55 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 }
 int displaySongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
-	bool check = false; int input = -1;//default
+	int input = -1;//default
 	if (unsortedObj.size() != 0)
 	{
 		//SAList: Add start clock here.
 		cout << "Sorted Array List" << endl;
+		cout << " " << endl;
 		saSList.display();
 		//SAList: Add end clock here. Store in variable
 
 		//USAList: Add start clock here.
 		cout << "Unsorted Array List" << endl;
+		cout << " " << endl;
 		usaSList.display();
 		//SAList: Add end clock here. Store in variable
 
 		//UPList: Add start clock here.
 		cout << "Unsorted Pointer List" << endl;
+		cout << " " << endl;
 		upSList.display();
 		//UPList: Add end clock here. Store in variable
+	}
+	else
+		cout << "You may have not imported or added the songs to the list yet." << endl;
+	return 0;
+}
+int removeSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
+{
+	int input = -1;//default
+	if (unsortedObj.size() != 0)
+	{
+		cout << "There are " << saSList.getLength() << " songs in the lists." << endl;
+		cout <<"State the song index that you would like to remove: ";
+		cin >> input;
+		if (input >= 0 && input < saSList.getLength())
+		{
+			//SAList: Add start clock here.
+			saSList.remove(input);
+			//SAList: Add end clock here. Store in variable
+
+			//USAList: Add start clock here.
+			usaSList.remove(input);
+			//SAList: Add end clock here. Store in variable
+
+			//UPList: Add start clock here.
+			upSList.remove(input);
+			//UPList: Add end clock here. Store in variable
+		}
+		else
+			cout << "Your input has to be 0 <= input < " << saSList.getLength() << "." << endl;
 	}
 	else
 		cout << "You may have not imported or added the songs to the list yet." << endl;
@@ -198,6 +235,7 @@ int main()
 	int option = -1; //default
 	while (option != 0)
 	{
+		cout << "" << endl;
 		cout << "Welcome to DSA Assignment AY1415" << endl;
 		cout << "====================================" << endl;
 		cout << "What would you like to do?" << endl;
@@ -227,6 +265,7 @@ int main()
 			break;
 		case 3:
 			//Remove songs
+			removeSongs(saSList, usaSList, upSList);
 			break;
 		case 4:
 			//display songs

@@ -34,6 +34,7 @@ void SortedArrayList::display()
 	for (int i = 0; i < getLength(); i++)
 	{
 		item = get(i);
+		cout << "Song[" << i << "]" << endl;
 		cout << "TrackID: " << item.getTID() << endl;
 		cout << "Artist Name: " << item.getAName() << endl;
 		cout << "Song Title: " << item.getMxmTitle() << endl;

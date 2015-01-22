@@ -36,7 +36,12 @@ void UnsortedArrayList::display()
 	for (int i = 0; i < getLength(); i++)
 	{
 		item = get(i);
-		cout << "For Example: item.getAName" << endl;
+		cout << "Song[" << i << "]" << endl;
+		cout << "TrackID: " << item.getTID() << endl;
+		cout << "Artist Name: " << item.getAName() << endl;
+		cout << "Song Title: " << item.getMxmTitle() << endl;
+		cout << "MxmID: " << item.getMxmTid() << endl;
+		cout << "" << endl;
 	}
 }
 
@@ -51,16 +56,16 @@ void UnsortedArrayList::display(int index)
 	cout << "" << endl;
 }
 
-/*int UnsortedArrayList::sqSearch(Song USAList[], string target)
+int UnsortedArrayList::sqSearch(Song USAList[], string target)
 {
-int n = getLength();
-for (int i = 0; i < n; i++)
-{
-if (USAList[i].getTID == target)//found
-return i;
+	int n = getLength();
+	for (int i = 0; i < n; i++)
+	{
+		if (USAList[i].getTID() == target)//found
+			return i;
+	}
+	return -1; // not found
 }
-return -1; // not found
-} //Some weird error asking me to use pointers*/
 
 int UnsortedArrayList::binSearch(Song USAList[], string target)
 {
