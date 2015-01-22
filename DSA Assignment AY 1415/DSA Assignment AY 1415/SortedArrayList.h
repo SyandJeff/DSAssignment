@@ -27,7 +27,7 @@ public:
 	//add item to the back to the list
 	//pre:size<MAX_SIZE
 	//post: music added to the list
-
+	bool SortedArrayList::add(int index, SongItem song);
 	void SortedArrayList::remove(int index);
 	//remove item by searching for the music name
 	//pre: music name must exist and look for the position of the music if it exist

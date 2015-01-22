@@ -17,6 +17,19 @@ bool SortedArrayList::add(SongItem song)
 	}
 	return success;
 }
+bool SortedArrayList::add(int index, SongItem song)
+{
+	bool success = (index >= 1) && (index<size) && (size < SA_MAX_SIZE);
+	if (success)
+	{  // make room for new item 
+		for (int pos = size; pos >= index; pos--)
+			SAList[pos] = SAList[pos - 1];
+
+		SAList[index - 1] = song; // insert the item
+		size++;  // increase the size of the list by one
+	}
+	return success;
+}
 
 void SortedArrayList::remove(int index)
 {

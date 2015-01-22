@@ -138,19 +138,39 @@ int importSongs()
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 { 
 	int input = -1;//default
+	Song sa, check;
 	if (unsortedObj.size() != 0)
 	{
 		cout << "There are " << unsortedObj.size() << " songs that has been imported." << endl;
 		cout << "How many songs would you like to add to the lists? ";
 		cin >> input;
-		if (input >= 0 && input <= unsortedObj.size())
+		if (input > 0 && input <= unsortedObj.size())
 		{
-			//SAList: Add start clock here.
 			for (int i = 0; i < input; i++)
 			{
 				Song sa = sortedObj[i];
 				saSList.add(sa);
 			}
+			//SAList: Add start clock here.
+			/*if (input == 1)
+			{
+				sa = sortedObj[0];
+				saSList.add(sa);
+			}
+			else
+			{
+				for (int i = 0; i < input; i++)
+				{
+					sa = sortedObj[i];
+					for (int j = 1; j < input; j++)
+					{
+						check = sortedObj[j];
+						if (sa.getTID() > check.getTID()) //ABC123>XYZ123
+							saSList.add(i, sa);
+					}
+				}
+			}*/
+			
 			//SAList: Add end clock here. Store in variable
 
 			//USAList: Add start clock here.
