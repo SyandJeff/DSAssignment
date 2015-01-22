@@ -76,7 +76,7 @@ bool UnsortedArrayList::isEmpty()
 SongItem UnsortedArrayList::get(int index)
 {
 	SongItem item;
-	bool success = (index >= 1) && (index <= size);
+	bool success = (index <= size);
 	if (success)
 		item = USAList[index];
 	return item;

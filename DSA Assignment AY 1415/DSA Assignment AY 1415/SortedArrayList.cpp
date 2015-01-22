@@ -78,7 +78,7 @@ int SortedArrayList::binSearch(Song SAList[], string target)
 SongItem SortedArrayList::get(int index)
 {
 	SongItem item;
-	bool success = (index >= 1) && (index <= size);
+	bool success = (index <= size);
 	if (success)
 		item = SAList[index];
 	return item;
