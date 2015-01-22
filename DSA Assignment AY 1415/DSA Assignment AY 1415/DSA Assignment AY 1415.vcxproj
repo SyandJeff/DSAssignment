@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Lyrics.h" />
+    <ClInclude Include="Performance.h" />
     <ClInclude Include="Song.h" />
     <ClInclude Include="SortedArrayList.h" />
     <ClInclude Include="UnsortedArrayList.h" />
@@ -85,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Performance.cpp" />
     <ClCompile Include="Song.cpp" />
     <ClCompile Include="SortedArrayList.cpp" />
     <ClCompile Include="Lyrics.cpp" />

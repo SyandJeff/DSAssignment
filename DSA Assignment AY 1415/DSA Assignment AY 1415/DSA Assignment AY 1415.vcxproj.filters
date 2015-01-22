@@ -36,6 +36,9 @@
     <ClCompile Include="Word.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Performance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SortedArrayList.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Word.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Performance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

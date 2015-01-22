@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "Performance.h"
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
 #include "UnsortedPointerList.h"
@@ -20,9 +21,10 @@ vector<Song> unsortedObj;
 vector<Song> sortedObj;
 vector<Word> wordStorage;
 vector<Lyrics> lyricStorage;
-SortedArrayList saSList, saWList, saLList;
-UnsortedArrayList usaSList, usaWList, usaLList;
-UnsortedPointerList upSList, upWList, upLList; //Name suppose to contain "LinkList" but accidentally set as "Pointer" instead.
+vector<Performance> pStorage;
+SortedArrayList saSList;
+UnsortedArrayList usaSList;
+UnsortedPointerList upSList; //Name suppose to contain "LinkList" but accidentally set as "Pointer" instead.
 
 int importSongs()
 {
