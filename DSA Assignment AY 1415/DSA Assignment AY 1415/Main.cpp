@@ -12,9 +12,11 @@ using std::cin;
 using std::endl;
 using std::vector;
 
-vector<string> songStorage;
+vector<string> unsortedsongStorage;
+vector<string> sortedsongStorage;
 vector<string> tok;
-vector<Song> object;
+vector<Song> unsortedObj;
+vector<Song> sortedObj;
 vector<Word> wordStorage;
 vector<Lyrics> lyricStorage;
 SortedArrayList saSList, saWList, saLList;
@@ -27,10 +29,10 @@ int importSongs()
 	string song, token, word, lyric, tid, mid;
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
-	ifstream sfile("mxm_779k_matches.txt");
+	ifstream ussfile("mxm_779k_matches.txt");
+	ifstream ssfile("mxm_779k_matches_sorted.txt");
 	ifstream lyricFile("mxm_dataset_train.txt");
-
-	if (sfile.is_open())
+	if (ussfile.is_open())
 	{
 		//Storing Words int Vector Word.
 		while (found == -1)
@@ -50,13 +52,22 @@ int importSongs()
 		while (noOfSongs > count)
 		{
 			//Get Songs
-			getline(sfile, song);
+			//unsorted
+			getline(ussfile, song);
 			if (song[0] != '#')
 			{
-				songStorage.push_back(song); //storing in the vector
+				unsortedsongStorage.push_back(song); //storing in the vector
 				count++;
 				//need to be stored into vectors
 			}
+			//sorted
+			/*getline(ssfile, song);
+			if (song[0] != '#')
+			{
+				sortedsongStorage.push_back(song); //storing in the vector
+				count++;
+				//need to be stored into vectors
+			}*/
 			//Get Lyrics
 			getline(lyricFile, lyric);
 			if (lyric[0] != '%' && lyric[0] != '#')
@@ -74,12 +85,13 @@ int importSongs()
 				lyricStorage.push_back(obj);
 			}
 		}
-		sfile.close();
-		//tokenization
+		ussfile.close();
+		ssfile.close();
+		lyricFile.close();
+		//tokenization for unsorted song
 		for (int i = 0; i < count; i++)
 		{
-			string s = songStorage[i]; //store string song into s
-			//cout << songStorage[i] << endl; //test if the vector is still inside
+			string s = unsortedsongStorage[i]; //store string song into s
 			string delimiter = "<SEP>"; //declare delimiter
 
 			size_t pos = 0; //declare variable pos that can be any size
@@ -91,44 +103,58 @@ int importSongs()
 				s.erase(0, pos + delimiter.length());
 				tok.push_back(token);
 			}
-			//cout << s << endl;
 			tok.push_back(s);
 			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
-			object.push_back(su);
+			unsortedObj.push_back(su);
 		}
+		/*//tokenization for sorted song
+		for (int i = 0; i < count; i++)
+		{
+			string s = sortedsongStorage[i]; //store string song into s
+			string delimiter = "<SEP>"; //declare delimiter
 
-		//int stringToken(vector<string> songStorage, int count);
-
+			size_t pos = 0; //declare variable pos that can be any size
+			string token;//declare token
+			while ((pos = s.find(delimiter)) != string::npos)
+			{
+				token = s.substr(0, pos);
+				//cout << token << endl;//display token by token
+				s.erase(0, pos + delimiter.length());
+				tok.push_back(token);
+			}
+			tok.push_back(s);
+			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
+			sortedObj.push_back(su);
+		}*/
 	}
 	else
 		cout << "Unable to open file" << endl;
 	cout << " " << endl;
 	return 0;
-	//left with finishing list in order to use it
 }
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 { 
 	bool check = false;
-	if (object.size() != 0)
+	if (unsortedObj.size() != 0)
 	{
 		//SAList: Add start clock here.
-		for (size_t i = 0; i < object.size(); i++)
+		for (size_t i = 0; i < unsortedObj.size(); i++)
 		{
-			Song s = object[i];
+			Song s = unsortedObj[i];
 			saSList.add(s);
 		}
 		//SAList: Add end clock here. Store in variable
 		//USAList: Add start clock here.
-		for (size_t i = 0; i < object.size(); i++)
+		for (size_t i = 0; i < unsortedObj.size(); i++)
 		{
-			Song s = object[i];
+			Song s = unsortedObj[i];
 			usaSList.add(s);
 		}
 		//SAList: Add end clock here. Store in variable
 		//UPList: Add start clock here.
-		for (size_t i = 0; i < object.size(); i++)
+		for (size_t i = 0; i < unsortedObj.size(); i++)
 		{
-			Song s = object[i];
+			Song s = unsortedObj[i];
 			upSList.add(s);
 		}
 		//UPList: Add end clock here. Store in variable
