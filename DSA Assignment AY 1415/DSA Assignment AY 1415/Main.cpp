@@ -26,7 +26,7 @@ UnsortedPointerList upSList, upWList, upLList; //Name suppose to contain "LinkLi
 int importSongs()
 {
 	int noOfSongs = 0, count = 0, found = -1, j = 0;
-	string song, token, word, lyric, tid, mid;
+	string sSong, uSong, token, word, lyric, tid, mid;
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
 	ifstream ussfile("mxm_779k_matches.txt");
@@ -53,21 +53,19 @@ int importSongs()
 		{
 			//Get Songs
 			//unsorted
-			getline(ussfile, song);
-			if (song[0] != '#')
+			getline(ussfile, uSong);
+			if (uSong[0] != '#')
 			{
-				unsortedsongStorage.push_back(song); //storing in the vector
-				count++;
-				//need to be stored into vectors
+				unsortedsongStorage.push_back(uSong); //storing in the vector
+				count++;//need to be stored into vectors
 			}
 			//sorted
-			/*getline(ssfile, song);
-			if (song[0] != '#')
+			getline(ssfile, sSong);
+			if (sSong[0] != '#')
 			{
-				sortedsongStorage.push_back(song); //storing in the vector
-				count++;
+				sortedsongStorage.push_back(sSong); //storing in the vector
 				//need to be stored into vectors
-			}*/
+			}
 			//Get Lyrics
 			getline(lyricFile, lyric);
 			if (lyric[0] != '%' && lyric[0] != '#')
@@ -107,7 +105,7 @@ int importSongs()
 			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
 			unsortedObj.push_back(su);
 		}
-		/*//tokenization for sorted song
+		//tokenization for sorted song
 		for (int i = 0; i < count; i++)
 		{
 			string s = sortedsongStorage[i]; //store string song into s
@@ -125,7 +123,7 @@ int importSongs()
 			tok.push_back(s);
 			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
 			sortedObj.push_back(su);
-		}*/
+		}
 	}
 	else
 		cout << "Unable to open file" << endl;
@@ -134,25 +132,27 @@ int importSongs()
 }
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 { 
-	bool check = false;
+	bool check = false; size_t input = -1;//default
 	if (unsortedObj.size() != 0)
 	{
+		cout << "How many songs would you like to add to the lists? ";
+		cin >> input;
 		//SAList: Add start clock here.
-		for (size_t i = 0; i < unsortedObj.size(); i++)
+		for (size_t i = 0; i < input; i++)
 		{
-			Song s = unsortedObj[i];
+			Song s = sortedObj[i];
 			saSList.add(s);
 		}
 		//SAList: Add end clock here. Store in variable
 		//USAList: Add start clock here.
-		for (size_t i = 0; i < unsortedObj.size(); i++)
+		for (size_t i = 0; i < input; i++)
 		{
 			Song s = unsortedObj[i];
 			usaSList.add(s);
 		}
 		//SAList: Add end clock here. Store in variable
 		//UPList: Add start clock here.
-		for (size_t i = 0; i < unsortedObj.size(); i++)
+		for (size_t i = 0; i < input; i++)
 		{
 			Song s = unsortedObj[i];
 			upSList.add(s);
@@ -199,6 +199,7 @@ int main()
 			//Remove songs
 			break;
 		case 4:
+			//display songs
 			break;
 		case 5:
 			//Searching using sequential search

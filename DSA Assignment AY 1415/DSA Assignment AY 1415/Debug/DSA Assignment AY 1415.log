@@ -1,4 +1,4 @@
-﻿Build started 22/01/2015 2:21:02 PM.
+﻿Build started 22/01/2015 2:34:46 PM.
      1>Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
@@ -11,9 +11,9 @@
          Debug\UnsortedArrayList.obj
          Debug\UnsortedPointerList.obj
          Debug\Word.obj
-     1>LINK : fatal error LNK1104: cannot open file 'D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.ilk'
-     1>Done Building Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" (Build target(s)) -- FAILED.
+         DSA Assignment AY 1415.vcxproj -> D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe
+     1>Done Building Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:02.19
+Time Elapsed 00:00:02.70
