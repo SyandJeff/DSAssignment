@@ -13,7 +13,6 @@ bool UnsortedArrayList::add(Song song)
 		USAList[size] = song;
 		size++;
 	}
-	cout << size <<": USA SUCCESS" << endl;
 	return true;
 }
 

@@ -25,7 +25,7 @@ UnsortedPointerList upSList, upWList, upLList; //Name suppose to contain "LinkLi
 
 int importSongs()
 {
-	int noOfSongs = 0, count = 0, found = -1, j = 0;
+	int noOfSongs = 0, count = 0, found = -1, j = 0, z = 0;
 	string sSong, uSong, token, word, lyric, tid, mid;
 	cout << "How many songs would you like to import? ";
 	cin >> noOfSongs;
@@ -102,9 +102,11 @@ int importSongs()
 				tok.push_back(token);
 			}
 			tok.push_back(s);
-			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
-			unsortedObj.push_back(su);
+			Song temp1(tok[z], tok[z+1], tok[z+2], tok[z+3], tok[z+4], tok[z+5]);
+			z += 6;
+			unsortedObj.push_back(temp1);
 		}
+		z = 0; //resetting z
 		//tokenization for sorted song
 		for (int i = 0; i < count; i++)
 		{
@@ -121,8 +123,19 @@ int importSongs()
 				tok.push_back(token);
 			}
 			tok.push_back(s);
-			Song su(tok[0], tok[1], tok[2], tok[3], tok[4], tok[5]);
-			sortedObj.push_back(su);
+			Song temp2(tok[z], tok[z + 1], tok[z + 2], tok[z + 3], tok[z + 4], tok[z + 5]);
+			z += 6;
+			sortedObj.push_back(temp2);
+		}
+		//testing
+		for (int i = 0; i < sortedObj.size(); i++)
+		{
+			Song item = sortedObj[i];
+			cout << "TrackID: " << item.getTID() << endl;
+			cout << "Artist Name: " << item.getAName() << endl;
+			cout << "Song Title: " << item.getMxmTitle() << endl;
+			cout << "MxmID: " << item.getMxmTid() << endl;
+			cout << "" << endl;
 		}
 	}
 	else
@@ -132,27 +145,27 @@ int importSongs()
 }
 int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 { 
-	bool check = false; size_t input = -1;//default
+	bool check = false; int input = -1;//default
 	if (unsortedObj.size() != 0)
 	{
 		cout << "How many songs would you like to add to the lists? ";
 		cin >> input;
 		//SAList: Add start clock here.
-		for (size_t i = 0; i < input; i++)
+		for (int i = 0; i < input; i++)
 		{
 			Song sa = sortedObj[i];
 			saSList.add(sa);
 		}
 		//SAList: Add end clock here. Store in variable
 		//USAList: Add start clock here.
-		for (size_t i = 0; i < input; i++)
+		for (int i = 0; i < input; i++)
 		{
 			Song usa = unsortedObj[i];
 			usaSList.add(usa);
 		}
 		//SAList: Add end clock here. Store in variable
 		//UPList: Add start clock here.
-		for (size_t i = 0; i < input; i++)
+		for (int i = 0; i < input; i++)
 		{
 			Song up = unsortedObj[i];
 			upSList.add(up);
@@ -161,6 +174,15 @@ int addSongs(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPoin
 	}
 	else
 		cout << "You have not imported the songs yet." << endl;
+	for (int i = 0; i < saSList.getLength(); i++)
+	{
+		Song item = saSList.get(i);
+		cout << "TrackID: " << item.getTID() << endl;
+		cout << "Artist Name: " << item.getAName() << endl;
+		cout << "Song Title: " << item.getMxmTitle() << endl;
+		cout << "MxmID: " << item.getMxmTid() << endl;
+		cout << "" << endl;
+	}
 	return 0;
 }
 int main()

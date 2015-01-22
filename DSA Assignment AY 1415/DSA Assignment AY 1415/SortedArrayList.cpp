@@ -15,7 +15,6 @@ bool SortedArrayList::add(SongItem song)
 		SAList[size] = song;
 		size++;
 	}
-	cout << size << ": SA SUCCESS" << endl;
 	return success;
 }
 
@@ -35,7 +34,11 @@ void SortedArrayList::display()
 	for (int i = 0; i < getLength(); i++)
 	{
 		item = get(i);
-		cout << "For Example: item.getAName" << endl;
+		cout << "TrackID: " << item.getTID() << endl;
+		cout << "Artist Name: " << item.getAName() << endl;
+		cout << "Song Title: " << item.getMxmTitle() << endl;
+		cout << "MxmID: " << item.getMxmTid() << endl;
+		cout << "" << endl;
 	}
 }
 void SortedArrayList::display(int index)
