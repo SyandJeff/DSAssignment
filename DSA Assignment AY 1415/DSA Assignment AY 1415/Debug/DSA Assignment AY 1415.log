@@ -1,14 +1,16 @@
-﻿Build started 23/01/2015 2:33:22 AM.
-     1>Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" on node 2 (Build target(s)).
+﻿Build started 23/1/2015 9:43:32 PM.
+     1>Project "C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Lyrics.cpp Main.cpp Song.cpp Word.cpp
          Main.cpp
-     1>d:\np modules\2014 semester 2\dsa\dsassignment\dsa assignment ay 1415\dsa assignment ay 1415\main.cpp(147): warning C4018: '<=' : signed/unsigned mismatch
-     1>d:\np modules\2014 semester 2\dsa\dsassignment\dsa assignment ay 1415\dsa assignment ay 1415\main.cpp(159): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\np modules\2014 semester 2\dsa\dsassignment\dsa assignment ay 1415\dsa assignment ay 1415\main.cpp(171): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\np modules\2014 semester 2\dsa\dsassignment\dsa assignment ay 1415\dsa assignment ay 1415\main.cpp(181): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\jeffrey rey\desktop\dsa assignment ay 1415\dsassignment\dsa assignment ay 1415\dsa assignment ay 1415\main.cpp(154): warning C4018: '<=' : signed/unsigned mismatch
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         Word.cpp
+         Song.cpp
+         Lyrics.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.lib" /MACHINE:X86 Debug\Main.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.lib" /MACHINE:X86 Debug\Main.obj
          Debug\Performance.obj
          Debug\Song.obj
          Debug\SortedArrayList.obj
@@ -16,9 +18,9 @@
          Debug\UnsortedArrayList.obj
          Debug\UnsortedPointerList.obj
          Debug\Word.obj
-         DSA Assignment AY 1415.vcxproj -> D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe
-     1>Done Building Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" (Build target(s)).
+         DSA Assignment AY 1415.vcxproj -> C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe
+     1>Done Building Project "C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.54
+Time Elapsed 00:00:01.47
