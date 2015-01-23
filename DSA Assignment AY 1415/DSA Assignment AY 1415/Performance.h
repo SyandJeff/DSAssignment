@@ -9,8 +9,8 @@ class Performance
 {
 public:
 	Performance();
-	Performance(int, int, int, double, double, double, double, double, double);
-//	Performance(Operation, List Type, Size, SAtime, USAtime, UPtime, SAmem, USAmem, UPmem)
+	Performance(int, int, int, double, double);
+//	Performance(Operation, List Type, Size, Time, Mem)
 
 	void setOperation(int); // 1 - Add, 2 - Remove, 3 - Display, 4 - Seq Search, 5- Binary Search
 	int getOperation();
@@ -21,26 +21,14 @@ public:
 	void setSize(int);
 	int getSize();
 
-	void setSATime(double);
-	double getSATime();
+	void setTime(double);
+	double getTime();
 
-	void setUSATime(double);
-	double getUSATime();
-
-	void setUPTime(double);
-	double getUPTime();
-
-	void setSAMem(double);
-	double getSAMem();
-
-	void setUSAMem(double);
-	double getUSAMem();
-
-	void setUPMem(double);
-	double getUPMem();
+	void setMem(double);
+	double getMem();
 
 private:
 	int op, type, size;
-	double saTime, usaTime, upTime, saMem, usaMem, upMem;
+	double time, mem;
 };
 #endif
