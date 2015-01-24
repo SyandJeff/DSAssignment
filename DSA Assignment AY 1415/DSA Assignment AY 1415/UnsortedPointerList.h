@@ -55,5 +55,6 @@ public:
 
 	int UnsortedPointerList::getLength();
 	//return the size of list.
+	void UnsortedPointerList::clear();
 };
 #endif

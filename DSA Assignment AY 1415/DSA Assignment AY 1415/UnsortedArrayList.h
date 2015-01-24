@@ -53,5 +53,7 @@ public:
 	SongItem UnsortedArrayList::get(int index);
 	//get function to get the song
 
+	void UnsortedArrayList::clear();
+
 };
 #endif

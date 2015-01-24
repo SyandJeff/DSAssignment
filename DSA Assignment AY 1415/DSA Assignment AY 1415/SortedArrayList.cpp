@@ -124,3 +124,7 @@ int SortedArrayList::getLength()
 {
 	return size;
 }
+void SortedArrayList::clear()
+{
+	size = 0;
+}

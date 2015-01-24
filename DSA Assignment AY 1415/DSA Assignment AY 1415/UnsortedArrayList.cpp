@@ -92,3 +92,7 @@ SongItem UnsortedArrayList::get(int index)
 		item = USAList[index];
 	return item;
 }
+void UnsortedArrayList::clear()
+{
+	size = 0;
+}

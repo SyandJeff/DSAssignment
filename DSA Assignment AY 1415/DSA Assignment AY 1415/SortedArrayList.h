@@ -54,5 +54,6 @@ public:
 
 	int SortedArrayList::getLength();
 	//return the size of list.
+	void SortedArrayList::clear();
 };
 #endif

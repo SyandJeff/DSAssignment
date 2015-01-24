@@ -127,3 +127,7 @@ int UnsortedPointerList::getLength()
 {
 	return size;
 }
+void UnsortedPointerList::clear()
+{
+	size = 0;
+}

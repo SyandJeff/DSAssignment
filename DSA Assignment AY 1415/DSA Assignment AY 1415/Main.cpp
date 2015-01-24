@@ -6,6 +6,7 @@
 #include <ctime>
 #include <windows.h>
 #include <psapi.h>
+#include "GeneralPerformance.h"
 #include "Performance.h"
 #include "SortedArrayList.h"
 #include "UnsortedArrayList.h"
@@ -25,6 +26,7 @@ vector<Song> sortedObj;
 vector<Word> wordStorage;
 vector<Lyrics> lyricStorage;
 vector<Performance> pStorage;
+vector<GP> gpStorage;
 SortedArrayList saSList;
 UnsortedArrayList usaSList;
 UnsortedPointerList upSList; //Name suppose to contain "LinkList" but accidentally set as "Pointer" instead.
@@ -518,9 +520,26 @@ string center(const string s, const int w)
 		ss << " ";
 	return ss.str();
 }
+void combiningPerformanceLists()
+{
+	Performance a, b, c;
+	int op, size;
+	//	Performance(Operation, Size, Atime, Amem, Btime, Bmem, Ctime, Cmem)
+	for (int i = 0; i < pStorage.size(); i+=3)
+	{
+		a = pStorage[i]; // index = 0, 3, 6, etc are all sorted arrays
+		b = pStorage[i + 1]; // index = 1, 4, 7 etc all unsorted arrays
+		c = pStorage[i + 2]; // index = 2, 5, 8 etc all unsorted pointers
+		op = a.getOperation();
+		size = a.getSize();
+		GP gp(op, size, a.getTime(), a.getMem(), b.getTime(), b.getMem(), c.getTime(), c.getMem());
+		gpStorage.push_back(gp);
+	}
+}
 void Table(int choice)
 {
-	Performance p;
+	combiningPerformanceLists();
+	GP gp;
 	if (choice == 1)
 		cout << "ADD Operation: " << endl;
 	else if (choice == 2)
@@ -545,17 +564,12 @@ void Table(int choice)
 		<< center("RAM", 6) << " | "
 		<< center("Time", 6) << " | "
 		<< endl;
-	for (int i = 0; i < pStorage.size(); i++)
+	for (int i = 0; i < gpStorage.size(); i++)
 	{
-		p = pStorage[i];
-		if (p.getOperation() == choice)
+		gp = gpStorage[i];
+		if (gp.getOperation() == choice)
 		{
-			if (p.getListType() == 1) //Sorted Array
-				cout << "Woow" << endl;
-			else if (p.getListType() == 2) //Unsorted Array
-				cout << "WOW" << endl;
-			else
-				cout << "wow" << endl;
+
 		}
 	}
 }
@@ -587,6 +601,28 @@ void ViewPerformance()
 			cout << "Invalid Option! Please choose again." << endl;
 	}
 }
+
+void clearLists(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
+{
+	int input = -1;
+	cout << "Are you sure that you want to delete existing song lists? [1 - Yes, 0 - No] ";
+	cin >> input;
+	switch (input)
+	{
+	case 0:
+		cout << "Returning to Main Menu." << endl;
+		break;
+	case 1:
+		saSList.clear();
+		usaSList.clear();
+		upSList.clear();
+		input = 1;
+		break;
+	default:
+		cout << "Incorrect choice." << endl;
+		break;
+	}
+}
 int main()
 {
 	int option = -1; //default
@@ -604,6 +640,7 @@ int main()
 		cout << "[5] Search a song using Sequential Search" << endl;
 		cout << "[6] Search a song using Binary Search" << endl;
 		cout << "[7] View Performance of Lists" << endl;
+		cout << "[8] Clear existing song Lists" << endl;
 		cout << "[0] End the program" << endl;
 		cout << "" << endl;
 		cout << "Enter your option : ";
@@ -640,6 +677,9 @@ int main()
 			break;
 		case 7:
 			ViewPerformance();
+			break;
+		case 8:
+			clearLists(saSList, usaSList, upSList);
 			break;
 		default:
 			cout << "Invalid Option! Please choose again." << endl;

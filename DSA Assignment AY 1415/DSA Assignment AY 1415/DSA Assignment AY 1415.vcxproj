@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GeneralPerformance.h" />
     <ClInclude Include="Lyrics.h" />
     <ClInclude Include="Performance.h" />
     <ClInclude Include="Song.h" />
@@ -85,6 +86,7 @@
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GeneralPerformance.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Performance.cpp" />
     <ClCompile Include="Song.cpp" />
