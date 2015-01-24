@@ -42,6 +42,7 @@ int importSongs()
 	ifstream lyricFile("mxm_dataset_train.txt");
 	if (ussfile.is_open())
 	{
+		cout << "Importing Songs in the process. May take a long time." << endl;
 		//Storing Words int Vector Word.
 		while (found == -1)
 		{
@@ -222,6 +223,7 @@ int addSongs()
 			addSASongs(saSList, input);
 			addUASongs(usaSList, input);
 			addUPSongs(upSList, input);
+			cout << "Successfully added " << input << " song(s)." << endl;
 		}
 		else
 			cout << "Your input has to be  0 < input <= " << sortedObj.size() << endl;
@@ -367,6 +369,7 @@ int removeSongs()
 			removeSASongs(saSList, input);
 			removeUASongs(usaSList, input);
 			removeUPSongs(upSList, input);
+			cout << "Successfully removed song." << endl;
 		}
 		else
 			cout << "Your input has to be 0 <= input < " << saSList.getLength() << "." << endl;
@@ -508,6 +511,7 @@ int SequentialSearch()
 	return 0;
 }
 
+//Table related
 string center(const string s, const int w) 
 {
 	//retrieved from: stackoverflow.com/questions/14765155/how-can-i-easily-format-my-data-table-in-c
@@ -518,6 +522,15 @@ string center(const string s, const int w)
 	ss << spaces.str() << s << spaces.str();    // format with padding
 	if (padding>0 && padding % 2 != 0)               // if odd #, add 1 space
 		ss << " ";
+	return ss.str();
+}
+string prd(const double x, const int decDigits, const int width) {
+	stringstream ss;
+	ss << fixed << right;
+	ss.fill(' ');        // fill space around displayed #
+	ss.width(width);     // set  width around displayed #
+	ss.precision(decDigits); // set # places after decimal
+	ss << x;
 	return ss.str();
 }
 void combiningPerformanceLists()
@@ -550,29 +563,40 @@ void Table(int choice)
 		cout << "SEQUENTIAL SEARCH Operation: " << endl;
 	else
 		cout << "BINARY SEARCH Operation: " << endl;
-	cout << "------------------------------------------------------------------" << endl;
+	cout << "-----------------------------------------------------------------------------" << endl;
 	cout << center("", 5) << " | "
-		<< center("Sorted Arr", 15) << " | "
-		<< center("Unsorted Arr", 15) << " | "
-		<< center("Unsorted Ptr", 15) << " | " << endl;
-	cout << "------------------------------------------------------------------" << endl;
-	cout << center("n", 5) << " | "
-		<< center("Time", 6) << " | "
-		<< center("RAM", 6) << " | "
-		<< center("Time", 6) << " | "
-		<< center("Time", 6) << " | "
-		<< center("RAM", 6) << " | "
-		<< center("Time", 6) << " | "
+		<< center("Sorted Arr", 19) << " | "
+		<< center("Unsorted Arr", 19) << " | "
+		<< center("Unsorted Ptr", 19) << " | " << endl;
+	cout << "-----------------------------------------------------------------------------" << endl;
+	cout << center("  n", 5) << " | "
+		<< center("Time[s]", 8) << " | "
+		<< center("RAM[KB]", 8) << " | "
+		<< center("Time[s]", 8) << " | "
+		<< center("RAM[KB]", 8) << " | "
+		<< center("Time[s]", 8) << " | "
+		<< center("Time[KB]", 8) << " | "
 		<< endl;
+	cout << "-----------------------------------------------------------------------------" << endl;
+	double temp;
 	for (int i = 0; i < gpStorage.size(); i++)
 	{
 		gp = gpStorage[i];
 		if (gp.getOperation() == choice)
 		{
-
+			temp = (double)gp.getSize();
+			cout << prd(temp, 0, 5) << " | "
+				<< prd(gp.getATime(), 2, 6) << " | " //sorted array
+				<< prd(gp.getAMem(), 2, 6) << " | "
+				<< prd(gp.getBTime(), 2, 6) << " | " //unsorted array
+				<< prd(gp.getBMem(), 2, 6) << " | "
+				<< prd(gp.getCTime(), 2, 6) << " | " //unsorted pointer
+				<< prd(gp.getCMem(), 2, 6) << " | "
+				<< endl;
 		}
 	}
 }
+
 void ViewPerformance()
 {
 	int choice = -1; //default
