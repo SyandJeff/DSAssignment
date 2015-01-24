@@ -507,6 +507,44 @@ int SequentialSearch()
 	return 0;
 }
 
+string center(const string s, const int w) 
+{
+	//retrieved from: stackoverflow.com/questions/14765155/how-can-i-easily-format-my-data-table-in-c
+	stringstream ss, spaces;
+	int padding = w - s.size();                 // count excess room to pad
+	for (int i = 0; i<padding / 2; ++i)
+		spaces << " ";
+	ss << spaces.str() << s << spaces.str();    // format with padding
+	if (padding>0 && padding % 2 != 0)               // if odd #, add 1 space
+		ss << " ";
+	return ss.str();
+}
+void Table(int choice)
+{
+	Performance p;
+	if (choice == 1)
+		cout << "ADD Operation: " << endl;
+	else if (choice == 2)
+		cout << "REMOVE Operation: " << endl;
+	else if (choice == 3)
+		cout << "DISPLAY Operation: " << endl;
+	else if (choice == 4)
+		cout << "SEQUENTIAL SEARCH Operation: " << endl;
+	else
+		cout << "BINARY SEARCH Operation: " << endl;
+	cout << center("", 5) << " | "
+		<< center("Sorted Arr", 10) << " | "
+		<< center("Unsorted Arr", 10) << " | "
+		<< center("Unsorted Ptr", 10) << " | " << endl;
+	for (int i = 0; i < pStorage.size(); i++)
+	{
+		p = pStorage[i];
+		if (p.getOperation() == choice)
+		{
+			
+		}
+	}
+}
 int ViewPerformance()
 {
 	int choice = -1; //default
@@ -527,8 +565,7 @@ int ViewPerformance()
 		cout << " " << endl;
 		if (choice >= 1 && choice <= 5)
 		{
-			cout << "For example: Table(choice)" << endl;
-			cout << "Get Performance. Where getOp == choice" << endl;
+			Table(choice);
 		}
 		else if (choice == 0)
 			choice = 0;
