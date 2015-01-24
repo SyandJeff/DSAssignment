@@ -1,7 +1,7 @@
-﻿Build started 24/1/2015 2:17:30 AM.
+﻿Build started 24/1/2015 2:42:08 PM.
      1>Project "C:\Users\Jeffrey Rey\Desktop\DSA Assignment AY 1415\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Lyrics.cpp Main.cpp Song.cpp SortedArrayList.cpp UnsortedArrayList.cpp UnsortedPointerList.cpp Word.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Lyrics.cpp Main.cpp Song.cpp UnsortedArrayList.cpp UnsortedPointerList.cpp Word.cpp
          Main.cpp
      1>c:\users\jeffrey rey\desktop\dsa assignment ay 1415\dsassignment\dsa assignment ay 1415\dsa assignment ay 1415\main.cpp(219): warning C4018: '<=' : signed/unsigned mismatch
          Generating Code...
@@ -9,7 +9,6 @@
          Word.cpp
          UnsortedPointerList.cpp
          UnsortedArrayList.cpp
-         SortedArrayList.cpp
          Song.cpp
          Lyrics.cpp
        Link:
@@ -26,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.65
+Time Elapsed 00:00:01.50

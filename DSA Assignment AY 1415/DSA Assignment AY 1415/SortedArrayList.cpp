@@ -1,6 +1,9 @@
 #include <string>
 #include <iostream>
 #include "SortedArrayList.h"
+
+#include <Windows.h>
+#include <psapi.h>
 using namespace std;
 
 SortedArrayList::SortedArrayList()
@@ -43,6 +46,11 @@ void SortedArrayList::remove(int index)
 }
 void SortedArrayList::display()
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T beforeMem, afterMem;
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	beforeMem = pmc.PrivateUsage;
+
 	SongItem item;
 	for (int i = 0; i < getLength(); i++)
 	{
@@ -54,6 +62,13 @@ void SortedArrayList::display()
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
 	}
+
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	afterMem = pmc.PrivateUsage;
+
+	cout << afterMem/1024 << " after" << endl;
+	//cout << beforeMem << " before" << endl;
+	//cout << afterMem - beforeMem << " difference" << endl;
 }
 void SortedArrayList::display(int index)
 {
