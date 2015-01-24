@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "Memory.h"
 #include "Song.h"
 #include "Lyrics.h"
 #include "Word.h"
@@ -28,22 +29,24 @@ public:
 	//pre:size<MAX_SIZE
 	//post: music added to the list
 	bool SortedArrayList::add(int index, SongItem song);
-	void SortedArrayList::remove(int index);
+
+
+	void SortedArrayList::remove(int index, SIZE_T* aM);
 	//remove item by searching for the music name
 	//pre: music name must exist and look for the position of the music if it exist
 	//post: music deleted
 
-	void SortedArrayList::display();
+	void SortedArrayList::display(SIZE_T* AM);
 	//Display all the songs
 
 	void SortedArrayList::display(int index);
 	//Search for the song title which returns index
 	//display specific song information using the index
 
-	int SortedArrayList::sqSearch(string target);
+	int SortedArrayList::sqSearch(string target, SIZE_T* aM);
 	//Searching of song title using sequential search
 
-	int SortedArrayList::binSearch(string target);
+	int SortedArrayList::binSearch(string target, SIZE_T* aM);
 	//Searching of song title using binary search
 
 	SongItem SortedArrayList::get(int index);

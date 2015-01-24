@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClInclude Include="GeneralPerformance.h" />
     <ClInclude Include="Lyrics.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="Performance.h" />
     <ClInclude Include="Song.h" />
     <ClInclude Include="SortedArrayList.h" />

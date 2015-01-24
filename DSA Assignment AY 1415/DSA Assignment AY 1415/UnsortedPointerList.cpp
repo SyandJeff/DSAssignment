@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "UnsortedPointerList.h"
+#include "Memory.h"
 using namespace std;
 
 UnsortedPointerList::UnsortedPointerList()
@@ -28,7 +29,7 @@ bool UnsortedPointerList::add(SongItem song)
 	return true;
 }
 
-void UnsortedPointerList::remove(int index)
+void UnsortedPointerList::remove(int index, SIZE_T* aM)
 {
 	Node *temp;
 	if (index == 1)
@@ -52,8 +53,10 @@ void UnsortedPointerList::remove(int index)
 	delete temp;
 	temp = NULL; //clear
 	size--;
+
+	*aM = afterMem();
 }
-void UnsortedPointerList::display()
+void UnsortedPointerList::display(SIZE_T* aM)
 {
 	int i = 0;
 	Node *temp = firstNode;
@@ -69,6 +72,7 @@ void UnsortedPointerList::display()
 		cout << "" << endl;
 		temp = temp->next;
 		i++;
+		*aM = afterMem();
 	}
 	cout << "" << endl;
 }
@@ -84,7 +88,7 @@ void UnsortedPointerList::display(int index)
 	cout << "MxmID: " << sItem.getMxmTid() << endl;
 	cout << "" << endl;
 }
-int UnsortedPointerList::sqSearch(string target)
+int UnsortedPointerList::sqSearch(string target, SIZE_T* aM)
 {
 	int n = getLength(), comparisons = 0;
 	Node *temp = firstNode;
@@ -101,6 +105,7 @@ int UnsortedPointerList::sqSearch(string target)
 		}
 		else
 			temp = temp->next;
+		*aM = afterMem();
 	}
 	return -1;
 }

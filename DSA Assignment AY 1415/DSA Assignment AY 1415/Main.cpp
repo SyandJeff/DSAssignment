@@ -4,8 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <ctime>
-#include <windows.h>
-#include <psapi.h>
+#include "Memory.h"
 #include "GeneralPerformance.h"
 #include "Performance.h"
 #include "SortedArrayList.h"
@@ -144,75 +143,67 @@ int importSongs()
 
 void addSASongs(SortedArrayList& saSList, int input)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem, totalMem;
+	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
 	Song sa;
 	start = std::clock();
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage;
+	bM = beforeMem();
+
 	for (int i = 0; i < input; i++)
 	{
 		Song sa = sortedObj[i];
 		saSList.add(sa);
-		(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		afterMem = pmc.PrivateUsage;
+		aM = afterMem();
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	totalMem = afterMem - beforeMem;
-	Performance p(1, 1, input, duration, totalMem);
+	tM = (aM - bM) / 1024;
+	Performance p(1, 1, input, duration, tM);
 	pStorage.push_back(p);
 }
 void addUASongs(UnsortedArrayList& usaSList, int input)
 {
 
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem, totalMem;
+	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
 	Song sa;
 	start = std::clock();//USAList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage;
+	bM = beforeMem();
 	for (int i = 0; i < input; i++)
 	{
 		Song usa = unsortedObj[i];
 		usaSList.add(usa);
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		afterMem = pmc.PrivateUsage;
+		aM = afterMem();
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	totalMem = afterMem - beforeMem;
-	Performance p(1, 2, input, duration, totalMem);
+	tM = (aM - bM)/1024;
+	Performance p(1, 2, input, duration, tM);
 	pStorage.push_back(p);
 }
 void addUPSongs(UnsortedPointerList& upSList, int input)
 {
 
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem, totalMem;
+	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
 	Song sa;
 	start = std::clock();//UPList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage;
+	bM = beforeMem();
 	for (int i = 0; i < input; i++)
 	{
 		Song up = unsortedObj[i];
 		upSList.add(up);
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		afterMem = pmc.PrivateUsage;
+		aM = afterMem();
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	totalMem = afterMem - beforeMem;
-	Performance p(1, 3, input, duration, totalMem);
+	tM = (aM - bM)/1024;
+	Performance p(1, 3, input, duration, tM);
 	pStorage.push_back(p);
 }
 int addSongs()
 { 
-	int input;
+	SIZE_T input;
 	if (unsortedObj.size() != 0)
 	{
 		cout << "There are " << unsortedObj.size() << " songs that has been imported." << endl;
@@ -235,8 +226,8 @@ int addSongs()
 
 void displaySASongs(SortedArrayList& saSList)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T bM, tM;
+	SIZE_T aM;
 	std::clock_t start;
 	double duration;
 
@@ -245,19 +236,20 @@ void displaySASongs(SortedArrayList& saSList)
 	cout << "========================" << endl;
 	cout << " " << endl;
 	start = std::clock();//SAList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage;
+	bM = beforeMem();
 
-	saSList.display();
+	saSList.display(&aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage;
+	tM = (aM - bM) / 1024;
+	//pass into performance
+	Performance p(3, 1, saSList.getLength(), duration, tM);
+	pStorage.push_back(p);
+	//test
+	cout << tM << "KB SA displaySong" << endl;
 }
 void displayUASongs(UnsortedArrayList& usaSList)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
 	cout << "========================" << endl;
@@ -265,18 +257,17 @@ void displayUASongs(UnsortedArrayList& usaSList)
 	cout << "========================" << endl;
 	cout << " " << endl;
 	start = std::clock();//USAList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PPROCESS_MEMORY_COUNTERS)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
-	usaSList.display();
+	bM = beforeMem();
+	usaSList.display(&aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-
-	GetProcessMemoryInfo(GetCurrentProcess(), (PPROCESS_MEMORY_COUNTERS)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(3, 2, usaSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 }
 void displayUPSongs(UnsortedPointerList& upSList)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
 
@@ -285,13 +276,16 @@ void displayUPSongs(UnsortedPointerList& upSList)
 	cout << "========================" << endl;
 	cout << " " << endl;
 	start = std::clock();//UPList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PPROCESS_MEMORY_COUNTERS)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
-	upSList.display();
+	bM = beforeMem();
+	upSList.display(&aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 
-	GetProcessMemoryInfo(GetCurrentProcess(), (PPROCESS_MEMORY_COUNTERS)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(3, 3, upSList.getLength(), duration, tM);
+	pStorage.push_back(p);
+	//test
+	cout << tM << "KB UP displaySong" << endl;
 }
 int displaySongs()
 {
@@ -308,53 +302,54 @@ int displaySongs()
 
 void removeSASongs(SortedArrayList& saSList, int input)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
 
 	start = std::clock();//SAList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
-	saSList.remove(input);
+	bM = beforeMem();
+	saSList.remove(input,&aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+	tM = (aM - bM) - 1024;
 
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	Performance p(2, 1, saSList.getLength(), duration, tM);
+	pStorage.push_back(p);
+	//store performance
 }
 void removeUASongs(UnsortedArrayList& usaSList, int input)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T aM, bM, tM;
 	std::clock_t start;
 	double duration;
+	start = std::clock();
+	bM = beforeMem();
 
-	start = std::clock();//USAList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
-
-	usaSList.remove(input);
+	usaSList.remove(input, &aM);
 	
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(2, 2, usaSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 }
 void removeUPSongs(UnsortedPointerList& upSList, int input)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T aM, bM, tM;
 	std::clock_t start;
 	double duration;
 
 	start = std::clock();//UPList: Add start clock here.
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
+	bM = beforeMem();
 
-	upSList.remove(input);
+	upSList.remove(input, &aM);
 	
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(2, 3, upSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 }
 int removeSongs()
 {
@@ -381,20 +376,20 @@ int removeSongs()
 
 int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T aM, bM, tM;
 	std::clock_t start;
 	double duration;
 	string input;
+
+	start = std::clock(); //start timer
+	bM = beforeMem();
 	if (saSList.getLength() != 0)
 	{
 		cout << "Search for Track ID [Case-Sensitive]: ";
 		cin >> input;
-		start = std::clock(); //start timer
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-		beforeMem = pmc.PrivateUsage; //memory usage
+		
 
-		int check = saSList.binSearch(input);
+		int check = saSList.binSearch(input,&aM);
 		if (check != -1)
 		{
 			cout << "Track ID found!" << endl;
@@ -404,8 +399,6 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 			cout << "Track ID cannot be Found in Sorted Array List!" << endl;
 		duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end;
 
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-		afterMem = pmc.PrivateUsage; //memory usage
 
 		cout << "" << endl;
 		usaSList.binSearch();
@@ -415,23 +408,27 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 	}
 	else
 		cout << "You may have not imported or added the songs to the list yet." << endl;
+	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end;
+	aM = afterMem();
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(5, 1, saSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 	return 0;
 }
 
 void SASqSearch(SortedArrayList& sasList)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T aM, bM, tM;
 	std::clock_t start;
 	double duration;
 	string input;
 	cout << "[Sorted Array List] Search for Track ID [Case-Sensitive]: ";
 	cin >> input;
 	start = std::clock();//start timer
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
+	bM = beforeMem();
 
-	int check1 = saSList.sqSearch(input);
+	int check1 = saSList.sqSearch(input, &aM);
 	if (check1 != -1)
 	{
 		cout << "Track ID found in Sorted Array List!" << endl;
@@ -441,21 +438,21 @@ void SASqSearch(SortedArrayList& sasList)
 		cout << "Track ID cannot be Found in Sorted Array List!" << endl;
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC; //end
 
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(4, 1, saSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 }
 void UASqSearch(UnsortedArrayList& usasList, string input)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T aM, bM, tM;
 	std::clock_t start;
 	double duration;
 	
 	start = std::clock();//start timer
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
+	bM = beforeMem();
 
-	int check2 = usaSList.sqSearch(input);
+	int check2 = usaSList.sqSearch(input, &aM);
 	if (check2 != -1)
 	{
 		cout << "Track ID found in Unsorted Array List" << endl;
@@ -464,23 +461,21 @@ void UASqSearch(UnsortedArrayList& usasList, string input)
 	else
 		cout << "Track ID cannot be Found in Unsorted Array List!" << endl;
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end
-
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	tM = (aM - bM) / 1024;
+	Performance p(4, 2, usaSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 }
 void UPSqSearch(UnsortedPointerList& upsList, string input)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
+	SIZE_T aM, bM, tM;
 	std::clock_t start;
 	double duration;
 	
 	cout << "" << endl;
 	start = std::clock(); //start timer
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage; //memory usage
+	bM = beforeMem();
 
-	int check3 = upSList.sqSearch(input);
+	int check3 = upSList.sqSearch(input, &aM);
 	if (check3 != -1)
 	{
 
@@ -490,9 +485,10 @@ void UPSqSearch(UnsortedPointerList& upsList, string input)
 	else
 		cout << "Track ID cannot be Found in Pointer Array List!" << endl;
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end
-
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage; //memory usage
+	tM = (aM - bM) / 1024;
+	//store performance
+	Performance p(4, 3, upSList.getLength(), duration, tM);
+	pStorage.push_back(p);
 }
 int SequentialSearch()
 {
@@ -538,7 +534,7 @@ void combiningPerformanceLists()
 	Performance a, b, c;
 	int op, size;
 	//	Performance(Operation, Size, Atime, Amem, Btime, Bmem, Ctime, Cmem)
-	for (int i = 0; i < pStorage.size(); i+=3)
+	for (SIZE_T i = 0; i < pStorage.size(); i+=3)
 	{
 		a = pStorage[i]; // index = 0, 3, 6, etc are all sorted arrays
 		b = pStorage[i + 1]; // index = 1, 4, 7 etc all unsorted arrays
@@ -575,11 +571,11 @@ void Table(int choice)
 		<< center("Time[s]", 8) << " | "
 		<< center("RAM[KB]", 8) << " | "
 		<< center("Time[s]", 8) << " | "
-		<< center("Time[KB]", 8) << " | "
+		<< center("RAM[KB]", 8) << " | "
 		<< endl;
 	cout << "-----------------------------------------------------------------------------" << endl;
 	double temp;
-	for (int i = 0; i < gpStorage.size(); i++)
+	for (SIZE_T i = 0; i < gpStorage.size(); i++)
 	{
 		gp = gpStorage[i];
 		if (gp.getOperation() == choice)

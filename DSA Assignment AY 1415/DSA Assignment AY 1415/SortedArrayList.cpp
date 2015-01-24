@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include "SortedArrayList.h"
+#include "Memory.h"
 
 #include <Windows.h>
 #include <psapi.h>
@@ -34,7 +35,7 @@ bool SortedArrayList::add(int index, SongItem song)
 	return success;
 }
 
-void SortedArrayList::remove(int index)
+void SortedArrayList::remove(int index, SIZE_T* aM)
 {
 	bool success = (index >= 1) && (index <= size);
 	if (success)
@@ -42,15 +43,11 @@ void SortedArrayList::remove(int index)
 		for (int pos = index + 1; pos <= size; pos++)
 			SAList[pos - 2] = SAList[pos - 1];
 		size--;
+		*aM = afterMem();
 	}
 }
-void SortedArrayList::display()
+void SortedArrayList::display(SIZE_T* aM)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T beforeMem, afterMem;
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	beforeMem = pmc.PrivateUsage;
-
 	SongItem item;
 	for (int i = 0; i < getLength(); i++)
 	{
@@ -61,14 +58,9 @@ void SortedArrayList::display()
 		cout << "Song Title: " << item.getMxmTitle() << endl;
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
+		*aM = afterMem();
 	}
 
-	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	afterMem = pmc.PrivateUsage;
-
-	cout << afterMem/1024 << " after" << endl;
-	//cout << beforeMem << " before" << endl;
-	//cout << afterMem - beforeMem << " difference" << endl;
 }
 void SortedArrayList::display(int index)
 {
@@ -80,7 +72,7 @@ void SortedArrayList::display(int index)
 	cout << "MxmID: " << item.getMxmTid() << endl;
 	cout << "" << endl;
 }
-int SortedArrayList::sqSearch(string target) //search using TrackID presumably. Can be changed
+int SortedArrayList::sqSearch(string target, SIZE_T* aM) //search using TrackID presumably. Can be changed
 {
 	int comparisons = 0;
 	int n = getLength();
@@ -94,10 +86,11 @@ int SortedArrayList::sqSearch(string target) //search using TrackID presumably. 
 		}
 		else if (SAList[i].getTID() > target)//not found
 			return -1;
+		*aM = afterMem();
 	}
 	return -1;
 }
-int SortedArrayList::binSearch(string target)
+int SortedArrayList::binSearch(string target, SIZE_T* aM)
 {
 	int comparisons = 0;
 	int n = getLength();
@@ -116,6 +109,7 @@ int SortedArrayList::binSearch(string target)
 		else
 			first = mid + 1;//searching through second half
 		
+		*aM = afterMem();
 	}
 	return -1; //not found
 }

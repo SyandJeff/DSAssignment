@@ -1,4 +1,5 @@
 #include "UnsortedArrayList.h"
+#include "Memory.h"
 
 UnsortedArrayList::UnsortedArrayList()
 {
@@ -16,7 +17,7 @@ bool UnsortedArrayList::add(Song song)
 	return true;
 }
 
-bool UnsortedArrayList::remove(int index)
+bool UnsortedArrayList::remove(int index, SIZE_T* aM)
 {
 	bool success = (index >= 1) && (index <= size);
 	if (success)
@@ -30,7 +31,7 @@ bool UnsortedArrayList::remove(int index)
 	return 0;
 }
 
-void UnsortedArrayList::display()
+void UnsortedArrayList::display(SIZE_T* aM)
 {
 	Song item;
 	for (int i = 0; i < getLength(); i++)
@@ -42,6 +43,8 @@ void UnsortedArrayList::display()
 		cout << "Song Title: " << item.getMxmTitle() << endl;
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
+
+		*aM = afterMem();
 	}
 }
 void UnsortedArrayList::display(int index)
@@ -56,7 +59,7 @@ void UnsortedArrayList::display(int index)
 	cout << "" << endl;
 }
 
-int UnsortedArrayList::sqSearch(string target)
+int UnsortedArrayList::sqSearch(string target, SIZE_T* aM)
 {
 	int comparisons = 0;
 	int n = getLength();
@@ -68,6 +71,7 @@ int UnsortedArrayList::sqSearch(string target)
 			cout << "No. of Comparisons: " << comparisons << endl;
 			return i;
 		}
+		*aM = afterMem();
 	}
 	return -1; // not found
 }

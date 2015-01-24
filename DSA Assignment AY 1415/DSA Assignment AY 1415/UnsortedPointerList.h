@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "Memory.h"
 #include "Song.h"
 #include "Lyrics.h"
 #include "Word.h"
@@ -31,17 +32,17 @@ public:
 	bool UnsortedPointerList::add(SongItem song);
 	//add item to the back to the list
 
-	void UnsortedPointerList::remove(int index);
+	void UnsortedPointerList::remove(int index, SIZE_T* aM);
 	//remove item by searching for the music name
 	
-	void UnsortedPointerList::display();
+	void UnsortedPointerList::display(SIZE_T* aM);
 	//Display all the songs
 
 	void UnsortedPointerList::display(int index);
 	//Search for the song title which returns index
 	//display specific song information using the index
 
-	int UnsortedPointerList::sqSearch(string target);
+	int UnsortedPointerList::sqSearch(string target, SIZE_T* aM);
 	//Searching of song title using sequential search
 
 	void UnsortedPointerList::binSearch();
