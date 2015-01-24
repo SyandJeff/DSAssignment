@@ -204,7 +204,6 @@ void addUPSongs(UnsortedPointerList& upSList, int input)
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 	totalMem = afterMem - beforeMem;
-	cout << "POINTER: " << totalMem << endl;
 	Performance p(1, 3, input, duration, totalMem);
 	pStorage.push_back(p);
 }
@@ -532,20 +531,35 @@ void Table(int choice)
 		cout << "SEQUENTIAL SEARCH Operation: " << endl;
 	else
 		cout << "BINARY SEARCH Operation: " << endl;
+	cout << "------------------------------------------------------------------" << endl;
 	cout << center("", 5) << " | "
-		<< center("Sorted Arr", 10) << " | "
-		<< center("Unsorted Arr", 10) << " | "
-		<< center("Unsorted Ptr", 10) << " | " << endl;
+		<< center("Sorted Arr", 15) << " | "
+		<< center("Unsorted Arr", 15) << " | "
+		<< center("Unsorted Ptr", 15) << " | " << endl;
+	cout << "------------------------------------------------------------------" << endl;
+	cout << center("n", 5) << " | "
+		<< center("Time", 6) << " | "
+		<< center("RAM", 6) << " | "
+		<< center("Time", 6) << " | "
+		<< center("Time", 6) << " | "
+		<< center("RAM", 6) << " | "
+		<< center("Time", 6) << " | "
+		<< endl;
 	for (int i = 0; i < pStorage.size(); i++)
 	{
 		p = pStorage[i];
 		if (p.getOperation() == choice)
 		{
-			
+			if (p.getListType() == 1) //Sorted Array
+				cout << "Woow" << endl;
+			else if (p.getListType() == 2) //Unsorted Array
+				cout << "WOW" << endl;
+			else
+				cout << "wow" << endl;
 		}
 	}
 }
-int ViewPerformance()
+void ViewPerformance()
 {
 	int choice = -1; //default
 	while (choice != 0)
@@ -570,9 +584,8 @@ int ViewPerformance()
 		else if (choice == 0)
 			choice = 0;
 		else
-			cout << "Incorrecto" << endl;
+			cout << "Invalid Option! Please choose again." << endl;
 	}
-	return 0;
 }
 int main()
 {
