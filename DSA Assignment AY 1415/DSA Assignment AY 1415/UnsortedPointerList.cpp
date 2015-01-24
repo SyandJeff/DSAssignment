@@ -86,15 +86,19 @@ void UnsortedPointerList::display(int index)
 }
 int UnsortedPointerList::sqSearch(string target)
 {
-	int n = getLength();
+	int n = getLength(), comparisons = 0;
 	Node *temp = firstNode;
 	string tItem = "";
 	SongItem sItem;
 	for (int i = 0; i < n; i++)
 	{
+		comparisons++;
 		sItem = temp->item;
 		if (sItem.getTID() == target)
+		{
+			cout << "No. of Comparisons: " << comparisons << endl;
 			return i; //found
+		}
 		else
 			temp = temp->next;
 	}

@@ -44,7 +44,6 @@ void UnsortedArrayList::display()
 		cout << "" << endl;
 	}
 }
-
 void UnsortedArrayList::display(int index)
 {
 	Song item;
@@ -59,11 +58,16 @@ void UnsortedArrayList::display(int index)
 
 int UnsortedArrayList::sqSearch(string target)
 {
+	int comparisons = 0;
 	int n = getLength();
 	for (int i = 0; i < n; i++)
 	{
+		comparisons++;
 		if (USAList[i].getTID() == target)//found
+		{
+			cout << "No. of Comparisons: " << comparisons << endl;
 			return i;
+		}
 	}
 	return -1; // not found
 }

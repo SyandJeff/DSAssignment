@@ -501,7 +501,7 @@ int SequentialSearch()
 	{
 		SASqSearch(saSList);
 		cout << "" << endl;
-		cout << "[Unsorted Array List] Search for Track ID [Case-Sensitive]: ";
+		cout << "[Unsorted Array & Pointer List] Search for Track ID [Case-Sensitive]: ";
 		cin >> input;
 		UASqSearch(usaSList, input);
 		UPSqSearch(upSList, input);

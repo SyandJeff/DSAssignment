@@ -82,11 +82,16 @@ void SortedArrayList::display(int index)
 }
 int SortedArrayList::sqSearch(string target) //search using TrackID presumably. Can be changed
 {
+	int comparisons = 0;
 	int n = getLength();
 	for (int i = 0; i < n; i++)
 	{
+		comparisons++;
 		if (SAList[i].getTID() == target)//found
+		{
+			cout << "No. of Comparisons: " << comparisons << endl;
 			return i;
+		}
 		else if (SAList[i].getTID() > target)//not found
 			return -1;
 	}
@@ -94,17 +99,23 @@ int SortedArrayList::sqSearch(string target) //search using TrackID presumably. 
 }
 int SortedArrayList::binSearch(string target)
 {
+	int comparisons = 0;
 	int n = getLength();
 	int mid, first = 0, last = n - 1;
 	while (first<=last)
 	{
+		comparisons++;
 		mid = (first + last) / 2;
 		if (SAList[mid].getTID() == target) //found
+		{
+			cout << "No. of Comparisons: " << comparisons << endl;
 			return mid;
+		}
 		else if (target < SAList[mid].getTID()) //searching through first half
 			last = mid - 1;
 		else
 			first = mid + 1;//searching through second half
+		
 	}
 	return -1; //not found
 }
