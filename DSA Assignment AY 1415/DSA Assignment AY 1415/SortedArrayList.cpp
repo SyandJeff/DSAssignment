@@ -1,10 +1,6 @@
 #include <string>
 #include <iostream>
 #include "SortedArrayList.h"
-#include "Memory.h"
-
-#include <Windows.h>
-#include <psapi.h>
 using namespace std;
 
 SortedArrayList::SortedArrayList()

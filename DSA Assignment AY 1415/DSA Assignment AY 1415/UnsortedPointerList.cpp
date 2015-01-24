@@ -1,7 +1,6 @@
 #include <string>
 #include <iostream>
 #include "UnsortedPointerList.h"
-#include "Memory.h"
 using namespace std;
 
 UnsortedPointerList::UnsortedPointerList()

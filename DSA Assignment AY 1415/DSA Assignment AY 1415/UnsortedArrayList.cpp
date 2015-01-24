@@ -1,5 +1,6 @@
+#include <string>
+#include <iostream>
 #include "UnsortedArrayList.h"
-#include "Memory.h"
 
 UnsortedArrayList::UnsortedArrayList()
 {
