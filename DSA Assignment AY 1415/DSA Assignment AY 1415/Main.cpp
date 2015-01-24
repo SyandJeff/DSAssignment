@@ -147,11 +147,10 @@ void addSASongs(SortedArrayList& saSList, int input)
 	double duration;
 	Song sa;
 	start = std::clock();
-
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	beforeMem = pmc.PrivateUsage;
 	for (int i = 0; i < input; i++)
 	{
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		beforeMem = pmc.PrivateUsage;
 		Song sa = sortedObj[i];
 		saSList.add(sa);
 		(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
@@ -171,10 +170,10 @@ void addUASongs(UnsortedArrayList& usaSList, int input)
 	double duration;
 	Song sa;
 	start = std::clock();//USAList: Add start clock here.
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	beforeMem = pmc.PrivateUsage;
 	for (int i = 0; i < input; i++)
 	{
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		beforeMem = pmc.PrivateUsage;
 		Song usa = unsortedObj[i];
 		usaSList.add(usa);
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
@@ -194,10 +193,10 @@ void addUPSongs(UnsortedPointerList& upSList, int input)
 	double duration;
 	Song sa;
 	start = std::clock();//UPList: Add start clock here.
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	beforeMem = pmc.PrivateUsage;
 	for (int i = 0; i < input; i++)
 	{
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		beforeMem = pmc.PrivateUsage;
 		Song up = unsortedObj[i];
 		upSList.add(up);
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
