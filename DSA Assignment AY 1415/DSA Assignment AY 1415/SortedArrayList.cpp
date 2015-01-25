@@ -86,7 +86,7 @@ int SortedArrayList::sqSearch(string target, SIZE_T& aM) //search using TrackID 
 	int n = getLength();
 	for (int i = 0; i < n; i++)
 	{
-		
+	
 		comparisons++;
 		if (SAList[i].getTID() == target)//found
 		{
@@ -95,12 +95,14 @@ int SortedArrayList::sqSearch(string target, SIZE_T& aM) //search using TrackID 
 			
 		}
 		else if (SAList[i].getTID() > target)//not found
+		{
+			cout << "No. of Comparisons: " << comparisons << endl;
 			return -1;
+		}
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
 		aM = pmc.PrivateUsage;
-		
 	}
-	
+	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1;
 }
 int SortedArrayList::binSearch(string target, SIZE_T& aM)
@@ -126,6 +128,7 @@ int SortedArrayList::binSearch(string target, SIZE_T& aM)
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
 		aM = pmc.PrivateUsage;
 	}
+	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1; //not found
 }
 SongItem SortedArrayList::get(int index)

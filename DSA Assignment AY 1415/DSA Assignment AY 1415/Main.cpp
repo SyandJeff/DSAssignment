@@ -391,7 +391,20 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 	std::clock_t start;
 	double duration;
 	string input;
-
+	int mid = (saSList.getLength()-1) / 2;
+	int fquarter = saSList.getLength() / 4; //25%
+	int squarter = (saSList.getLength() / 4) * 3; //75%
+	int last = saSList.getLength() - 1; 
+	Song s, t, u, v, w;
+	s = saSList.get(mid);
+	t = saSList.get(fquarter);
+	u = saSList.get(squarter);
+	v = saSList.get(last);
+	w = saSList.get(0);
+	cout << "Note: " << endl;
+	cout << "For Best-Case Scenario, search for: " << s.getTID() <<endl;
+	cout << "For Average-Case Scenario, search for: " << t.getTID() << " OR " << u.getTID() << endl;
+	cout << "For Worst-Case Scenario, search for: " << w.getTID() << " OR " << v.getTID() << endl;
 	start = std::clock(); //start timer
 	bM = beforeMem();
 	if (saSList.getLength() != 0)
@@ -434,6 +447,15 @@ void SASqSearch(SortedArrayList& sasList)
 	std::clock_t start;
 	double duration;
 	string input;
+	int mid = (sasList.getLength() - 1) / 2, last = sasList.getLength() - 1;
+	Song s, t, u;
+	s = sasList.get(0);
+	t = sasList.get(mid);
+	u = sasList.get(last);
+	cout << "Note for Sorted Array List: " << endl;
+	cout << "For Best-Case Scenario, search for: " << s.getTID() << endl;
+	cout << "For Average-Case Scenario, search for: " << t.getTID() << endl;
+	cout << "For Worst-Case Scenario, search for: " << u.getTID() << endl;
 	cout << "[Sorted Array List] Search for Track ID [Case-Sensitive]: ";
 	cin >> input;
 	start = std::clock();//start timer
@@ -516,6 +538,16 @@ int SequentialSearch()
 	{
 		SASqSearch(saSList);
 		cout << "" << endl;
+		int mid = (usaSList.getLength() - 1) / 2, last = usaSList.getLength() - 1;
+		Song s, t, u;
+		s = usaSList.get(0);
+		t = usaSList.get(mid);
+		u = usaSList.get(last);
+		cout << "Note for Unsorted Array & Pointer List: " << endl;
+		cout << "For Best-Case Scenario, search for: " << s.getTID() << endl;
+		cout << "For Average-Case Scenario, search for: " << t.getTID() << endl;
+		cout << "For Worst-Case Scenario, search for: " << u.getTID() << endl;
+		cout << "[Sorted Array List] Search for Track ID [Case-Sensitive]: ";
 		cout << "[Unsorted Array & Pointer List] Search for Track ID [Case-Sensitive]: ";
 		cin >> input;
 		UASqSearch(usaSList, input);
@@ -674,8 +706,8 @@ int main()
 		cout << "" << endl;
 		cout << "[1] Import the songs into the program" << endl;
 		cout << "[2] Add songs into lists" << endl;
-		cout << "[3] Remove a song" << endl;
-		cout << "[4] Display list of songs" << endl;
+		cout << "[3] Display list of songs" << endl;
+		cout << "[4] Remove a song" << endl;
 		cout << "[5] Search a song using Sequential Search" << endl;
 		cout << "[6] Search a song using Binary Search" << endl;
 		cout << "[7] View Performance of Lists" << endl;
@@ -699,12 +731,12 @@ int main()
 			addSongs();
 			break;
 		case 3:
-			//Remove songs
-			removeSongs();
+			//Display songs
+			displaySongs();
 			break;
 		case 4:
-			//display songs
-			displaySongs();
+			//Remove songs
+			removeSongs();
 			break;
 		case 5:
 			//Searching using sequential search

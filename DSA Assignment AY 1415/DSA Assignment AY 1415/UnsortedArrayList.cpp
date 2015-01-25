@@ -89,6 +89,7 @@ int UnsortedArrayList::sqSearch(string target, SIZE_T& aM)
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
 		aM = pmc.PrivateUsage;
 	}
+	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1; // not found
 }
 
