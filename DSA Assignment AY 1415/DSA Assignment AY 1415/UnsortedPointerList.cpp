@@ -99,12 +99,17 @@ void UnsortedPointerList::display(int index)
 int UnsortedPointerList::sqSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed1;
 	int n = getLength(), comparisons = 0;
 	Node *temp = firstNode;
 	string tItem = "";
 	SongItem sItem;
 	for (int i = 0; i < n; i++)
 	{
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		memUsed1 = pmc.PrivateUsage;
+		aM = memUsed1 - aM;
+
 		comparisons++;
 		sItem = temp->item;
 		if (sItem.getTID() == target)
@@ -116,8 +121,6 @@ int UnsortedPointerList::sqSearch(string target, SIZE_T& aM)
 		}
 		else
 			temp = temp->next;
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		aM = pmc.PrivateUsage;
 	}
 	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1;

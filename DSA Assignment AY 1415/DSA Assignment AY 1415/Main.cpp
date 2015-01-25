@@ -148,13 +148,13 @@ void addSASongs(SortedArrayList& saSList, int input)
 	double duration;
 	Song sa;
 	start = std::clock();
-	bM = beforeMem();
+	bM = getMem();
 
 	for (int i = 0; i < input; i++)
 	{
 		Song sa = sortedObj[i];
 		saSList.add(sa);
-		aM = afterMem();
+		aM = getMem();
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 	tM = (aM - bM) / 1024;
@@ -169,12 +169,12 @@ void addUASongs(UnsortedArrayList& usaSList, int input)
 	double duration;
 	Song sa;
 	start = std::clock();//USAList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 	for (int i = 0; i < input; i++)
 	{
 		Song usa = unsortedObj[i];
 		usaSList.add(usa);
-		aM = afterMem();
+		aM = getMem();
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 	tM = (aM - bM)/1024;
@@ -189,12 +189,12 @@ void addUPSongs(UnsortedPointerList& upSList, int input)
 	double duration;
 	Song sa;
 	start = std::clock();//UPList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 	for (int i = 0; i < input; i++)
 	{
 		Song up = unsortedObj[i];
 		upSList.add(up);
-		aM = afterMem();
+		aM = getMem();
 	}
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 	tM = (aM - bM)/1024;
@@ -235,7 +235,7 @@ void displaySASongs(SortedArrayList& saSList)
 	cout << "========================" << endl;
 	cout << " " << endl;
 	start = std::clock();//SAList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 
 	saSList.display(aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
@@ -256,7 +256,7 @@ void displayUASongs(UnsortedArrayList& usaSList)
 	cout << "========================" << endl;
 	cout << " " << endl;
 	start = std::clock();//USAList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 	usaSList.display(aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 	tM = (aM - bM) / 1024;
@@ -275,7 +275,7 @@ void displayUPSongs(UnsortedPointerList& upSList)
 	cout << "========================" << endl;
 	cout << " " << endl;
 	start = std::clock();//UPList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 	upSList.display(aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 
@@ -306,7 +306,7 @@ void removeSASongs(SortedArrayList& saSList, int input)
 	double duration;
 
 	start = std::clock();//SAList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 	saSList.remove(input,aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 	tM = (aM - bM) /1024;
@@ -324,7 +324,7 @@ void removeUASongs(UnsortedArrayList& usaSList, int input)
 	std::clock_t start;
 	double duration;
 	start = std::clock();
-	bM = beforeMem();
+	bM = getMem();
 
 	usaSList.remove(input, aM);
 	
@@ -345,7 +345,7 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 	double duration;
 
 	start = std::clock();//UPList: Add start clock here.
-	bM = beforeMem();
+	bM = getMem();
 
 	upSList.remove(input, aM);
 	
@@ -406,7 +406,7 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 	cout << "For Average-Case Scenario, search for: " << t.getTID() << " OR " << u.getTID() << endl;
 	cout << "For Worst-Case Scenario, search for: " << w.getTID() << " OR " << v.getTID() << endl;
 	start = std::clock(); //start timer
-	bM = beforeMem();
+	bM = getMem();
 	if (saSList.getLength() != 0)
 	{
 		cout << "Search for Track ID [Case-Sensitive]: ";
@@ -433,7 +433,7 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 	else
 		cout << "You may have not imported or added the songs to the list yet." << endl;
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end;
-	aM = afterMem();
+	aM = getMem();
 	tM = (aM - bM) / 1024;
 	//store performance
 	Performance p(5, 1, saSList.getLength(), duration, tM);
@@ -459,7 +459,7 @@ void SASqSearch(SortedArrayList& sasList)
 	cout << "[Sorted Array List] Search for Track ID [Case-Sensitive]: ";
 	cin >> input;
 	start = std::clock();//start timer
-	bM = beforeMem();
+	bM = getMem();
 
 	int check1 = saSList.sqSearch(input, aM);
 	if (check1 != -1)
@@ -478,14 +478,14 @@ void SASqSearch(SortedArrayList& sasList)
 }
 void UASqSearch(UnsortedArrayList& usasList, string input)
 {
-	SIZE_T bM , aM, tM;
+	SIZE_T memUsed;
 	std::clock_t start;
 	double duration;
 	
 	start = std::clock();//start timer
-	bM = beforeMem();
+	memUsed = getMem();
 
-	int check2 = usaSList.sqSearch(input, aM);
+	int check2 = usaSList.sqSearch(input,memUsed);
 	if (check2 != -1)
 	{
 		cout << "Track ID found in Unsorted Array List" << endl;
@@ -493,26 +493,26 @@ void UASqSearch(UnsortedArrayList& usasList, string input)
 	}
 	else
 		cout << "Track ID cannot be Found in Unsorted Array List!" << endl;
+
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end
-	tM = (aM - bM) / 1024;
-	Performance p(4, 2, usaSList.getLength(), duration, tM);
+
+	Performance p(4, 2, usaSList.getLength(), duration, memUsed);
 	pStorage.push_back(p);
 
-	cout << tM << "KB total" << endl;
-	cout << aM/1024 << "KB AM" << endl;
-	cout << bM/1024 << "KB BM" << endl;
+	cout <<(double) memUsed/1024/1024 << "MB MemUsed" << endl;
+
 }
 void UPSqSearch(UnsortedPointerList& upsList, string input)
 {
-	SIZE_T bM, aM, tM;
+	SIZE_T memUsed;
 	std::clock_t start;
 	double duration;
 	
 	cout << "" << endl;
 	start = std::clock(); //start timer
-	bM = beforeMem();
+	memUsed = getMem();
 
-	int check3 = upSList.sqSearch(input, aM);
+	int check3 = upSList.sqSearch(input, memUsed);
 	if (check3 != -1)
 	{
 
@@ -522,14 +522,11 @@ void UPSqSearch(UnsortedPointerList& upsList, string input)
 	else
 		cout << "Track ID cannot be Found in Pointer Array List!" << endl;
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;//end
-	tM = (aM - bM) / 1024;
 	//store performance
-	Performance p(4, 3, upSList.getLength(), duration, tM);
+	Performance p(4, 3, upSList.getLength(), duration, memUsed);
 	pStorage.push_back(p);
 
-	cout << tM << "KB total" << endl;
-	cout << aM / 1024 << "KB AM SEQ" << endl;
-	cout << bM / 1024 << "KB BM SEQ" << endl;
+	cout << (double)memUsed/1024/1024 << "MB total" << endl;
 }
 int SequentialSearch()
 {

@@ -73,22 +73,28 @@ void UnsortedArrayList::display(int index)
 int UnsortedArrayList::sqSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed1;
 	int comparisons = 0;
 	int n = getLength();
-
+	
+	
 	for (int i = 0; i < n; i++)
 	{
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		memUsed1 = pmc.PrivateUsage;
+		aM = memUsed1 - aM;
+
 		comparisons++;
 		if (USAList[i].getTID() == target)//found
 		{
 			cout << "No. of Comparisons: " << comparisons << endl;
 			return i;
-
-			
 		}
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		aM = pmc.PrivateUsage;
+		
 	}
+	/*GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	after = pmc.PrivateUsage;*/
+	
 	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1; // not found
 }
