@@ -601,12 +601,12 @@ void Table(int choice)
 		{
 			temp = (double)gp.getSize();
 			cout << prd(temp, 0, 5) << " | "
-				<< prd(gp.getATime(), 2, 6) << " | " //sorted array
-				<< prd(gp.getAMem(), 2, 6) << " | "
-				<< prd(gp.getBTime(), 2, 6) << " | " //unsorted array
-				<< prd(gp.getBMem(), 2, 6) << " | "
-				<< prd(gp.getCTime(), 2, 6) << " | " //unsorted pointer
-				<< prd(gp.getCMem(), 2, 6) << " | "
+				<< prd(gp.getATime(), 2, 8) << " | " //sorted array
+				<< prd(gp.getAMem(), 2, 8) << " | "
+				<< prd(gp.getBTime(), 2, 8) << " | " //unsorted array
+				<< prd(gp.getBMem(), 2, 8) << " | "
+				<< prd(gp.getCTime(), 2, 8) << " | " //unsorted pointer
+				<< prd(gp.getCMem(), 2, 8) << " | "
 				<< endl;
 		}
 	}
