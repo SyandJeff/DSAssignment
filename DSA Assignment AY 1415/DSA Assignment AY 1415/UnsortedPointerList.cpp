@@ -32,6 +32,7 @@ bool UnsortedPointerList::add(SongItem song)
 
 void UnsortedPointerList::remove(int index, SIZE_T& aM)
 {
+	int shifts = 0;
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	Node *temp;
 	if (index == 1)
@@ -50,6 +51,7 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 		{
 			temp1 = temp2;
 			temp2 = temp2->next;
+			shifts++;
 		}
 		temp = temp2;
 		temp1->next = temp2->next;
@@ -57,9 +59,8 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 	temp->next = NULL;
 	delete temp;
 	temp = NULL; //clear
+	cout << "No. of Shifts for Unsorted Pointer List: " << shifts << endl;
 	size--;
-
-	
 }
 void UnsortedPointerList::display(SIZE_T& aM)
 {

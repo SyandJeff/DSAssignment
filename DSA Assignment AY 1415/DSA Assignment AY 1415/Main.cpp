@@ -364,17 +364,28 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 }
 int removeSongs()
 {
-	int input = -1;//default
+	int input2 = -1, input = -1;//default
 	if (saSList.getLength() != 0)
 	{
 		cout << "There are " << saSList.getLength() << " songs in the lists." << endl;
-		cout <<"State the song index that you would like to remove: ";
+		cout << "Note for Sorted and Unsorted Array List" << endl;
+		cout << "For Best-Case Scenario, it is ideal to remove song index: " << (saSList.getLength() - 1) << endl;
+		cout << "For Average-Case Scenario, it is ideal to remove song index: " << ((saSList.getLength() - 1) / 2)<< endl;
+		cout << "For Worst-Case Scenario, it is ideal to remove song index: 0" << endl;
+		cout << "Note for Unsorted Pointer List" << endl;
+		cout << "For Best-Case Scenario, it is ideal to remove song index: 0"<< endl;
+		cout << "For Average-Case Scenario, it is ideal to remove song index: " << ((saSList.getLength() - 1) / 2) << endl;
+		cout << "For Worst-Case Scenario, it is ideal to remove song index: " << (saSList.getLength() - 1) << endl;
+		
+		cout <<"State the song index that you would like to remove for Sorted and Unsorted Array Lists: ";
 		cin >> input;
+		cout << "State the song index that you would like to remove for Unsorted Pointer Lists: ";
+		cin >> input2;
 		if (input >= 0 && input < saSList.getLength())
 		{
 			removeSASongs(saSList, input);
 			removeUASongs(usaSList, input);
-			removeUPSongs(upSList, input);
+			removeUPSongs(upSList, input2);
 			cout << "Successfully removed song." << endl;
 		}
 		else
@@ -704,9 +715,9 @@ int main()
 		cout << "[1] Import the songs into the program" << endl;
 		cout << "[2] Add songs into lists" << endl;
 		cout << "[3] Display list of songs" << endl;
-		cout << "[4] Remove a song" << endl;
-		cout << "[5] Search a song using Sequential Search" << endl;
-		cout << "[6] Search a song using Binary Search" << endl;
+		cout << "[4] Search a song using Sequential Search" << endl;
+		cout << "[5] Search a song using Binary Search" << endl;
+		cout << "[6] Remove a song" << endl;
 		cout << "[7] View Performance of Lists" << endl;
 		cout << "[8] Clear existing song Lists" << endl;
 		cout << "[0] End the program" << endl;
@@ -731,17 +742,18 @@ int main()
 			//Display songs
 			displaySongs();
 			break;
+		
 		case 4:
-			//Remove songs
-			removeSongs();
-			break;
-		case 5:
 			//Searching using sequential search
 			SequentialSearch();
 			break;
-		case 6:
+		case 5:
 			//Search using binary search
 			BinarySearch(saSList, usaSList, upSList);
+			break;
+		case 6:
+			//Remove songs
+			removeSongs();
 			break;
 		case 7:
 			ViewPerformance();
