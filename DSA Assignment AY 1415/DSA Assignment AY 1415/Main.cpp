@@ -318,6 +318,7 @@ int displaySongs()
 
 void removeSASongs(SortedArrayList& saSList, int input)
 {
+	int temp = saSList.getLength();
 	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
@@ -328,12 +329,13 @@ void removeSASongs(SortedArrayList& saSList, int input)
 	duration = double(std::clock() - start) /CLOCKS_PER_SEC;
 	tM = (aM - bM) /1024;
 
-	Performance p(2, 1, saSList.getLength(), duration, tM);
+	Performance p(2, 1, temp, duration, tM);
 	pStorage.push_back(p);
 	//store performance
 }
 void removeUASongs(UnsortedArrayList& usaSList, int input)
 {
+	int temp = usaSList.getLength();
 	SIZE_T bM, aM, tM;
 	std::clock_t start;
 	double duration;
@@ -346,11 +348,12 @@ void removeUASongs(UnsortedArrayList& usaSList, int input)
 	
 	tM = (aM - bM) / 1024;
 	//store performance
-	Performance p(2, 2, usaSList.getLength(), duration, tM);
+	Performance p(2, 2, temp, duration, tM);
 	pStorage.push_back(p);
 }
 void removeUPSongs(UnsortedPointerList& upSList, int input)
 {
+	int temp = upSList.getLength();
 	SIZE_T bM , aM, tM;
 	std::clock_t start;
 	double duration;
@@ -364,7 +367,7 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 
 	tM = (aM - bM) / 1024;
 	//store performance
-	Performance p(2, 3, upSList.getLength(), duration, tM);
+	Performance p(2, 3, temp, duration, tM);
 	pStorage.push_back(p);
 }
 int removeSongs()
