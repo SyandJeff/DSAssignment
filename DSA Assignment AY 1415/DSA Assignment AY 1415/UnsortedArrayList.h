@@ -27,18 +27,18 @@ public:
 	//pre:size<MAX_SIZE
 	//post: music added to the list
 
-	bool UnsortedArrayList::remove(int index, SIZE_T* aM);
+	bool UnsortedArrayList::remove(int index, SIZE_T& aM);
 	//remove item by searching for the music name
 	//pre: music name must exist and look for the position of the music if it exist
 	//post: music deleted
 
-	void UnsortedArrayList::display(SIZE_T* aM);
+	void UnsortedArrayList::display(SIZE_T& aM);
 	//display all songs
 
 	void UnsortedArrayList::display(int index);
 	//display specific song
 
-	int UnsortedArrayList::sqSearch(string target, SIZE_T* aM);
+	int UnsortedArrayList::sqSearch(string target, SIZE_T& aM);
 	//sequential search
 
 	void UnsortedArrayList::binSearch();

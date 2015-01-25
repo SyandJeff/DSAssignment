@@ -30,7 +30,7 @@ bool UnsortedPointerList::add(SongItem song)
 	return true;
 }
 
-void UnsortedPointerList::remove(int index, SIZE_T* aM)
+void UnsortedPointerList::remove(int index, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	Node *temp;
@@ -40,7 +40,7 @@ void UnsortedPointerList::remove(int index, SIZE_T* aM)
 		firstNode = firstNode->next;
 
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		*aM = pmc.PrivateUsage;
+		aM = pmc.PrivateUsage;
 	}
 	else
 	{
@@ -61,7 +61,7 @@ void UnsortedPointerList::remove(int index, SIZE_T* aM)
 
 	
 }
-void UnsortedPointerList::display(SIZE_T* aM)
+void UnsortedPointerList::display(SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int i = 0;
@@ -78,10 +78,11 @@ void UnsortedPointerList::display(SIZE_T* aM)
 		cout << "" << endl;
 		temp = temp->next;
 		i++;
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		*aM = pmc.PrivateUsage;
+		
 	}
 	cout << "" << endl;
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	aM = pmc.PrivateUsage;
 }
 void UnsortedPointerList::display(int index)
 {
@@ -95,7 +96,7 @@ void UnsortedPointerList::display(int index)
 	cout << "MxmID: " << sItem.getMxmTid() << endl;
 	cout << "" << endl;
 }
-int UnsortedPointerList::sqSearch(string target, SIZE_T* aM)
+int UnsortedPointerList::sqSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int n = getLength(), comparisons = 0;
@@ -110,12 +111,15 @@ int UnsortedPointerList::sqSearch(string target, SIZE_T* aM)
 		{
 			cout << "No. of Comparisons: " << comparisons << endl;
 			return i; //found
+
+			
 		}
 		else
 			temp = temp->next;
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		*aM = pmc.PrivateUsage;
+		aM = pmc.PrivateUsage;
 	}
+	
 	return -1;
 }
 void UnsortedPointerList::binSearch()

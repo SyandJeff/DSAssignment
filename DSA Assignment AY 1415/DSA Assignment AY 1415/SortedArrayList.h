@@ -30,22 +30,22 @@ public:
 	bool SortedArrayList::add(int index, SongItem song);
 
 
-	void SortedArrayList::remove(int index, SIZE_T* aM);
+	void SortedArrayList::remove(int index, SIZE_T& aM);
 	//remove item by searching for the music name
 	//pre: music name must exist and look for the position of the music if it exist
 	//post: music deleted
 
-	void SortedArrayList::display(SIZE_T* AM);
+	void SortedArrayList::display(SIZE_T& AM);
 	//Display all the songs
 
 	void SortedArrayList::display(int index);
 	//Search for the song title which returns index
 	//display specific song information using the index
 
-	int SortedArrayList::sqSearch(string target, SIZE_T* aM);
+	int SortedArrayList::sqSearch(string target, SIZE_T& aM);
 	//Searching of song title using sequential search
 
-	int SortedArrayList::binSearch(string target, SIZE_T* aM);
+	int SortedArrayList::binSearch(string target, SIZE_T& aM);
 	//Searching of song title using binary search
 
 	SongItem SortedArrayList::get(int index);

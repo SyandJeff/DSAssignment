@@ -33,7 +33,7 @@ bool SortedArrayList::add(int index, SongItem song)
 	return success;
 }
 
-void SortedArrayList::remove(int index, SIZE_T* aM)
+void SortedArrayList::remove(int index, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	bool success = (index >= 1) && (index <= size);
@@ -44,14 +44,14 @@ void SortedArrayList::remove(int index, SIZE_T* aM)
 			SAList[pos - 2] = SAList[pos - 1];
 
 			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-			*aM = pmc.PrivateUsage;
+			aM = pmc.PrivateUsage;
 		}
 		size--;
 
 		
 	}
 }
-void SortedArrayList::display(SIZE_T* aM)
+void SortedArrayList::display(SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	SongItem item;
@@ -64,14 +64,13 @@ void SortedArrayList::display(SIZE_T* aM)
 		cout << "Song Title: " << item.getMxmTitle() << endl;
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		*aM = pmc.PrivateUsage;
+		
 	}
-
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	aM = pmc.PrivateUsage;
 }
 void SortedArrayList::display(int index)
 {
-	PROCESS_MEMORY_COUNTERS_EX pmc;
 	SongItem item;
 	item = get(index);
 	cout << "TrackID: " << item.getTID() << endl;
@@ -80,28 +79,31 @@ void SortedArrayList::display(int index)
 	cout << "MxmID: " << item.getMxmTid() << endl;
 	cout << "" << endl;
 }
-int SortedArrayList::sqSearch(string target, SIZE_T* aM) //search using TrackID presumably. Can be changed
+int SortedArrayList::sqSearch(string target, SIZE_T& aM) //search using TrackID presumably. Can be changed
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int comparisons = 0;
 	int n = getLength();
 	for (int i = 0; i < n; i++)
 	{
+		
 		comparisons++;
 		if (SAList[i].getTID() == target)//found
 		{
 			cout << "No. of Comparisons: " << comparisons << endl;
 			return i;
+			
 		}
 		else if (SAList[i].getTID() > target)//not found
 			return -1;
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		*aM = pmc.PrivateUsage;
+		aM = pmc.PrivateUsage;
+		
 	}
-	cout << *aM/1024 << "KB AM" << endl;
+	
 	return -1;
 }
-int SortedArrayList::binSearch(string target, SIZE_T* aM)
+int SortedArrayList::binSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int comparisons = 0;
@@ -122,7 +124,7 @@ int SortedArrayList::binSearch(string target, SIZE_T* aM)
 			first = mid + 1;//searching through second half
 		
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		*aM = pmc.PrivateUsage;
+		aM = pmc.PrivateUsage;
 	}
 	return -1; //not found
 }
