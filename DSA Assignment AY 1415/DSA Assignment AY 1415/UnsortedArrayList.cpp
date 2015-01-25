@@ -24,15 +24,18 @@ bool UnsortedArrayList::remove(int index, SIZE_T& aM)
 {
 	int shifts = 0;
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	bool success = (index >= 1) && (index <= size);
 	if (success)
 	{
 		for (int i = index; i <= size; i++)
 		{
+			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+			memUsed = pmc.PrivateUsage;
+			aM = memUsed - aM;
+
 			USAList[i] = USAList[i + 1];
 			shifts++;
-			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-			aM = pmc.PrivateUsage;
 		}
 		cout << "No. of Shifts for Unsorted Array List: " << shifts << endl;
 		size--;
@@ -43,9 +46,12 @@ bool UnsortedArrayList::remove(int index, SIZE_T& aM)
 void UnsortedArrayList::display(SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	Song item;
 	for (int i = 0; i < getLength(); i++)
 	{
+		
+
 		item = get(i);
 		cout << "Song[" << i << "]" << endl;
 		cout << "TrackID: " << item.getTID() << endl;
@@ -53,11 +59,12 @@ void UnsortedArrayList::display(SIZE_T& aM)
 		cout << "Song Title: " << item.getMxmTitle() << endl;
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
-
 		
 	}
 	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	aM = pmc.PrivateUsage;
+	memUsed = pmc.PrivateUsage;
+	aM = memUsed - aM;
+	
 }
 void UnsortedArrayList::display(int index)
 {
@@ -74,7 +81,7 @@ void UnsortedArrayList::display(int index)
 int UnsortedArrayList::sqSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T memUsed1;
+	SIZE_T memUsed;
 	int comparisons = 0;
 	int n = getLength();
 	
@@ -82,8 +89,8 @@ int UnsortedArrayList::sqSearch(string target, SIZE_T& aM)
 	for (int i = 0; i < n; i++)
 	{
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		memUsed1 = pmc.PrivateUsage;
-		aM = memUsed1 - aM;
+		memUsed = pmc.PrivateUsage;
+		aM = memUsed - aM;
 
 		comparisons++;
 		if (USAList[i].getTID() == target)//found

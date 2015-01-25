@@ -33,6 +33,7 @@ bool UnsortedPointerList::add(SongItem song)
 void UnsortedPointerList::remove(int index, SIZE_T& aM)
 {
 	int shifts = 0;
+	SIZE_T memUsed;
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	Node *temp;
 	if (index == 1)
@@ -41,7 +42,8 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 		firstNode = firstNode->next;
 
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		aM = pmc.PrivateUsage;
+		memUsed = pmc.PrivateUsage;
+		aM = memUsed - aM;
 	}
 	else
 	{
@@ -65,11 +67,13 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 void UnsortedPointerList::display(SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	int i = 0;
 	Node *temp = firstNode;
 	SongItem sItem;
 	while (temp != NULL)
 	{
+
 		sItem = temp->item;
 		cout << "Song[" << i << "]" << endl;
 		cout << "TrackID: " << sItem.getTID() << endl;
@@ -81,9 +85,10 @@ void UnsortedPointerList::display(SIZE_T& aM)
 		i++;
 		
 	}
-	cout << "" << endl;
 	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	aM = pmc.PrivateUsage;
+	memUsed = pmc.PrivateUsage;
+	aM = memUsed - aM;
+	cout << "" << endl;
 }
 void UnsortedPointerList::display(int index)
 {
@@ -100,7 +105,7 @@ void UnsortedPointerList::display(int index)
 int UnsortedPointerList::sqSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T memUsed1;
+	SIZE_T memUsed;
 	int n = getLength(), comparisons = 0;
 	Node *temp = firstNode;
 	string tItem = "";
@@ -108,8 +113,8 @@ int UnsortedPointerList::sqSearch(string target, SIZE_T& aM)
 	for (int i = 0; i < n; i++)
 	{
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		memUsed1 = pmc.PrivateUsage;
-		aM = memUsed1 - aM;
+		memUsed = pmc.PrivateUsage;
+		aM = memUsed - aM;
 
 		comparisons++;
 		sItem = temp->item;

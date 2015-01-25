@@ -37,15 +37,18 @@ void SortedArrayList::remove(int index, SIZE_T& aM)
 {
 	int shifts = 0;
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	bool success = (index >= 1) && (index <= size);
 	if (success)
 	{
 		for (int pos = index + 1; pos <= size; pos++)
 		{
+			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+			memUsed = pmc.PrivateUsage;
+			aM = memUsed - aM;
+
 			SAList[pos - 2] = SAList[pos - 1];
 			shifts++;
-			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-			aM = pmc.PrivateUsage;
 		}
 		cout << "No. of Shifts for Sorted Array List: " << shifts << endl;
 		size--;
@@ -54,9 +57,12 @@ void SortedArrayList::remove(int index, SIZE_T& aM)
 void SortedArrayList::display(SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	SongItem item;
 	for (int i = 0; i < getLength(); i++)
 	{
+		
+
 		item = get(i);
 		cout << "Song[" << i << "]" << endl;
 		cout << "TrackID: " << item.getTID() << endl;
@@ -64,10 +70,11 @@ void SortedArrayList::display(SIZE_T& aM)
 		cout << "Song Title: " << item.getMxmTitle() << endl;
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
-		
 	}
 	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-	aM = pmc.PrivateUsage;
+	memUsed = pmc.PrivateUsage;
+	aM = memUsed - aM;
+
 }
 void SortedArrayList::display(int index)
 {
@@ -82,11 +89,15 @@ void SortedArrayList::display(int index)
 int SortedArrayList::sqSearch(string target, SIZE_T& aM) //search using TrackID presumably. Can be changed
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	int comparisons = 0;
 	int n = getLength();
 	for (int i = 0; i < n; i++)
 	{
-	
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		memUsed = pmc.PrivateUsage;
+		aM = memUsed - aM;
+
 		comparisons++;
 		if (SAList[i].getTID() == target)//found
 		{
@@ -99,8 +110,6 @@ int SortedArrayList::sqSearch(string target, SIZE_T& aM) //search using TrackID 
 			cout << "No. of Comparisons: " << comparisons << endl;
 			return -1;
 		}
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		aM = pmc.PrivateUsage;
 	}
 	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1;
@@ -108,11 +117,16 @@ int SortedArrayList::sqSearch(string target, SIZE_T& aM) //search using TrackID 
 int SortedArrayList::binSearch(string target, SIZE_T& aM)
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
+	SIZE_T memUsed;
 	int comparisons = 0;
 	int n = getLength();
 	int mid, first = 0, last = n - 1;
 	while (first<=last)
 	{
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		memUsed = pmc.PrivateUsage;
+		aM = memUsed - aM;
+
 		comparisons++;
 		mid = (first + last) / 2;
 		if (SAList[mid].getTID() == target) //found
@@ -125,8 +139,6 @@ int SortedArrayList::binSearch(string target, SIZE_T& aM)
 		else
 			first = mid + 1;//searching through second half
 		
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		aM = pmc.PrivateUsage;
 	}
 	cout << "No. of Comparisons: " << comparisons << endl;
 	return -1; //not found
