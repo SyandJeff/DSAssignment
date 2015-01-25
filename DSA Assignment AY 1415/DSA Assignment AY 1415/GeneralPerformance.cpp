@@ -35,8 +35,8 @@ double GP::getAMem(){ return Amem; }
 void GP::setBTime(double Btime){ Btime = Btime; }
 double GP::getBTime(){ return Btime; }
 
-void GP::setBMem(double Amem){ Amem = Amem; }
-double GP::getBMem(){ return Amem; }
+void GP::setBMem(double Bmem){ Bmem = Bmem; }
+double GP::getBMem(){ return Bmem; }
 
 void GP::setCTime(double Ctime){ Ctime = Ctime; }
 double GP::getCTime(){ return Ctime; }

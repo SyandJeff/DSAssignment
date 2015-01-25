@@ -30,6 +30,26 @@ SortedArrayList saSList;
 UnsortedArrayList usaSList;
 UnsortedPointerList upSList; //Name suppose to contain "LinkList" but accidentally set as "Pointer" instead.
 
+void combiningPerformanceLists()
+{
+	Performance a, b, c;
+	int op, size, temp = pStorage.size();
+	//	Performance(Operation, Size, Atime, Amem, Btime, Bmem, Ctime, Cmem)
+	for (SIZE_T i = 0; i < pStorage.size(); i += 3)
+	{
+		a = pStorage[i]; // index = 0, 3, 6, etc are all sorted arrays
+		b = pStorage[i + 1]; // index = 1, 4, 7 etc all unsorted arrays
+		c = pStorage[i + 2]; // index = 2, 5, 8 etc all unsorted pointers
+		op = a.getOperation();
+		size = a.getSize();
+		GP gp(op, size, a.getTime(), a.getMem(), b.getTime(), b.getMem(), c.getTime(), c.getMem());
+		gpStorage.push_back(gp);
+	}
+	for (int i = 0; i < temp; i++)
+	{
+		pStorage.pop_back();
+	}
+}
 int importSongs()
 {
 	int noOfSongs = 0, count = 0, found = -1, j = 0, z = 0;
@@ -214,7 +234,8 @@ int addSongs()
 			addSASongs(saSList, input);
 			addUASongs(usaSList, input);
 			addUPSongs(upSList, input);
-			cout << "Successfully added " << input << " song(s)." << endl;
+			combiningPerformanceLists();
+			cout << "Successfully added " << input << " song[s]." << endl;
 		}
 		else
 			cout << "Your input has to be  0 < input <= " << sortedObj.size() << endl;
@@ -288,6 +309,7 @@ int displaySongs()
 		displaySASongs(saSList);
 		displayUASongs(usaSList);
 		displayUPSongs(upSList);
+		combiningPerformanceLists();
 	}
 	else
 		cout << "You may have not imported or added the songs to the list yet." << endl;
@@ -352,23 +374,28 @@ int removeSongs()
 	{
 		cout << "There are " << saSList.getLength() << " songs in the lists." << endl;
 		cout << "Note for Sorted and Unsorted Array List" << endl;
-		cout << "For Best-Case Scenario, it is ideal to remove song index: " << (saSList.getLength() - 1) << endl;
-		cout << "For Average-Case Scenario, it is ideal to remove song index: " << ((saSList.getLength() - 1) / 2)<< endl;
-		cout << "For Worst-Case Scenario, it is ideal to remove song index: 0" << endl;
+		cout << "For Best-Case Scenario, remove song index: " << (saSList.getLength() - 1) << endl;
+		cout << "For Average-Case Scenario, remove song index: " << ((saSList.getLength() - 1) / 2)<< endl;
+		cout << "For Worst-Case Scenario, remove song index: 0" << endl;
+		cout << "" << endl;
 		cout << "Note for Unsorted Pointer List" << endl;
-		cout << "For Best-Case Scenario, it is ideal to remove song index: 0"<< endl;
-		cout << "For Average-Case Scenario, it is ideal to remove song index: " << ((saSList.getLength() - 1) / 2) << endl;
-		cout << "For Worst-Case Scenario, it is ideal to remove song index: " << (saSList.getLength() - 1) << endl;
-		
-		cout <<"State the song index that you would like to remove for Sorted and Unsorted Array Lists: ";
+		cout << "For Best-Case Scenario, remove song index: 0"<< endl;
+		cout << "For Average-Case Scenario, remove song index: " << ((saSList.getLength() - 1) / 2) << endl;
+		cout << "For Worst-Case Scenario, remove song index: " << (saSList.getLength() - 1) << endl;
+		cout << "" << endl;
+		cout << "For Sorted and Unsorted Array Lists: " << endl;
+		cout << "State the song index that you would like to remove: ";
 		cin >> input;
-		cout << "State the song index that you would like to remove for Unsorted Pointer Lists: ";
+		cout << "" << endl;
+		cout << "For Unsorted Pointer List: " << endl;
+		cout << "State the song index that you would like to remove: ";
 		cin >> input2;
 		if (input >= 0 && input < saSList.getLength())
 		{
 			removeSASongs(saSList, input);
 			removeUASongs(usaSList, input);
 			removeUPSongs(upSList, input2);
+			combiningPerformanceLists();
 			cout << "Successfully removed song." << endl;
 		}
 		else
@@ -416,20 +443,21 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 		else
 			cout << "Track ID cannot be Found in Sorted Array List!" << endl;
 		duration = double(std::clock() - start) /CLOCKS_PER_SEC;//end;
-
-
+		Performance p1(5, 1, saSList.getLength(), duration, aM / 1024);
+		pStorage.push_back(p1);
 		cout << "" << endl;
 		usaSList.binSearch();
-		Performance p(5, 2, NULL, NULL, NULL);
+		Performance p2(5, 2, saSList.getLength(), NULL, NULL);
+		pStorage.push_back(p2);
 		cout << "" << endl;
 		upSList.binSearch();
+		Performance p3(5, 3, saSList.getLength(), NULL, NULL);
+		pStorage.push_back(p3);
+		combiningPerformanceLists();
 	}
 	else
 		cout << "You may have not imported or added the songs to the list yet." << endl;
-	duration = double(std::clock() - start) /CLOCKS_PER_SEC;//end;
 	//store performance
-	Performance p(5, 1, saSList.getLength(), duration, aM/1024);
-	pStorage.push_back(p);
 	return 0;
 }
 
@@ -536,6 +564,7 @@ int SequentialSearch()
 		cin >> input;
 		UASqSearch(usaSList, input);
 		UPSqSearch(upSList, input);
+		combiningPerformanceLists();
 	}
 	else
 		cout << "You may have not imported or added the songs to the list yet." << endl;
@@ -555,34 +584,35 @@ string center(const string s, const int w)
 		ss << " ";
 	return ss.str();
 }
-string prd(const double x, const int decDigits, const int width) {
-	stringstream ss;
-	ss << fixed << right;
-	ss.fill(' ');        // fill space around displayed #
-	ss.width(width);     // set  width around displayed #
-	ss.precision(decDigits); // set # places after decimal
-	ss << x;
-	return ss.str();
-}
-void combiningPerformanceLists()
+string prd(const double x, const int decDigits, const int width, int choice) 
 {
-	Performance a, b, c;
-	int op, size;
-	//	Performance(Operation, Size, Atime, Amem, Btime, Bmem, Ctime, Cmem)
-	for (SIZE_T i = 0; i < pStorage.size(); i+=3)
+	stringstream ss;
+	if (choice == 5)
 	{
-		a = pStorage[i]; // index = 0, 3, 6, etc are all sorted arrays
-		b = pStorage[i + 1]; // index = 1, 4, 7 etc all unsorted arrays
-		c = pStorage[i + 2]; // index = 2, 5, 8 etc all unsorted pointers
-		op = a.getOperation();
-		size = a.getSize();
-		GP gp(op, size, a.getTime(), a.getMem(), b.getTime(), b.getMem(), c.getTime(), c.getMem());
-		gpStorage.push_back(gp);
+		if (x == NULL)
+			return "  NULL  ";
+		else
+		{
+			ss << fixed << right;
+			ss.fill(' ');        // fill space around displayed #
+			ss.width(width);     // set  width around displayed #
+			ss.precision(decDigits); // set # places after decimal
+			ss << x;
+			return ss.str();
+		}
+	}
+	else
+	{
+		ss << fixed << right;
+		ss.fill(' ');        // fill space around displayed #
+		ss.width(width);     // set  width around displayed #
+		ss.precision(decDigits); // set # places after decimal
+		ss << x;
+		return ss.str();
 	}
 }
 void Table(int choice)
 {
-	combiningPerformanceLists();
 	GP gp;
 	if (choice == 1)
 		cout << "ADD Operation: " << endl;
@@ -616,18 +646,17 @@ void Table(int choice)
 		if (gp.getOperation() == choice)
 		{
 			temp = (double)gp.getSize();
-			cout << prd(temp, 0, 5) << " | "
-				<< prd(gp.getATime(), 2, 8) << " | " //sorted array
-				<< prd(gp.getAMem(), 2, 8) << " | "
-				<< prd(gp.getBTime(), 2, 8) << " | " //unsorted array
-				<< prd(gp.getBMem(), 2, 8) << " | "
-				<< prd(gp.getCTime(), 2, 8) << " | " //unsorted pointer
-				<< prd(gp.getCMem(), 2, 8) << " | "
+			cout << prd(temp, 0, 5, choice) << " | "
+				<< prd(gp.getATime(), 2, 8, choice) << " | " //sorted array
+				<< prd(gp.getAMem(), 2, 8, choice) << " | "
+				<< prd(gp.getBTime(), 2, 8, choice) << " | " //unsorted array
+				<< prd(gp.getBMem(), 2, 8, choice) << " | "
+				<< prd(gp.getCTime(), 2, 8, choice) << " | " //unsorted pointer
+				<< prd(gp.getCMem(), 2, 8, choice) << " | "
 				<< endl;
 		}
 	}
 }
-
 void ViewPerformance()
 {
 	int choice = -1; //default
@@ -695,7 +724,7 @@ int main()
 		cout << "[5] Search a song using Binary Search" << endl;
 		cout << "[6] Remove a song" << endl;
 		cout << "[7] View Performance of Lists" << endl;
-		cout << "[8] Clear existing song Lists" << endl;
+		cout << "[8] Clear existing Song Lists" << endl;
 		cout << "[0] End the program" << endl;
 		cout << "" << endl;
 		cout << "Enter your option : ";
@@ -709,6 +738,7 @@ int main()
 		case 1:
 			//Import songs
 			importSongs();
+			cout << "Successfully imported songs." << endl;
 			break;
 		case 2:
 			//Add songs
