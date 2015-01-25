@@ -369,16 +369,18 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 }
 int removeSongs()
 {
-	int input2 = -1, input = -1;//default
+	int input = -1;//default
+	int temp = -1;
 	if (saSList.getLength() != 0)
 	{
 		cout << "There are " << saSList.getLength() << " songs in the lists." << endl;
-		cout << "Note for Sorted and Unsorted Array List" << endl;
+		cout << "" << endl; 
+		cout << "Note for Sorted and Unsorted Array List: " << endl;
 		cout << "For Best-Case Scenario, remove song index: " << (saSList.getLength() - 1) << endl;
 		cout << "For Average-Case Scenario, remove song index: " << ((saSList.getLength() - 1) / 2)<< endl;
 		cout << "For Worst-Case Scenario, remove song index: 0" << endl;
 		cout << "" << endl;
-		cout << "Note for Unsorted Pointer List" << endl;
+		cout << "Note for Unsorted Pointer List: " << endl;
 		cout << "For Best-Case Scenario, remove song index: 0"<< endl;
 		cout << "For Average-Case Scenario, remove song index: " << ((saSList.getLength() - 1) / 2) << endl;
 		cout << "For Worst-Case Scenario, remove song index: " << (saSList.getLength() - 1) << endl;
@@ -389,12 +391,12 @@ int removeSongs()
 		cout << "" << endl;
 		cout << "For Unsorted Pointer List: " << endl;
 		cout << "State the song index that you would like to remove: ";
-		cin >> input2;
-		if (input >= 0 && input < saSList.getLength())
+		cin >> temp;
+		if (input >= 0 && input < saSList.getLength() && temp >= 0 && temp<upSList.getLength())
 		{
 			removeSASongs(saSList, input);
 			removeUASongs(usaSList, input);
-			removeUPSongs(upSList, input2);
+			removeUPSongs(upSList, temp);
 			combiningPerformanceLists();
 			cout << "Successfully removed song." << endl;
 		}
