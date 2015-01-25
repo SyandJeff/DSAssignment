@@ -1,5 +1,7 @@
 #include <string>
 #include <iostream>
+#include <Windows.h>
+#include <psapi.h>
 #include "UnsortedPointerList.h"
 using namespace std;
 
@@ -30,11 +32,15 @@ bool UnsortedPointerList::add(SongItem song)
 
 void UnsortedPointerList::remove(int index, SIZE_T* aM)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	Node *temp;
 	if (index == 1)
 	{
 		temp = firstNode;
 		firstNode = firstNode->next;
+
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		*aM = pmc.PrivateUsage;
 	}
 	else
 	{
@@ -53,10 +59,11 @@ void UnsortedPointerList::remove(int index, SIZE_T* aM)
 	temp = NULL; //clear
 	size--;
 
-	*aM = afterMem();
+	
 }
 void UnsortedPointerList::display(SIZE_T* aM)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int i = 0;
 	Node *temp = firstNode;
 	SongItem sItem;
@@ -71,7 +78,8 @@ void UnsortedPointerList::display(SIZE_T* aM)
 		cout << "" << endl;
 		temp = temp->next;
 		i++;
-		*aM = afterMem();
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		*aM = pmc.PrivateUsage;
 	}
 	cout << "" << endl;
 }
@@ -89,6 +97,7 @@ void UnsortedPointerList::display(int index)
 }
 int UnsortedPointerList::sqSearch(string target, SIZE_T* aM)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int n = getLength(), comparisons = 0;
 	Node *temp = firstNode;
 	string tItem = "";
@@ -104,7 +113,8 @@ int UnsortedPointerList::sqSearch(string target, SIZE_T* aM)
 		}
 		else
 			temp = temp->next;
-		*aM = afterMem();
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		*aM = pmc.PrivateUsage;
 	}
 	return -1;
 }

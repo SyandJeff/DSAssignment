@@ -143,7 +143,7 @@ int importSongs()
 
 void addSASongs(SortedArrayList& saSList, int input)
 {
-	SIZE_T bM, aM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	Song sa;
@@ -164,7 +164,7 @@ void addSASongs(SortedArrayList& saSList, int input)
 void addUASongs(UnsortedArrayList& usaSList, int input)
 {
 
-	SIZE_T bM, aM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	Song sa;
@@ -184,7 +184,7 @@ void addUASongs(UnsortedArrayList& usaSList, int input)
 void addUPSongs(UnsortedPointerList& upSList, int input)
 {
 
-	SIZE_T bM, aM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	Song sa;
@@ -226,8 +226,7 @@ int addSongs()
 
 void displaySASongs(SortedArrayList& saSList)
 {
-	SIZE_T bM, tM;
-	SIZE_T aM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 
@@ -249,7 +248,7 @@ void displaySASongs(SortedArrayList& saSList)
 }
 void displayUASongs(UnsortedArrayList& usaSList)
 {
-	SIZE_T bM, aM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	cout << "========================" << endl;
@@ -267,7 +266,7 @@ void displayUASongs(UnsortedArrayList& usaSList)
 }
 void displayUPSongs(UnsortedPointerList& upSList)
 {
-	SIZE_T bM, aM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 
@@ -302,7 +301,7 @@ int displaySongs()
 
 void removeSASongs(SortedArrayList& saSList, int input)
 {
-	SIZE_T bM, aM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 
@@ -310,15 +309,18 @@ void removeSASongs(SortedArrayList& saSList, int input)
 	bM = beforeMem();
 	saSList.remove(input,&aM);
 	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-	tM = (aM - bM) - 1024;
+	tM = (aM - bM) /1024;
 
 	Performance p(2, 1, saSList.getLength(), duration, tM);
 	pStorage.push_back(p);
 	//store performance
+	aM = 0;
+	bM = 0;
+	tM = 0;
 }
 void removeUASongs(UnsortedArrayList& usaSList, int input)
 {
-	SIZE_T aM, bM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	start = std::clock();
@@ -332,10 +334,13 @@ void removeUASongs(UnsortedArrayList& usaSList, int input)
 	//store performance
 	Performance p(2, 2, usaSList.getLength(), duration, tM);
 	pStorage.push_back(p);
+	aM = 0;
+	bM = 0;
+	tM = 0;
 }
 void removeUPSongs(UnsortedPointerList& upSList, int input)
 {
-	SIZE_T aM, bM, tM;
+	SIZE_T bM , aM, tM;
 	std::clock_t start;
 	double duration;
 
@@ -350,6 +355,12 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 	//store performance
 	Performance p(2, 3, upSList.getLength(), duration, tM);
 	pStorage.push_back(p);
+	aM = 0;
+	bM = 0;
+	tM = 0;
+
+	cout << aM / 1024 << "after" << endl;
+	cout << bM / 1024 << "before" << endl;
 }
 int removeSongs()
 {
@@ -376,7 +387,7 @@ int removeSongs()
 
 int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
-	SIZE_T aM, bM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	string input;
@@ -419,7 +430,7 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 
 void SASqSearch(SortedArrayList& sasList)
 {
-	SIZE_T aM, bM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	string input;
@@ -445,7 +456,7 @@ void SASqSearch(SortedArrayList& sasList)
 }
 void UASqSearch(UnsortedArrayList& usasList, string input)
 {
-	SIZE_T aM, bM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	
@@ -464,10 +475,15 @@ void UASqSearch(UnsortedArrayList& usasList, string input)
 	tM = (aM - bM) / 1024;
 	Performance p(4, 2, usaSList.getLength(), duration, tM);
 	pStorage.push_back(p);
+
+	size_t test = afterMem();
+	cout << test / 1024 << "KB test" << endl;
+	cout << aM / 1024 << "KB AM" << endl;
+	cout << bM / 1024 << "KB BM" << endl;
 }
 void UPSqSearch(UnsortedPointerList& upsList, string input)
 {
-	SIZE_T aM, bM, tM;
+	SIZE_T bM = 0, aM = 0, tM = 0;
 	std::clock_t start;
 	double duration;
 	
@@ -489,6 +505,10 @@ void UPSqSearch(UnsortedPointerList& upsList, string input)
 	//store performance
 	Performance p(4, 3, upSList.getLength(), duration, tM);
 	pStorage.push_back(p);
+
+	size_t test = afterMem();
+	cout << aM / 1024 << "KB AM SEQ" << endl;
+	cout << test / 1024 << "KB test SEQ" << endl;
 }
 int SequentialSearch()
 {

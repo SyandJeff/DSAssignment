@@ -1,5 +1,7 @@
 #include <string>
 #include <iostream>
+#include <Windows.h>
+#include <Psapi.h>
 #include "SortedArrayList.h"
 using namespace std;
 
@@ -33,17 +35,25 @@ bool SortedArrayList::add(int index, SongItem song)
 
 void SortedArrayList::remove(int index, SIZE_T* aM)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	bool success = (index >= 1) && (index <= size);
 	if (success)
 	{
 		for (int pos = index + 1; pos <= size; pos++)
+		{
 			SAList[pos - 2] = SAList[pos - 1];
+
+			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+			*aM = pmc.PrivateUsage;
+		}
 		size--;
-		*aM = afterMem();
+
+		
 	}
 }
 void SortedArrayList::display(SIZE_T* aM)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	SongItem item;
 	for (int i = 0; i < getLength(); i++)
 	{
@@ -54,12 +64,14 @@ void SortedArrayList::display(SIZE_T* aM)
 		cout << "Song Title: " << item.getMxmTitle() << endl;
 		cout << "MxmID: " << item.getMxmTid() << endl;
 		cout << "" << endl;
-		*aM = afterMem();
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		*aM = pmc.PrivateUsage;
 	}
 
 }
 void SortedArrayList::display(int index)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	SongItem item;
 	item = get(index);
 	cout << "TrackID: " << item.getTID() << endl;
@@ -70,6 +82,7 @@ void SortedArrayList::display(int index)
 }
 int SortedArrayList::sqSearch(string target, SIZE_T* aM) //search using TrackID presumably. Can be changed
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int comparisons = 0;
 	int n = getLength();
 	for (int i = 0; i < n; i++)
@@ -82,12 +95,15 @@ int SortedArrayList::sqSearch(string target, SIZE_T* aM) //search using TrackID 
 		}
 		else if (SAList[i].getTID() > target)//not found
 			return -1;
-		*aM = afterMem();
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		*aM = pmc.PrivateUsage;
 	}
+	cout << *aM/1024 << "KB AM" << endl;
 	return -1;
 }
 int SortedArrayList::binSearch(string target, SIZE_T* aM)
 {
+	PROCESS_MEMORY_COUNTERS_EX pmc;
 	int comparisons = 0;
 	int n = getLength();
 	int mid, first = 0, last = n - 1;
@@ -105,7 +121,8 @@ int SortedArrayList::binSearch(string target, SIZE_T* aM)
 		else
 			first = mid + 1;//searching through second half
 		
-		*aM = afterMem();
+		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+		*aM = pmc.PrivateUsage;
 	}
 	return -1; //not found
 }

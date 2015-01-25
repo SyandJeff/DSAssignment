@@ -3,7 +3,6 @@
 
 #include <string>
 #include <iostream>
-#include "Memory.h"
 #include "Song.h"
 #include "Lyrics.h"
 #include "Word.h"

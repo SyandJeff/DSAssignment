@@ -7,7 +7,7 @@
 SIZE_T beforeMem()
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T bMem;
+	SIZE_T bMem = 0;
 
 	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
 	bMem = pmc.PrivateUsage;
@@ -18,7 +18,7 @@ SIZE_T beforeMem()
 SIZE_T afterMem()
 {
 	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T aMem;
+	SIZE_T aMem = 0;
 
 	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
 	aMem = pmc.PrivateUsage;
