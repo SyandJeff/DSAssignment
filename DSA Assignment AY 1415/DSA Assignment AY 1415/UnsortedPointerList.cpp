@@ -60,7 +60,7 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 	temp->next = NULL;
 	delete temp;
 	temp = NULL; //clear
-	cout << "No. of Shifts for Unsorted Pointer List: " << shifts << endl;
+	cout << "No. of Traversals for Unsorted Pointer List: " << shifts << endl;
 	size--;
 
 	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));

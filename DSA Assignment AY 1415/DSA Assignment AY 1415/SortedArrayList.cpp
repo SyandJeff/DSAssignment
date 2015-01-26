@@ -36,7 +36,7 @@ bool SortedArrayList::add(int index, SongItem song)
 void SortedArrayList::remove(int index, SIZE_T& aM)
 {
 	int shifts = 0;
-	bool success = (index >= 0) && (index < size);
+	bool success = (index >= 1) && (index < size);
 	if (success)
 	{
 		for (int pos = index + 1; pos <= size; pos++)
@@ -44,8 +44,8 @@ void SortedArrayList::remove(int index, SIZE_T& aM)
 			SAList[pos - 2] = SAList[pos - 1];
 			shifts++;
 		}
-		size--;
 	}
+	size--;
 	cout << "No. of Shifts for Sorted Array List: " << shifts << endl;
 
 }

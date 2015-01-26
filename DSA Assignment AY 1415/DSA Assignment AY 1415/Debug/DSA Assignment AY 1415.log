@@ -1,12 +1,6 @@
-﻿Build started 26/01/2015 1:19:58 PM.
+﻿Build started 26/01/2015 1:34:02 PM.
      1>Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SortedArrayList.cpp UnsortedArrayList.cpp
-         UnsortedArrayList.cpp
-         SortedArrayList.cpp
-         Generating Code...
-     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
-       Link:
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.lib" /MACHINE:X86 Debug\GeneralPerformance.obj
          Debug\Main.obj
          Debug\Performance.obj
@@ -16,9 +10,10 @@
          Debug\UnsortedArrayList.obj
          Debug\UnsortedPointerList.obj
          Debug\Word.obj
+         LINK : D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe not found or not built by the last incremental link; performing full link
          DSA Assignment AY 1415.vcxproj -> D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\Debug\DSA Assignment AY 1415.exe
      1>Done Building Project "D:\NP Modules\2014 Semester 2\DSA\DSAssignment\DSA Assignment AY 1415\DSA Assignment AY 1415\DSA Assignment AY 1415.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.12
+Time Elapsed 00:00:00.68
