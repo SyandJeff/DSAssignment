@@ -27,7 +27,7 @@ bool UnsortedArrayList::remove(int index, SIZE_T& aM)
 	bool success = (index >= 0) && (index < size);
 	if (success)
 	{
-		for (int i = index; i < size; i++)
+		for (int i = index; i < size-1; i++)
 		{
 
 			USAList[i] = USAList[i + 1];
