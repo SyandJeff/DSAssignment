@@ -650,11 +650,17 @@ void Table(int choice)
 		<< endl;
 	cout << "-----------------------------------------------------------------------------" << endl;
 	double temp;
+	int check = 0, test = 0;
+	if ((choice == 2) || (choice == 4) || (choice == 5))
+		check = 1;
 	for (SIZE_T i = 0; i < gpStorage.size(); i++)
 	{
 		gp = gpStorage[i];
 		if (gp.getOperation() == choice)
 		{
+			test++;
+			if ((check == 1) && (test % 4 == 0))
+				cout << "-----------------------------------------------------------------------------" << endl;
 			temp = (double)gp.getSize();
 			cout << prd(temp, 0, 5, choice) << " | "
 				<< prd(gp.getATime(), 2, 8, choice) << " | " //sorted array
