@@ -27,14 +27,11 @@ bool UnsortedArrayList::remove(int index, SIZE_T& aM)
 	bool success = (index >= 0) && (index < size);
 	if (success)
 	{
-		for (int i = index; i < size-1; i++)
+		for (int pos = index + 1; pos <= size; pos++)
 		{
-
-			USAList[i] = USAList[i + 1];
+			USAList[pos - 2] = USAList[pos - 1];
 			shifts++;
-
 		}
-		
 		size--;
 	}
 	cout << "No. of Shifts for Unsorted Array List: " << shifts << endl;

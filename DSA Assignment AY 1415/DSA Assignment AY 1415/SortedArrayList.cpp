@@ -39,16 +39,12 @@ void SortedArrayList::remove(int index, SIZE_T& aM)
 	bool success = (index >= 0) && (index < size);
 	if (success)
 	{
-		for (int pos = index + 1; pos < size; pos++)
+		for (int pos = index + 1; pos <= size; pos++)
 		{
-			
-
-			SAList[pos] = SAList[pos - 1];
+			SAList[pos - 2] = SAList[pos - 1];
 			shifts++;
 		}
-		
 		size--;
-
 	}
 	cout << "No. of Shifts for Sorted Array List: " << shifts << endl;
 
