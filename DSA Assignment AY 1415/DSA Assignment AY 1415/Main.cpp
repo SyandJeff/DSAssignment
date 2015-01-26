@@ -373,7 +373,7 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 int removeSongs()
 {
 	int input = -1;//default
-	int temp = -1;
+	int secondinput = -1;
 	if (saSList.getLength() != 0)
 	{
 		cout << "There are " << saSList.getLength() << " songs in the lists." << endl;
@@ -394,12 +394,12 @@ int removeSongs()
 		cout << "" << endl;
 		cout << "For Unsorted Pointer List: " << endl;
 		cout << "State the song index that you would like to remove: ";
-		cin >> temp;
-		if (input >= 0 && input < saSList.getLength() && temp >= 0 && temp<upSList.getLength())
+		cin >> secondinput;
+		if (input >= 0 && input < saSList.getLength() && secondinput >= 0 && secondinput<upSList.getLength())
 		{
 			removeSASongs(saSList, input);
 			removeUASongs(usaSList, input);
-			removeUPSongs(upSList, temp);
+			removeUPSongs(upSList, secondinput);
 			combiningPerformanceLists();
 			cout << "Successfully removed song." << endl;
 		}

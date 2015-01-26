@@ -36,7 +36,7 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 	SIZE_T memUsed;
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 	Node *temp;
-	if (index == 1)
+	if (index == 0)
 	{
 		temp = firstNode;
 		firstNode = firstNode->next;
