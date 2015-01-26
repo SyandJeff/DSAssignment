@@ -450,13 +450,14 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 	cout << "For Best-Case Scenario, search for: " << s.getTID() <<endl;
 	cout << "For Average-Case Scenario, search for: " << t.getTID() << " OR " << u.getTID() << endl;
 	cout << "For Worst-Case Scenario, search for: " << w.getTID() << " OR " << v.getTID() << endl;
-	start = std::clock(); //start timer
-	aM = getMem();
+	
 	if (saSList.getLength() != 0)
 	{
 		cout << "Search for Track ID [Case-Sensitive]: ";
 		cin >> input;
 		
+		start = std::clock(); //start timer
+		aM = getMem();
 
 		int check = saSList.binSearch(input,aM);
 		if (check != -1)
