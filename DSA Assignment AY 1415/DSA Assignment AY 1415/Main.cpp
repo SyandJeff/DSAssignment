@@ -326,6 +326,7 @@ void removeSASongs(SortedArrayList& saSList, int input)
 	start = std::clock();//SAList: Add start clock here.
 	bM = getMem();
 	saSList.remove(input,aM);
+	aM = getMem();
 	duration = double(std::clock() - start) /CLOCKS_PER_SEC;
 	tM = (aM - bM) /1024;
 
@@ -346,6 +347,7 @@ void removeUASongs(UnsortedArrayList& usaSList, int input)
 	
 	duration = double (std::clock() - start) / CLOCKS_PER_SEC;
 	
+	aM = getMem();
 	tM = (aM - bM) / 1024;
 	//store performance
 	Performance p(2, 2, temp, duration, tM);
@@ -363,6 +365,7 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 
 	upSList.remove(input, aM);
 	
+	aM = getMem();
 	duration = double(std::clock() - start) /CLOCKS_PER_SEC;
 
 	tM = (aM - bM) / 1024;
@@ -451,6 +454,8 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 		Performance p1(5, 1, saSList.getLength(), duration, aM / 1024);
 		pStorage.push_back(p1);
 		cout << "" << endl;
+
+		//End of Binary Search
 		usaSList.binSearch();
 		Performance p2(5, 2, saSList.getLength(), NULL, NULL);
 		pStorage.push_back(p2);

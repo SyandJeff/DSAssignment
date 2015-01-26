@@ -23,23 +23,22 @@ bool UnsortedArrayList::add(Song song)
 bool UnsortedArrayList::remove(int index, SIZE_T& aM)
 {
 	int shifts = 0;
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T memUsed;
-	bool success = (index >= 1) && (index <= size);
+
+	bool success = (index >= 0) && (index < size);
 	if (success)
 	{
-		for (int i = index; i <= size; i++)
+		for (int i = index; i < size; i++)
 		{
-			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-			memUsed = pmc.PrivateUsage;
-			aM = memUsed - aM;
 
 			USAList[i] = USAList[i + 1];
 			shifts++;
+
 		}
-		cout << "No. of Shifts for Unsorted Array List: " << shifts << endl;
+		
 		size--;
 	}
+	cout << "No. of Shifts for Unsorted Array List: " << shifts << endl;
+
 	return 0;
 }
 

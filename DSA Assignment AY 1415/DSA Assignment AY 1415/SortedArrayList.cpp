@@ -36,23 +36,22 @@ bool SortedArrayList::add(int index, SongItem song)
 void SortedArrayList::remove(int index, SIZE_T& aM)
 {
 	int shifts = 0;
-	PROCESS_MEMORY_COUNTERS_EX pmc;
-	SIZE_T memUsed;
-	bool success = (index >= 1) && (index <= size);
+	bool success = (index >= 0) && (index < size);
 	if (success)
 	{
-		for (int pos = index + 1; pos <= size; pos++)
+		for (int pos = index + 1; pos < size; pos++)
 		{
-			GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-			memUsed = pmc.PrivateUsage;
-			aM = memUsed - aM;
+			
 
-			SAList[pos - 2] = SAList[pos - 1];
+			SAList[pos] = SAList[pos - 1];
 			shifts++;
 		}
-		cout << "No. of Shifts for Sorted Array List: " << shifts << endl;
+		
 		size--;
+
 	}
+	cout << "No. of Shifts for Sorted Array List: " << shifts << endl;
+
 }
 void SortedArrayList::display(SIZE_T& aM)
 {

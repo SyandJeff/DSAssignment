@@ -41,9 +41,7 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 		temp = firstNode;
 		firstNode = firstNode->next;
 
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
-		memUsed = pmc.PrivateUsage;
-		aM = memUsed - aM;
+
 	}
 	else
 	{
@@ -57,12 +55,17 @@ void UnsortedPointerList::remove(int index, SIZE_T& aM)
 		}
 		temp = temp2;
 		temp1->next = temp2->next;
+
 	}
 	temp->next = NULL;
 	delete temp;
 	temp = NULL; //clear
 	cout << "No. of Shifts for Unsorted Pointer List: " << shifts << endl;
 	size--;
+
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS *)&pmc, sizeof(pmc));
+	memUsed = pmc.PrivateUsage;
+	aM = memUsed - aM;
 }
 void UnsortedPointerList::display(SIZE_T& aM)
 {
