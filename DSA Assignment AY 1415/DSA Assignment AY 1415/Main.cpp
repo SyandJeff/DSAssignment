@@ -1,3 +1,8 @@
+/*
+Team Member's Name and ID:
+S10147849C Nur Syafiqah Binte Rozaini 
+S10146301E Jeffrey Ding Guan Zhi
+*/
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -30,6 +35,7 @@ SortedArrayList saSList;
 UnsortedArrayList usaSList;
 UnsortedPointerList upSList; //Name suppose to contain "LinkList" but accidentally set as "Pointer" instead.
 
+//This method is to combine performances for a specific functions
 void combiningPerformanceLists()
 {
 	Performance a, b, c;
@@ -50,6 +56,7 @@ void combiningPerformanceLists()
 		pStorage.pop_back();
 	}
 }
+//Importing of songs based on user's input
 int importSongs()
 {
 	int noOfSongs = 0, count = 0, found = -1, j = 0, z = 0;
@@ -160,7 +167,7 @@ int importSongs()
 		cout << "Unable to open file" << endl;
 	return 0;
 }
-
+//adding of songs to Sorted Array List
 void addSASongs(SortedArrayList& saSList, int input)
 {
 	SIZE_T bM = 0, aM = 0, tM = 0;
@@ -181,6 +188,7 @@ void addSASongs(SortedArrayList& saSList, int input)
 	Performance p(1, 1, input, duration, tM);
 	pStorage.push_back(p);
 }
+//adding of songs to Unsorted Array List
 void addUASongs(UnsortedArrayList& usaSList, int input)
 {
 
@@ -201,6 +209,7 @@ void addUASongs(UnsortedArrayList& usaSList, int input)
 	Performance p(1, 2, input, duration, tM);
 	pStorage.push_back(p);
 }
+//adding of songs to Unsorted Pointer List
 void addUPSongs(UnsortedPointerList& upSList, int input)
 {
 
@@ -221,6 +230,7 @@ void addUPSongs(UnsortedPointerList& upSList, int input)
 	Performance p(1, 3, input, duration, tM);
 	pStorage.push_back(p);
 }
+// General add functions to contain the 3 aforementioned add methods
 int addSongs()
 { 
 	SIZE_T input;
@@ -244,7 +254,7 @@ int addSongs()
 		cout << "You have not imported the songs yet." << endl;
 	return 0;
 }
-
+//Displaying of songs from the Sorted Array List
 void displaySASongs(SortedArrayList& saSList)
 {
 	SIZE_T aM;
@@ -265,6 +275,7 @@ void displaySASongs(SortedArrayList& saSList)
 	Performance p(3, 1, saSList.getLength(), duration, aM/1024);
 	pStorage.push_back(p);
 }
+//Displaying of songs from the Unsorted Array List
 void displayUASongs(UnsortedArrayList& usaSList)
 {
 	SIZE_T aM;
@@ -283,6 +294,7 @@ void displayUASongs(UnsortedArrayList& usaSList)
 	Performance p(3, 2, usaSList.getLength(), duration, aM/1024);
 	pStorage.push_back(p);
 }
+//Displaying of songs from the Unsorted Pointer List
 void displayUPSongs(UnsortedPointerList& upSList)
 {
 	SIZE_T aM;
@@ -302,6 +314,7 @@ void displayUPSongs(UnsortedPointerList& upSList)
 	Performance p(3, 3, upSList.getLength(), duration, aM/1024);
 	pStorage.push_back(p);
 }
+//General display method that contains the 3 aforementioned display methods
 int displaySongs()
 {
 	if (saSList.getLength() != 0)
@@ -315,7 +328,7 @@ int displaySongs()
 		cout << "You may have not imported or added the songs to the list yet." << endl;
 	return 0;
 }
-
+//Removing of songs from the Sorted Array List
 void removeSASongs(SortedArrayList& saSList, int input)
 {
 	int temp = saSList.getLength();
@@ -334,6 +347,7 @@ void removeSASongs(SortedArrayList& saSList, int input)
 	pStorage.push_back(p);
 	//store performance
 }
+//Removing of songs from the Unsorted Array List
 void removeUASongs(UnsortedArrayList& usaSList, int input)
 {
 	int temp = usaSList.getLength();
@@ -353,6 +367,7 @@ void removeUASongs(UnsortedArrayList& usaSList, int input)
 	Performance p(2, 2, temp, duration, tM);
 	pStorage.push_back(p);
 }
+//Removing of songs from the Unsorted Pointer List
 void removeUPSongs(UnsortedPointerList& upSList, int input)
 {
 	int temp = upSList.getLength();
@@ -373,6 +388,7 @@ void removeUPSongs(UnsortedPointerList& upSList, int input)
 	Performance p(2, 3, temp, duration, tM);
 	pStorage.push_back(p);
 }
+//General remove method that contains the 3 aforementioned methods
 int removeSongs()
 {
 	int input = -1;//default
@@ -413,7 +429,7 @@ int removeSongs()
 		cout << "You may have not imported or added the songs to the list yet." << endl;
 	return 0;
 }
-
+//Binary search to be carried out on only Sorted Array List
 int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
 	SIZE_T aM;
@@ -470,7 +486,7 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 	//store performance
 	return 0;
 }
-
+//Sequential: Searching of songs from the Sorted Array List
 void SASqSearch(SortedArrayList& sasList)
 {
 	SIZE_T aM;
@@ -505,6 +521,7 @@ void SASqSearch(SortedArrayList& sasList)
 	Performance p(4, 1, saSList.getLength(), duration, aM/1024);
 	pStorage.push_back(p);
 }
+//Sequential: Searching of songs from the Unsorted Array List
 void UASqSearch(UnsortedArrayList& usasList, string input)
 {
 	SIZE_T aM;
@@ -529,6 +546,7 @@ void UASqSearch(UnsortedArrayList& usasList, string input)
 	pStorage.push_back(p);
 
 }
+//Sequential: Searching of songs from the Unsorted Pointer List
 void UPSqSearch(UnsortedPointerList& upsList, string input)
 {
 	SIZE_T aM;
@@ -553,6 +571,7 @@ void UPSqSearch(UnsortedPointerList& upsList, string input)
 	Performance p(4, 3, upSList.getLength(), duration, aM/1024);
 	pStorage.push_back(p);
 }
+//General Sequential Search method that contains the 3 aforementioned methods
 int SequentialSearch()
 {
 	string input;
@@ -581,9 +600,9 @@ int SequentialSearch()
 }
 
 //Table related
+//For printing of variables
 string center(const string s, const int w) 
 {
-	//retrieved from: stackoverflow.com/questions/14765155/how-can-i-easily-format-my-data-table-in-c
 	stringstream ss, spaces;
 	int padding = w - s.size();                 // count excess room to pad
 	for (int i = 0; i<padding / 2; ++i)
@@ -593,6 +612,7 @@ string center(const string s, const int w)
 		ss << " ";
 	return ss.str();
 }
+//For printing of variables
 string prd(const double x, const int decDigits, const int width, int choice) 
 {
 	stringstream ss;
@@ -620,6 +640,7 @@ string prd(const double x, const int decDigits, const int width, int choice)
 		return ss.str();
 	}
 }
+//User's input determines the data retrieved from gpStorage.
 void Table(int choice)
 {
 	GP gp;
@@ -666,6 +687,7 @@ void Table(int choice)
 		}
 	}
 }
+//User choose which function to analyse
 void ViewPerformance()
 {
 	int choice = -1; //default
@@ -694,7 +716,7 @@ void ViewPerformance()
 			cout << "Invalid Option! Please choose again." << endl;
 	}
 }
-
+//clear Sorted, Unsorted Array List and Unsorted Pointer List
 void clearLists(SortedArrayList& saSList, UnsortedArrayList& usaSList, UnsortedPointerList& upSList)
 {
 	int input = -1;
