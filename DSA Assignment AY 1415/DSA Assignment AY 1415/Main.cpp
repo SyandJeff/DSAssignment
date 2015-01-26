@@ -569,7 +569,6 @@ int SequentialSearch()
 		cout << "For Best-Case Scenario, search for: " << s.getTID() << endl;
 		cout << "For Average-Case Scenario, search for: " << t.getTID() << endl;
 		cout << "For Worst-Case Scenario, search for: " << u.getTID() << endl;
-		cout << "[Sorted Array List] Search for Track ID [Case-Sensitive]: ";
 		cout << "[Unsorted Array & Pointer List] Search for Track ID [Case-Sensitive]: ";
 		cin >> input;
 		UASqSearch(usaSList, input);
@@ -650,17 +649,11 @@ void Table(int choice)
 		<< endl;
 	cout << "-----------------------------------------------------------------------------" << endl;
 	double temp;
-	int check = 0, test = 0;
-	if ((choice == 2) || (choice == 4) || (choice == 5))
-		check = 1;
 	for (SIZE_T i = 0; i < gpStorage.size(); i++)
 	{
 		gp = gpStorage[i];
 		if (gp.getOperation() == choice)
 		{
-			test++;
-			if ((check == 1) && (test % 4 == 0))
-				cout << "-----------------------------------------------------------------------------" << endl;
 			temp = (double)gp.getSize();
 			cout << prd(temp, 0, 5, choice) << " | "
 				<< prd(gp.getATime(), 2, 8, choice) << " | " //sorted array
