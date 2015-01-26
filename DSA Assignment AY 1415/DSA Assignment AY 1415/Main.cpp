@@ -457,11 +457,11 @@ int BinarySearch(SortedArrayList& saSList, UnsortedArrayList& usaSList, Unsorted
 
 		//End of Binary Search
 		usaSList.binSearch();
-		Performance p2(5, 2, saSList.getLength(), NULL, NULL);
+		Performance p2(5, 2, saSList.getLength(), -1, -1);
 		pStorage.push_back(p2);
 		cout << "" << endl;
 		upSList.binSearch();
-		Performance p3(5, 3, saSList.getLength(), NULL, NULL);
+		Performance p3(5, 3, saSList.getLength(), -1, -1);
 		pStorage.push_back(p3);
 		combiningPerformanceLists();
 	}
@@ -598,7 +598,7 @@ string prd(const double x, const int decDigits, const int width, int choice)
 	stringstream ss;
 	if (choice == 5)
 	{
-		if (x == NULL)
+		if (x == -1)
 			return "  NULL  ";
 		else
 		{
